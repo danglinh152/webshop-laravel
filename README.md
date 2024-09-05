@@ -6,8 +6,7 @@ This project is built using the Laravel framework, which follows the Model-View-
 
 ### Technologies Used
 
--   **Laravel**: Version X.X
--   **PHP**: Version X.X
+-   **Laravel**: Version 10.48.20
+-   **PHP**: Version 8.1.25
 -   **Database**: MySQL
 -   **Frontend**: Blade templating engine, HTML, CSS, JavaScript
-    cc
