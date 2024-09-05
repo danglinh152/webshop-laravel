@@ -28,8 +28,8 @@ body {
     font-size: 100%;
     overflow-x: hidden;
     background: rgba(175, 78, 146, 0.3);
-    /* background: url(../images/bg.jpg) no-repeat 0px 0px;
-    background-size: cover; */
+    background: url(../images/unsplash-bg.jpg) no-repeat 0px 0px;
+    background-size: cover;
 }
 
 body a {
@@ -134,6 +134,8 @@ body a:hover {
 }
 
 /*---*/
+
+
 .nav-collapse.collapse {
     display: inline;
 }
