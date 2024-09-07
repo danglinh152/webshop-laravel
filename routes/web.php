@@ -20,7 +20,9 @@ Route::get('/home', 'App\Http\Controllers\client\HomeController@index');
 Route::get('/admin', 'App\Http\Controllers\admin\AdminController@index');
 
 
-Route::post('/admin-dashboard', 'App\Http\Controllers\AdminController@dashboard');
+Route::post('/admin-dashboard', 'App\Http\Controllers\admin\AdminController@dashboard');
 
-Route::get('/logout', 'App\Http\Controllers\AdminController@logout');
-Route::get('/dashboard', 'App\Http\Controllers\admin\AdminController@showDashboard');
+Route::get('/logout', 'App\Http\Controllers\admin\AdminController@logout');
+
+
+Route::get('/dashboard', 'App\Http\Controllers\admin\AdminController@showDashboard')->middleware('admin.auth');
