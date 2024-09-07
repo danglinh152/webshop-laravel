@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Redirect;
 session_start();
 
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin-login');
+        return view('admin.auth.admin-login');
     }
 
     public function showDashboard()
     {
-        return view('admin.dashboard');
+        return view('admin.dashboard.dashboard');
     }
 
     public function dashboard(Request $request)

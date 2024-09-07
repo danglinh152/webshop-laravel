@@ -15,7 +15,7 @@
 
 <body class="sb-nav-fixed">
     <?php
-    $admin_name = Session::get('admin_name');
+    $admin_name = session('admin_name');
     ?>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->

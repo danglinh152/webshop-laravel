@@ -1,4 +1,4 @@
-@extends('admin-layout')
+@extends('admin/layout/admin-layout')
 @section('admin-content')
 
 <div class="container-fluid px-4">
