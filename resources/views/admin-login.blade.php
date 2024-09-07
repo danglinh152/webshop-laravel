@@ -23,15 +23,22 @@
                                 <div class="card-header">
                                     <h3 class="text-center font-weight-light my-4">Login</h3>
                                 </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                            <label for="inputEmail">Email address</label>
+                                <div class="card-body login-form">
+                                    <?php
+                                    $err_msg = Session::get('err_msg');
+                                    if ($err_msg) {
+                                        echo '<p class="err-msg">' . ($err_msg) . '</p>';
+                                        Session::put('err_msg', null);
+                                    }
+
+                                    ?>
+                                    <form action="{{URL::to('/admin-dashboard')}}" method="POST">
+                                        {{csrf_field()}}
+                                        <div class="mb-3">
+                                            <input name="admin_email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
-                                            <label for="inputPassword">Password</label>
+                                        <div class="mb-3">
+                                            <input name="admin_password" class="form-control" id="inputPassword" type="password" placeholder="Password" />
                                         </div>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
@@ -39,7 +46,7 @@
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="password.html">Forgot Password?</a>
-                                            <a class="btn btn-primary" href="index.html">Login</a>
+                                            <button class="btn btn-primary">Login</button>
                                         </div>
                                     </form>
                                 </div>
