@@ -17,7 +17,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.auth.admin-login');
+        return view('admin.auth.login');
     }
 
     public function showDashboard()

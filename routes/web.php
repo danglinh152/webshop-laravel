@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//client
 Route::get('/', 'App\Http\Controllers\client\HomeController@index');
 
-Route::get('/home', 'App\Http\Controllers\client\HomeController@index');
 
-Route::get('/admin', 'App\Http\Controllers\admin\DashboardController@index');
 
-Route::post('/admin-dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
+
+//admin
+Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
+
+Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+
+Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
 
 Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
-
-Route::get('/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
