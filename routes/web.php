@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 //client
 Route::get('/', 'App\Http\Controllers\client\HomeController@index');
 
+Route::get('/register', 'App\Http\Controllers\client\HomeController@register');
+
+
 
 
 
@@ -27,3 +30,5 @@ Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@s
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
 
 Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
+
+

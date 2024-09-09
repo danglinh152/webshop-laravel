@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    background-image: url("../../background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    --primary-color: #0300a4;
+}
+
+.wrapper {
+    width: 650px;
+    background: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+    border-radius: 5px;
+    padding: 45px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.wrapper .input-field {
+    display: flex;
+    gap: 5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    font-size: 16px;
+    color: #333;
+    padding: 20px 45px 20px 20px;
+    transition: 0.25s ease;
+}
+
+.input-box.invalid input {
+    border-color: #f33a58;
+}
+
+.input-box.invalid .error-message {
+    color: #f33a58;
+}
+
+.input-box input:focus {
+    border-color: var(--primary-color);
+}
+
+.input-box input::placeholder {
+    color: #333;
+}
+
+.input-box .input-label {
+    size: 10px;
+    position: absolute;
+    left: 21px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    color: #888;
+    transition: 0.25s ease;
+}
+
+.input-box input:not(:placeholder-shown) + .input-label,
+.input-box input:focus + .input-label {
+    top: 0;
+    padding: 0 10px;
+    display: inline-block;
+    background-color: white;
+    color: var(--primary-color);
+    left: 11px;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.wrapper .error-register {
+    margin: -15px 0 10px;
+    visibility: hidden;
+}
+
+.wrapper .error-register.error {
+    color: #f33a58;
+    visibility: visible;
+}
+
+.view-forgot {
+    margin-left: 20px;
+}
+
+.login-group {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.link-login {
+    margin-left: 2px;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.wrapper .view-forgot label input {
+    margin-right: 5px;
+}
+
+.view-forgot input[type="checkbox"] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.4); /* IE */
+    -moz-transform: scale(1.4); /* FF */
+    -webkit-transform: scale(1.4); /* Safari and Chrome */
+    -o-transform: scale(1.4); /* Opera */
+    transform: scale(1.4);
+    padding: 10px;
+}
+
+/* .view-forgot .view-password {
+    font-size: 18px;
+    margin-left: 8px;
+} */
+
+.login-group {
+    font-size: 20px;
+}
+
+/* tst */
+
+.input-box .view {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    color: #eee;
+    background-color: transparent;
+    border: none;
+}

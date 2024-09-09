@@ -11,4 +11,9 @@ class HomeController extends Controller
     {
         return view('client.homepage.home');
     }
+
+    public function register()
+    {
+        return view('client.auth.register');
+    }
 }
