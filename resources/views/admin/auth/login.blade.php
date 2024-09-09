@@ -128,7 +128,7 @@
         </form>
     </div>
 
-    <script src="{{asset('public/frontend/admin/js/login-script.js')}}"></script>
+    <script src="{{asset('public/frontend/admin/js/login-scripts.js')}}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             Validator({
