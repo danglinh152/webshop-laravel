@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //client
-Route::get('/', 'App\Http\Controllers\client\HomeController@index');
+Route::get('/home-page', 'App\Http\Controllers\client\HomeController@index');
 
 Route::get('/register', 'App\Http\Controllers\client\HomeController@register');
 

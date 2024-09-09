@@ -46,7 +46,7 @@
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
                 <a href="/" class="navbar-brand">
-                    <h1 class="text-primary display-6">Laptopshop</h1>
+                    <h1 class="text-primary display-6">10PM STORE</h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -54,9 +54,9 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-5">
-                        <a href="/" class="nav-item nav-link active"
+                        <a href="#" class="nav-item nav-link active"
                             style="font-weight: 700; font-size: 18px;">Trang Chủ</a>
-                        <a href="/products" class="nav-item nav-link"
+                        <a href="#" class="nav-item nav-link"
                             style="font-weight: 700; font-size: large;">Sản Phẩm</a>
                         <a href="" class="nav-item nav-link" style="font-weight: 700; font-size: large;">Liên
                             hệ</a>
@@ -100,8 +100,14 @@
                         </div> -->
 
 
-                    <div class="d-flex m-3 me-0 mx-auto">
-                        <a class="btn" href="/login">Đăng nhập</a>
+                    <div class="btn-group m-3 me-0 mx-auto">
+                        <div class="d-flex">
+                            <a class="btn nav-item nav-link active" style="font-weight: 700; font-size: 18px;" href="{{URL::to('/login')}}">Đăng nhập</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a class="btn nav-item nav-link active" style="font-weight: 700; font-size: 18px;" href="{{URL::to('/register')}}">Đăng ký</a>
+                        </div>
                     </div>
 
 
@@ -493,7 +499,7 @@
                 <div class="row g-4">
                     <div class="col-lg-3">
                         <a target="_blank">
-                            <h1 class="text-primary mb-0">Laptopshop</h1>
+                            <h1 class="text-primary mb-0">10PM STORE</h1>
                         </a>
                     </div>
                 </div>
@@ -517,11 +523,11 @@
                         <h4 class="text-light mb-3">Account</h4>
                         <a class="text-dark" href="#">My Account</a>
                     </div>
-                </div>
+                </div>  
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
                         <h4 class="text-light mb-3">Contact</h4>
-                        <span class="text-dark">Lê Tiến Đạt</span>
+                        <span class="text-dark">10PM Corporation</span>
 
                     </div>
                 </div>
@@ -535,8 +541,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <span class="text-light"><a href="/" target="_blank"><i
-                                class="fas fa-copyright text-light me-2"></i>TDat</a>, All right
+                    <span class="text-light"><a href="https://www.facebook.com/UIT.Fanpage" target="_blank"><i
+                                class="fas fa-copyright text-light me-2"></i>10PM Store</a>, All right
                         reserved.</span>
                 </div>
 

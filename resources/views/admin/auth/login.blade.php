@@ -43,7 +43,6 @@
                 echo '<p class="err-msg">' . ($err_msg) . '</p>';
                 Session::put('err_msg', null);
             }
-
             ?>
 
 
@@ -56,6 +55,11 @@
                 <a href="#" class="link-forgot">Forgot your password?</a>
             </div>
             <button type="submit" class="btn">Login</button>
+            <div class="login-group">
+                <span class="login">
+                    <a href="{{URL::to('/home-page')}}" class="link link-login">Back to homepage</a>
+                </span>
+            </div>
         </form>
     </div>
 
