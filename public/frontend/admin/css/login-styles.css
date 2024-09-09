@@ -106,8 +106,8 @@ body {
     transition: 0.25s ease;
 }
 
-.input-box input:not(:placeholder-shown) + .input-label,
-.input-box input:focus + .input-label {
+.input-box input:not(:placeholder-shown)+.input-label,
+.input-box input:focus+.input-label {
     top: 0;
     padding: 0 10px;
     display: inline-block;
@@ -158,4 +158,11 @@ body {
 .link-register {
     text-decoration: none;
     color: var(--primary-color);
+}
+
+
+.form-login .err-msg {
+    margin-top: 10px;
+    color: red;
+    text-align: center;
 }

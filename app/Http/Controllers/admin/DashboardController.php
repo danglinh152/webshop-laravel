@@ -34,10 +34,10 @@ class DashboardController extends Controller
         if ($result) {
             Session::put('admin_name', $result->admin_name);
             Session::put('admin_id', $result->admin_id);
-            return Redirect::to('/dashboard');
+            return Redirect::to('/admin/dashboard');
         } else {
             Session::put('err_msg', "Mật khẩu hoặc tài khoản sai! Vui lòng nhập lại!");
-            return Redirect::to('/admin');
+            return Redirect::to('/login');
         }
     }
 
@@ -45,6 +45,6 @@ class DashboardController extends Controller
     {
         Session::put('admin_name', null);
         Session::put('admin_id', null);
-        return Redirect::to('/admin');
+        return Redirect::to('/login');
     }
 }
