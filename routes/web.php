@@ -25,10 +25,12 @@ Route::get('/register', 'App\Http\Controllers\client\HomeController@register');
 //admin
 Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
 
-Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+
+Route::group(['middleware' => 'admin.auth'], function () {
+    // Các route khác có thể thêm vào đây
+    Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+
+    Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
+});
 
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
-
-Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
-
-
