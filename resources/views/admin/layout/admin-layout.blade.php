@@ -95,7 +95,7 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Start Bootstrap
+                    <?php if ($admin_name) echo ($admin_name) ?>
                 </div>
             </nav>
         </div>
