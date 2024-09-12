@@ -57,7 +57,7 @@
             <button type="submit" class="btn">Login</button>
             <div class="login-group">
                 <span class="login">
-                    <a href="{{URL::to('/home-page')}}" class="link link-login">Back to homepage</a>
+                    <a href="{{URL::to('/')}}" class="link link-login">Back to homepage</a>
                 </span>
             </div>
         </form>
