@@ -52,7 +52,7 @@
                         href="{{URL::to('/register')}}"
                         class="link link-register">Register</a>
                 </span>
-                <a href="#" class="link-forgot">Forgot your password?</a>
+                <a href="{{URL::to('/forgot-password')}}" class="link-forgot">Forgot your password?</a>
             </div>
             <button type="submit" class="btn">Login</button>
             <div class="login-group">

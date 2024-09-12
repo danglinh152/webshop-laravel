@@ -110,6 +110,8 @@
                 ],
                 onSubmit: function(data) {
                     // Call API
+                    const form = document.getElementById('form-login');
+                    form.submit();
                     console.log(data);
                 },
             });

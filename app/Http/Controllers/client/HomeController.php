@@ -16,4 +16,12 @@ class HomeController extends Controller
     {
         return view('client.auth.register');
     }
+    public function forgotPassword()
+    {
+        return view('client.auth.forgotpw');
+    }
+    public function otp()
+    {
+        return view('client.auth.otp');
+    }
 }
