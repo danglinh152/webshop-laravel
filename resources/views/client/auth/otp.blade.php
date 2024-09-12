@@ -30,6 +30,7 @@
         <div class="error-submit"></div>
 
         <button class="btn-submit"><a href="#">Verify OTP</a></button>
+        <a href="{{URL::to('/login')}}" class="link-login">Return to login</a>
     </div>
 
     <script src="public/frontend/client/js/otp.js"></script>
