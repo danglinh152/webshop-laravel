@@ -515,14 +515,14 @@ progress {
 }
 
 .display-3 {
-    font-size: calc(1.525rem + 3.3vw);
+    font-size: calc(1.2rem + 3.3vw);
     font-weight: 700;
     line-height: 1.2
 }
 
 @media(min-width: 1200px) {
     .display-3 {
-        font-size: 4rem
+        font-size: 3.5rem
     }
 }
 
@@ -4536,8 +4536,8 @@ fieldset:disabled .btn {
 
 .navbar-collapse {
     flex-basis: 100%;
-    flex-grow: 1;
-    align-items: center
+    align-items: center;
+    margin-left: auto;
 }
 
 .navbar-toggler {
@@ -4705,7 +4705,7 @@ fieldset:disabled .btn {
 
     .navbar-expand-xl .navbar-collapse {
         display: flex !important;
-        flex-basis: auto
+        flex-basis: auto;
     }
 
     .navbar-expand-xl .navbar-toggler {
@@ -4787,7 +4787,7 @@ fieldset:disabled .btn {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: rgba(0, 0, 0, .55)
+    color: rgba(0, 0, 0, .78)
 }
 
 .navbar-light .navbar-nav .nav-link:hover,

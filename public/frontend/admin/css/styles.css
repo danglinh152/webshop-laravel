@@ -4387,7 +4387,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
 
@@ -4431,6 +4431,7 @@ fieldset:disabled .btn {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  margin-left: auto;
 }
 
 .navbar-nav .show>.nav-link,
@@ -4456,8 +4457,8 @@ fieldset:disabled .btn {
 
 .navbar-collapse {
   flex-basis: 100%;
-  flex-grow: 1;
   align-items: center;
+  
 }
 
 .navbar-toggler {
@@ -13176,5 +13177,3 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
-
-
