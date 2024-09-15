@@ -50,9 +50,9 @@
                 </a>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto me-5">
-                        <a href="#" class="nav-item nav-link active"
+                        <a href="{{URL::to('')}}" class="nav-item nav-link active"
                             style="font-weight: 600; font-size: 16px;">Trang Chủ</a>
-                        <a href="#" class="nav-item nav-link"
+                        <a href="{{URL::to('/product')}}" class="nav-item nav-link"
                             style="font-weight: 600; font-size: 16px;">Sản Phẩm</a>
                         <a href="" class="nav-item nav-link" style="font-weight: 600; font-size: 16px;">Liên
                             hệ</a>
@@ -105,6 +105,7 @@
 
     @yield('content')
     @yield('productDetail')
+    @yield('productShow')
 
 
     <!-- Footer  -->

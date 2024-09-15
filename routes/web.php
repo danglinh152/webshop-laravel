@@ -24,7 +24,7 @@ Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 Route::get('/product/id', 'App\Http\Controllers\client\ItemController@productDetailPage');
 
-
+Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 
 

@@ -11,4 +11,9 @@ class ItemController extends Controller
     {
         return view('client.product.detail');
     }
+
+    public function productShowPage()
+    {
+        return view('client.product.show');
+    }
 }
