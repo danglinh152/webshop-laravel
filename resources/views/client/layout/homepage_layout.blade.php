@@ -104,7 +104,7 @@
     </div>
 
     @yield('content')
-
+    @yield('productDetail')
 
 
     <!-- Footer  -->

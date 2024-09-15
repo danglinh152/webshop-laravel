@@ -53,7 +53,7 @@
                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
                         <li class="nav-item">
                             <a class="d-flex m-2 py-2 bg-light rounded-pill active"
-                                data-bs-toggle="pill" href="#tab-1">
+                                data-bs-toggle="pill" href="#">
                                 <span class="text-dark" style="width: 130px;">All
                                     Products</span>
                             </a>
@@ -75,7 +75,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
@@ -111,7 +111,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
@@ -147,7 +147,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
@@ -182,7 +182,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
@@ -217,7 +217,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
@@ -252,7 +252,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
@@ -287,7 +287,7 @@
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
-                                                <a href="/product">
+                                                <a href="{{URL::to('/product/id')}}">
                                                     Laptop Lenovo LOQ </a>
                                             </h4>
                                             <p style="font-size: 13px;">
