@@ -26,43 +26,54 @@
                     <tbody class="bg-white divide-y">
                         <tr class="text-gray-700">
                             <td class="px-4 py-3">
-                                <div class="flex items-center text-sm">
+                                <div class="flex items-center text-sm font-medium text-gray-500">
                                     1
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-sm">Laptop Lenovo V14</td>
-                            <td class="px-4 py-3 text-sm">
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Laptop Lenovo V14</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">
                                 14,000,000 đ
                             </td>
-                            <td class="px-4 py-3 text-sm">Lenovo</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lenovo</td>
                             <td class="px-4 py-3 text-sm flex">
-                                <button
-                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">View</button>
-                                <button
-                                    class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:shadow-outline-purple">Update</button>
-                                <button
-                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">Delete</button>
+                                <a href="{{URL::to('admin/product/details')}}"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
+                                </a>
+                                <a href="{{URL::to('admin/product/update')}}"
+                                    class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
+                                </a>
+                                <a href="#" onclick="return confirm('Are you sure you want to delete this product?');"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
+                                </a>
                             </td>
                         </tr>
 
                         <tr class="text-gray-700">
                             <td class="px-4 py-3">
-                                <div class="flex items-center text-sm">
-                                    1
+                                <div class="flex items-center text-sm font-medium text-gray-500">
+                                    2
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-sm">Laptop Lenovo V14</td>
-                            <td class="px-4 py-3 text-sm">
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Laptop Lenovo V14</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">
                                 14,000,000 đ
                             </td>
-                            <td class="px-4 py-3 text-sm">Lenovo</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lenovo</td>
                             <td class="px-4 py-3 text-sm flex">
-                                <button
-                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">View</button>
-                                <button
-                                    class=" mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:shadow-outline-purple">Update</button>
-                                <button
-                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">Delete</button>
+                                <a href="{{URL::to('admin/product/details')}}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
+                                </a>
+                                <a href="{{URL::to('admin/product/update')}}"
+                                    class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
+                                </a>
+                                <a href="#" onclick="return confirm('Are you sure you want to delete this product?');"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
+                                </a>
                             </td>
                         </tr>
                     </tbody>

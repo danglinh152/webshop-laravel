@@ -33,7 +33,8 @@ Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
 Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
 Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
 Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
-
+Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
+Route::get('/admin/product/update', 'App\Http\Controllers\admin\ProductController@productUpdatePage');
 Route::group(['middleware' => 'admin.auth'], function () {
     // Các route khác có thể thêm vào đây
     // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');

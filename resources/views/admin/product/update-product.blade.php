@@ -1,10 +1,10 @@
 @extends('admin.layout.admin-layout')
-@section('add-product')
+@section('update-product')
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
         <form>
             <div class="flex justify-between items-center">
-                <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700"> Create a new product</h2>
+                <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700">Update product</h2>
             </div>
             <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-6 w-3/5 mx-auto">
                 <div class="sm:col-span-3">
@@ -88,9 +88,8 @@
                     </div>
                 </div>
                 <div class="sm:col-span-full mt-4">
-                    <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-                        <i class="fa-solid fa-download mr-2" style="color: #000000;"></i> Save product
-                    </button>
+                    <button type="submit" class="rounded-md bg-yellow-300 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
+                        <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update product</button>
                     <a href="{{URL::to('/admin/product')}}" type="submit" class="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
                         <i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180 mr-2" style="color: #050505;"></i>Back
                     </a>

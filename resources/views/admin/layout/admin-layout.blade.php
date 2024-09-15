@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Windmill Dashboard</title>
+    <title>10PM Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
     <script src="{{asset('public/frontend/admin/js/charts-lines.js')}}" defer></script>
     <script src="{{asset('public/frontend/admin/js/charts-pie.js')}}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
@@ -236,7 +237,9 @@
             @yield('dashboard-main')
             @yield('show-product')
             @yield('add-product')
-        </div>
+            @yield('view-product')
+            @yield('update-product')
+        </div>  
     </div>
 </body>
 
