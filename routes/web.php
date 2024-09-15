@@ -40,7 +40,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // Các route khác có thể thêm vào đây
     // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
 
-    Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
+    // Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
 });
 
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');

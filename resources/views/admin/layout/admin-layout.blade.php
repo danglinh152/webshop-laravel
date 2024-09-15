@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="px-6 mb-3">
-                    <button
+                    <a href="{{URL::to('/logout')}}"
                         class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-slate-800 border border-transparent rounded-lg active:bg-slate-900 hover:bg-slate-900 focus:outline-none focus:shadow-outline-purple">
                         Đăng xuất
                         <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -144,7 +144,7 @@
                                 d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
                             </path>
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </aside>
@@ -239,7 +239,7 @@
             @yield('add-product')
             @yield('view-product')
             @yield('update-product')
-        </div>  
+        </div>
     </div>
 </body>
 
