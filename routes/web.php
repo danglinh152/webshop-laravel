@@ -30,11 +30,13 @@ Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 //admin
 Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
-
+Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
+Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
 
 Route::group(['middleware' => 'admin.auth'], function () {
     // Các route khác có thể thêm vào đây
-    Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+    // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
 
     Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
 });
