@@ -45,7 +45,7 @@
     <div class="container-fluid fixed-top shadow">
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                <a href="/" class="navbar-brand">
+                <a href="{{URL::to('/')}}" class="navbar-brand">
                     <img style="width: 200px; height: 85px; border-radius:20%; object-fit:cover" src="{{asset('public/frontend/client/img/logo.png')}}" alt="">
                 </a>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
