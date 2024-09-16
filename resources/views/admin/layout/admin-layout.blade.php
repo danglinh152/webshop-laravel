@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
     <script src="{{asset('public/frontend/admin/js/charts-lines.js')}}" defer></script>
+    <script src="{{asset('public/frontend/admin/js/add-products.js')}}" defer></script>
     <script src="{{asset('public/frontend/admin/js/charts-pie.js')}}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>

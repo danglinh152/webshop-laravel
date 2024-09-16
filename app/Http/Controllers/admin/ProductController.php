@@ -19,10 +19,10 @@ class ProductController extends Controller
     }
     public function addProductPage()
     {
-        $cate_product = DB::table('categories')->orderBy('category_name', 'asc')->get();
-        $fact_product = DB::table('factories')->orderby('factory_name','asc')->get();
+        // $cate_product = DB::table('categories')->orderBy('category_name', 'asc')->get();
+        // $fact_product = DB::table('factories')->orderby('factory_name','asc')->get();
 
-        return view('admin.product.add-product')->with('cate_product',$cate_product )->with('fact_product', $fact_product);
+        return view('admin.product.add-product');
       
     }
     public function productDetailPage()
