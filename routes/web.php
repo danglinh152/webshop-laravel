@@ -44,3 +44,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
 });
 
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
+
+
+//product
+Route::post('/admin/product/save-product', 'App\Http\Controllers\admin\ProductController@save_product');
