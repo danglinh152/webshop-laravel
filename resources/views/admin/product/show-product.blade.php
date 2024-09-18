@@ -17,6 +17,7 @@
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
                             <th class="px-4 py-3 text-gray-700 text-base">Id</th>
+                            <th class="px-4 py-3 text-gray-700 text-base">Product</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Name</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Price</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Factory</th>
@@ -30,12 +31,15 @@
                                     1
                                 </div>
                             </td>
+                            <td class="px-4 py-3">
+                                <img class="w-24 h-24 object-cover" src="{{asset('public/images/lenovo-loq.jpg')}}" alt="">
+                            </td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">Laptop Lenovo V14</td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">
                                 14,000,000 đ
                             </td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">Lenovo</td>
-                            <td class="px-4 py-3 text-sm flex">
+                            <td class="px-4 py-3 text-sm flex mt-7">
                                 <a href="{{URL::to('admin/product/details')}}"
                                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
                                     <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
@@ -57,14 +61,17 @@
                                     2
                                 </div>
                             </td>
+                            <td class="px-4 py-3">
+                                <img class="w-24 h-24 object-cover" src="{{asset('public/images/lenovo-loq.jpg')}}" alt="">
+                            </td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">Laptop Lenovo V14</td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">
                                 14,000,000 đ
                             </td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">Lenovo</td>
-                            <td class="px-4 py-3 text-sm flex">
-                                <a href="{{URL::to('admin/product/details')}}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
-                                    <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
+                            <td class="px-4 py-3 text-sm flex mt-7">
+                                <a href=" {{URL::to('admin/product/details')}}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
+                                <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
                                 </a>
                                 <a href="{{URL::to('admin/product/update')}}"
                                     class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">

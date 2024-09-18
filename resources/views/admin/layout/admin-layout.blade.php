@@ -17,6 +17,7 @@
     <script src="{{asset('public/frontend/admin/js/add-products.js')}}" defer></script>
     <script src="{{asset('public/frontend/admin/js/charts-pie.js')}}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -81,7 +82,7 @@
                                         </a>
                                     </li>
                                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
-                                        <a class="w-full text-base" href="pages/forgot-password.html">
+                                        <a class="w-full text-base" href="{{URL::to('admin/voucher')}}">
                                             Voucher
                                         </a>
                                     </li>
@@ -240,6 +241,7 @@
             @yield('add-product')
             @yield('view-product')
             @yield('update-product')
+            @yield('show-voucher')
         </div>
     </div>
 </body>

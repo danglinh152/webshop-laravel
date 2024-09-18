@@ -36,6 +36,7 @@ Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showP
 Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
 Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
 Route::get('/admin/product/update', 'App\Http\Controllers\admin\ProductController@productUpdatePage');
+Route::get('/admin/voucher', 'App\Http\Controllers\admin\VoucherController@getVoucherPage');
 Route::group(['middleware' => 'admin.auth'], function () {
     // Các route khác có thể thêm vào đây
     // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
