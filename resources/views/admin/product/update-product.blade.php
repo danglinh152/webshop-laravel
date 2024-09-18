@@ -65,8 +65,8 @@
                     <div class="mt-2">
                         <select id="factory" name="product_fact"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option value="dell">Dell</option>
-                            <option value="acer">Acer</option>
+                            <option value="apple">Apple</option>
+                            <option value="samsung">Samsung</option>
                         </select>
                     </div>
                 </div>
