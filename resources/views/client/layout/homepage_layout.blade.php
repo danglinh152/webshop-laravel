@@ -57,12 +57,14 @@
                         <a href="" class="nav-item nav-link" style="font-weight: 600; font-size: 16px;">Liên
                             hệ</a>
                     </div>
-                    <!-- <div>
+                    <div class="d-flex">
                         <a href="/cart" class="position-relative me-4 my-auto">
                             <i class="fa fa-shopping-bag fa-2x"></i>
                             <span
                                 class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;"></span>
+                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                                1
+                            </span>
                         </a>
                         <div class="dropdown my-auto">
                             <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
@@ -73,9 +75,9 @@
                             <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
                                 <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
                                     <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; object-fit: cover;"
-                                        src="/img/avatar/${sessionScope.avatar}" />
+                                        src="" />
                                     <div class="text-center my-3">
-                                        <c:out value="" />
+                                        1
                                     </div>
                                 </li>
                                 <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
@@ -90,13 +92,11 @@
                                 </li>
                             </ul>
                         </div>
-                    </div> -->
+                    </div>
 
 
-                    <div class="btn-group me-0">
-                        <div class="d-flex">
-                            <a class="btn nav-item nav-link active" style="font-weight: 600; font-size: 16px;" href="{{URL::to('/login')}}">Đăng nhập</a>
-                        </div>
+                    <div class="navbar-nav mx-auto me-5">
+                        <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;" href="{{URL::to('/login')}}">Đăng nhập</a>
                     </div>
                 </div>
             </nav>

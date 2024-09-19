@@ -131,9 +131,9 @@
                          </div>
                          <div class="col-12 col-md-8">
                              <div class="row g-4 d-flex text-center">
-                                 <!-- <c:if test="${totalPages == 0}">
+                                 <c:if test="${totalPages == 0}">
                                      <div>Không tìm thấy sản phẩm</div>
-                                 </c:if> -->
+                                 </c:if>
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruite-item">
                                          <div class="fruite-img">

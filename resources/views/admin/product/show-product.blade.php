@@ -24,7 +24,11 @@
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
                             <th class="px-4 py-3 text-gray-700 text-base">Id</th>
+<<<<<<< HEAD
                             <th class="px-4 py-3 text-gray-700 text-base">Hình ảnh</th>
+=======
+                            <th class="px-4 py-3 text-gray-700 text-base">Product</th>
+>>>>>>> 6d932b3c788270180e4012e70229333cac08f63b
                             <th class="px-4 py-3 text-gray-700 text-base">Name</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Price</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Factory</th>
@@ -41,14 +45,27 @@
                                     {{$pro->product_id}}
                                 </div>
                             </td>
+<<<<<<< HEAD
                             <td class="px-4 py-3 text-sm font-medium text-gray-500"><img src="{{asset('public/backend/products-images/'.$pro->product_image)}}" width="60px" height="60px" alt=""></td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$pro->product_name}}</td>
+=======
+                            <td class="px-4 py-3">
+                                <img class="w-24 h-24 object-cover" src="{{asset('public/images/lenovo-loq.jpg')}}" alt="">
+                            </td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Laptop Lenovo V14</td>
+>>>>>>> 6d932b3c788270180e4012e70229333cac08f63b
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">
                                 {{number_format($pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}} 
                             </td>
+<<<<<<< HEAD
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$pro->product_fact}}</td>
                             <td class="px-4 py-3 text-sm flex">
                                 <a href="{{URL::to('admin/product/view-details/'.$pro->product_id)}}"
+=======
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lenovo</td>
+                            <td class="px-4 py-3 text-sm flex mt-7">
+                                <a href="{{URL::to('admin/product/details')}}"
+>>>>>>> 6d932b3c788270180e4012e70229333cac08f63b
                                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
                                     <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
                                 </a>
@@ -63,7 +80,38 @@
                             </td>
                         </tr>
 
+<<<<<<< HEAD
                       
+=======
+                        <tr class="text-gray-700">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm font-medium text-gray-500">
+                                    2
+                                </div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <img class="w-24 h-24 object-cover" src="{{asset('public/images/lenovo-loq.jpg')}}" alt="">
+                            </td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Laptop Lenovo V14</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">
+                                14,000,000 đ
+                            </td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lenovo</td>
+                            <td class="px-4 py-3 text-sm flex mt-7">
+                                <a href=" {{URL::to('admin/product/details')}}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
+                                <i class="fa-regular fa-eye mr-2" style="color: #fff;"></i>View
+                                </a>
+                                <a href="{{URL::to('admin/product/update')}}"
+                                    class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
+                                </a>
+                                <a href="#" onclick="return confirm('Are you sure you want to delete this product?');"
+                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
+                                    <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
+                                </a>
+                            </td>
+                        </tr>
+>>>>>>> 6d932b3c788270180e4012e70229333cac08f63b
                     </tbody>
                 @endforeach
                 </table>
