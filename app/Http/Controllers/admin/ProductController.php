@@ -88,13 +88,20 @@ class ProductController extends Controller
             $new_image =$get_image->getClientOriginalName();
             $get_image->move('public/backend/products-images',$new_image);
             $data['product_image'] = $new_image;
-            DB::table('products')->where('product_id', $product_id)->update($data);
-            Session::put('message', 'Cập nhật sản phẩm thành công.');
+            
+            $check = DB::table('products')->where('product_id', $product_id)->update($data);
+            if(isset($check)){
+                Session::put('message', 'Cập nhật sản phẩm thành công.');
+            }
+            else Session::put('message', 'Cập nhật sản phẩm thất bại.');
             return Redirect::to('admin/product');
         }else{
             
-            DB::table('products')->where('product_id', $product_id)->update($data);
-            Session::put('message', 'Cập nhật sản phẩm thành công.');
+            $check = DB::table('products')->where('product_id', $product_id)->update($data);
+            if(isset($check)){
+                Session::put('message', 'Cập nhật sản phẩm thành công.');
+            }
+            else Session::put('message', 'Cập nhật sản phẩm thất bại.');
             return Redirect::to('admin/product');
         }
         

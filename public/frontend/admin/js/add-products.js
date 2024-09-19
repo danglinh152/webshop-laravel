@@ -18,15 +18,16 @@ function updateFactoryOptions() {
         options = [
             { value: 'Dell', text: 'Dell' },
             { value: 'Acer', text: 'Acer' },
-            { value: 'Apple', text: 'Macbook' },
+            { value: 'Macbook', text: 'Macbook' },
             { value: 'Asus', text: 'Asus' },
+            { value: 'Lenovo', text: 'Lenovo' },
             { value: 'HP', text: 'HP' }
 
         ];
     } else if (category === '2') {
         options = [
-            { value: 'Apple', text: 'Iphone' },
-            { value: 'Appo', text: 'Oppo' },
+            { value: 'Iphone', text: 'Iphone' },
+            { value: 'Oppo', text: 'Oppo' },
             { value: 'Xiaomi', text: 'Xiaomi' },
             { value: 'Samsung', text: 'Samsung' }
 
