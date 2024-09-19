@@ -3,6 +3,7 @@
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
         <form action="{{URL::to('/admin/product/save-product')}}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
             <div class="flex justify-between items-center">
                 <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700"> Create a new product</h2>
             </div>
@@ -51,9 +52,10 @@
                     <div class="mt-2">
                         <select onclick="updateFactoryOptions()" id="category" name="product_cate"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-
-                            <option value="laptop">Laptop</option>
-                            <option value="phone">Smart Phone</option>
+                            
+                            <option value="1">Laptop</option>
+                            <option value="2">Smart Phone</option>
+                            
 
                         </select>
                     </div>
@@ -65,18 +67,18 @@
                         <select id="factory" name="product_fact"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                             <option value="dell">Dell</option>
-                            <option value="acer">Acer</option>
+                            
                         </select>
                     </div>
                 </div>
                 <div id="target" class="sm:col-span-3 mt-4 block">
                     <label class="block text-base font-medium leading-6 text-gray-500 d-none">Target</label>
                     <div class="mt-2">
-                        <select id="country" name="country"
+                        <select id="country" name="product_target"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option>Gaming</option>
-                            <option>Văn phòng</option>
-                            <option>Đồ họa</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Văn phòng">Văn phòng</option>
+                            <option value="Đồ họa">Đồ họa</option>
                         </select>
                     </div>
                 </div>
@@ -90,7 +92,7 @@
                             <div class="flex text-sm leading-6 text-gray-600">
                                 <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-800 focus-within:ring-offset-2 hover:text-blue-800">
                                     <span>Upload an image</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                    <input id="file-upload" name="product_image" type="file" class="sr-only">
                                 </label>
                                 <p class="pl-1">up to 50mb</p>
                             </div>

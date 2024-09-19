@@ -19,9 +19,9 @@ return new class extends Migration
             $table->text('product_long_desc');
             $table->integer('product_quantity');
             $table->string('product_image');
-            $table->integer('category_id');
-            $table->integer('factory_id');  
-            $table->integer('product_target');        
+            $table->integer('category_id'); 
+            $table->string('product_fact');
+            $table->string('product_target');
             $table->timestamps();
         });
     }
