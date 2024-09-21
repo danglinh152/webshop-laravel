@@ -66,38 +66,47 @@
                                 1
                             </span>
                         </a>
-                        <div class="dropdown my-auto">
-                            <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
-                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fas fa-user fa-2x"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
-                                <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
-                                    <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; object-fit: cover;"
-                                        src="" />
-                                    <div class="text-center my-3">
-                                        1
-                                    </div>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
-                                <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form action="/logout" method="post">
-                                        <button class="dropdown-item" href="#">Đăng xuất</button>
-                                    </form>
-                                </li>
-                            </ul>
+                        @if (Session::has('user_name'))
+                            <div class="dropdown my-auto">
+                                <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-user fa-2x"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
+                                    <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
+                                        <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; object-fit: cover;"
+                                            src="" />
+                                        <div class="text-center my-3">
+                                            {{ Session::get('user_name') }}
+                                        </div>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <!-- <form action="{{URL::to('/logout')}}" method="post">
+                                            <button class="dropdown-item" href="#">Đăng xuất</button>
+                                        </form> -->
+                                        <a class="dropdown-item" href="{{URL::to('/logout')}}">Đăng xuất</a>
+                                    </li>
+                                </ul>
                         </div>
                     </div>
+                    @elseif(!Session::has('user_name'))
+                        <div class="navbar-nav mx-auto me-5">
+                            <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;" href="{{ URL::to('/login') }}">
+                                Đăng nhập
+                            </a>
+                        </div>
+                    @endif
 
 
-                    <div class="navbar-nav mx-auto me-5">
+                    <!-- <div class="navbar-nav mx-auto me-5">
                         <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;" href="{{URL::to('/login')}}">Đăng nhập</a>
-                    </div>
+                    </div> -->
                 </div>
             </nav>
         </div>

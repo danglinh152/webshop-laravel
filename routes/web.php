@@ -54,3 +54,7 @@ Route::post('/admin/product/update-product/{product_id}', 'App\Http\Controllers\
 Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\admin\ProductController@view_product');
 Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
 
+//user
+Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
+Route::post('/login', 'App\Http\Controllers\client\UserController@login');
+Route::get('/logout', 'App\Http\Controllers\client\UserController@logout');
