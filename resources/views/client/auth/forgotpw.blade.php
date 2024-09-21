@@ -15,41 +15,43 @@
 
 <body>
     <div class="wrapper">
-        <form action="{{URL::to('/verify-otp')}}" class="form-login" id="form-login">
+
+        <form action="{{URL::to('/send-mail')}}" method="POST" class="form-login" id="form-login">
+            {{csrf_field()}}
             <h1>Forgot Password</h1>
             <p>Enter your email address</p>
             <div class="input-box">
-                <input id="email" type="text" placeholder=" " />
+                <input id="email" name="email" type="text" placeholder=" " required />
                 <label class="input-label">Email address</label>
                 <span class="error-message"></span>
             </div>
             <div class="error-submit">Email không tồn tại</div>
 
-            <button class="btn-submit"><a href="#">Continue</a></button>
+            <button type="submit" class="btn-submit">Continue</button>
             <a href="{{URL::to('/login')}}" class="link-login">Return to login</a>
         </form>
-    </div>
 
-    <script src="public/frontend/client/js/forgotPassword.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            Validator({
-                form: "#form-login",
-                formGroupSelector: ".input-box",
-                errorSelector: ".error-message",
-                rules: [
-                    Validator.isRequired("#email"),
-                    Validator.isEmail("#email"),
-                ],
-                onSubmit: function(data) {
-                    // Call API
-                    const form = document.getElementById('form-login');
-                    form.submit();
-                    console.log(data);
-                },
+        <script src="public/frontend/client/js/forgotPassword.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Validator({
+                    form: "#form-login",
+                    formGroupSelector: ".input-box",
+                    errorSelector: ".error-message",
+                    rules: [
+                        Validator.isRequired("#email"),
+                        Validator.isEmail("#email"),
+                    ],
+                    onSubmit: function(data) {
+                        // Form sẽ tự động được gửi đi
+                        const form = document.getElementById('form-login');
+                        form.submit();
+                    },
+                });
             });
-        });
-    </script>
+        </script>
+
+        </script>
 </body>
 
 </html>
