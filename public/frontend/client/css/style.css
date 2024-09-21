@@ -395,3 +395,20 @@
 }
 
 /*** Footer End ***/
+
+
+/* dialog */
+#close-dialog {
+    all: unset;
+    outline: none;
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #0300a4;
+    text-align: center;
+    margin-left: auto;
+}
+
+#close-dialog:hover {
+    cursor: pointer;
+}

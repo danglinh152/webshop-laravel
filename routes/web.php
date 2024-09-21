@@ -54,3 +54,6 @@ Route::post('/admin/product/update-product/{product_id}', 'App\Http\Controllers\
 Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\admin\ProductController@view_product');
 Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
 
+//send mail
+Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');
+Route::post('/check-otp', 'App\Http\Controllers\admin\MailController@verify');

@@ -30,9 +30,34 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('public/frontend/client/css/style.css')}}" rel="stylesheet">
+    <style>
+        dialog {
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
+
+<?php
+$message = Session::get('message');
+?>
+
 <body>
+    <?php if ($message): ?>
+        <dialog id="forget-password-dialog">
+            <h2>Welcome Back to 10pm Store!</h2>
+            <p><?php echo $message; ?></p>
+            <button id="close-dialog">Close</button>
+        </dialog>
+        <?php Session::put('message', null); ?>
+    <?php endif; ?>
 
     <!-- Spinner  -->
     <div id="spinner"
@@ -187,6 +212,23 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('/public/frontend/client/js/main.js')}}"></script>
+    <script>
+        // Check if the dialog exists and show it if there is a message
+        window.onload = function() {
+            const dialog = document.getElementById('forget-password-dialog');
+            if (dialog) {
+                dialog.showModal();
+            }
+        };
+
+        // Close the dialog when the button is clicked
+        document.getElementById('close-dialog')?.addEventListener('click', function() {
+            const dialog = document.getElementById('forget-password-dialog');
+            if (dialog) {
+                dialog.close();
+            }
+        });
+    </script>
 </body>
 
 </html>
