@@ -15,16 +15,16 @@
 
 <body>
     <div class="wrapper">
-        <form action="{{URL::to('/admin/dashboard')}}" method="POST" class="form-login" id="form-login">
+        <form action="{{URL::to('/login')}}" method="POST" class="form-login" id="form-login">
             {{csrf_field()}}
             <h1>Login</h1>
             <div class="input-box">
-                <input name="admin_email" id="email" type="text" placeholder=" " />
+                <input name="email" id="email" type="text" placeholder=" " />
                 <label class="input-label">Email address</label>
                 <span class="error-message"></span>
             </div>
             <div class="input-box">
-                <input name="admin_password" id="password" type="password" placeholder=" " />
+                <input name="password" id="password" type="password" placeholder=" " />
                 <label class="input-label">Password</label>
                 <span class="error-message"></span>
                 <button type="button" class="view view-password">
