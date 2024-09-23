@@ -15,28 +15,29 @@
 
 <body>
     <div class="wrapper">
-        <form action="" class="form-login" id="form-login">
+        <form  action="{{URL::to('/admin/user/add-user')}}" method="POST" class="form-login" id="form-login">
+            {{csrf_field()}}
             <h1>Register</h1>
             <div class="input-field">
                 <div class="input-box">
-                    <input id="f_name" type="text" placeholder=" " />
+                    <input id="f_name" name="f_name" type="text" placeholder=" " />
                     <label class="input-label">First name</label>
                     <span class="error-message"></span>
                 </div>
                 <div class="input-box">
-                    <input id="l_name" type="text" placeholder=" " />
+                    <input id="l_name" name="l_name" type="text" placeholder=" " />
                     <label class="input-label">Last name</label>
                     <span class="error-message"></span>
                 </div>
             </div>
             <div class="input-box">
-                <input id="email" type="text" placeholder=" " />
+                <input id="email" name="email" type="text" placeholder=" " />
                 <label class="input-label">Email address</label>
                 <span class="error-message"></span>
             </div>
             <div class="input-field">
                 <div class="input-box">
-                    <input id="password" type="password" placeholder=" " />
+                    <input id="password" name="password" type="password" placeholder=" " />
                     <label class="input-label">Password</label>
                     <span class="error-message"></span>
                     <button type="button" class="view view-password">

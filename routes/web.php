@@ -54,3 +54,15 @@ Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@
 
 //product
 Route::post('/admin/product/save-product', 'App\Http\Controllers\admin\ProductController@save_product');
+Route::get('/admin/product/edit-product/{product_id}', 'App\Http\Controllers\admin\ProductController@edit_product');
+Route::post('/admin/product/update-product/{product_id}', 'App\Http\Controllers\admin\ProductController@update_product');
+Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\admin\ProductController@view_product');
+Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
+
+//send mail
+Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');
+Route::post('/check-otp', 'App\Http\Controllers\admin\MailController@verify');
+//user
+Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
+Route::post('/login', 'App\Http\Controllers\client\UserController@login');
+Route::get('/logout', 'App\Http\Controllers\client\UserController@logout');
