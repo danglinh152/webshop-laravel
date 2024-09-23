@@ -17,4 +17,12 @@ class VoucherController extends Controller
     {
         return view('admin.voucher.show-voucher');
     }
+    public function addVoucherPage()
+    {
+        return view('admin.voucher.add-voucher');
+    }
+    public function updateVoucherPage()
+    {
+        return view('admin.voucher.update-voucher');
+    }
 }

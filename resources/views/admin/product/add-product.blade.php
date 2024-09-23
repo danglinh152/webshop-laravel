@@ -98,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="sm:col-span-full mt-12">
+                <div class="sm:col-span-full mt-2">
                     <img style="display:none" class="h-52" src="#"
                         alt="img preview" id="imgPreview">
                 </div>

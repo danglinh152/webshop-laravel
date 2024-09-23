@@ -121,12 +121,12 @@
                                     class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
                                     aria-label="submenu">
                                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
-                                        <a class="w-full text-base" href="pages/create-account.html">
+                                        <a class="w-full text-base" href="{{URL::to('admin/user')}}">
                                             User
                                         </a>
                                     </li>
                                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
-                                        <a class="w-full text-base" href="pages/forgot-password.html">
+                                        <a class="w-full text-base" href="{{URL::to('admin/order')}}">
                                             Order
                                         </a>
                                     </li>
@@ -242,6 +242,11 @@
             @yield('view-product')
             @yield('update-product')
             @yield('show-voucher')
+            @yield('add-voucher')
+            @yield('update-voucher')
+            @yield('show-user')
+            @yield('add-user')
+            @yield('update-user')
         </div>
     </div>
 </body>
