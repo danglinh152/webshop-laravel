@@ -15,7 +15,7 @@
 
 <body>
     <div class="wrapper">
-        <form action="{{URL::to('/login')}}" method="POST" class="form-login" id="form-login">
+        <form action="{{URL::to('/admin/dashboard')}}" method="POST" class="form-login" id="form-login">
             {{csrf_field()}}
             <h1>Login</h1>
             <div class="input-box">

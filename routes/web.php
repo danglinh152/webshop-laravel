@@ -31,7 +31,6 @@ Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPa
 
 //admin
 Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
-Route::post('/login', 'App\Http\Controllers\admin\DashboardController@dashboard');
 
 // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
 // Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
