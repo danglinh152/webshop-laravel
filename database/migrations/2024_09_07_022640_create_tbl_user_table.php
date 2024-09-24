@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('user_password');
             $table->string('user_first_name');
             $table->string('user_last_name');
-            $table->string('user_address');
-            $table->string('user_phone');
-            $table->longText('user_image');
+            $table->string('user_address')->nullable();
+            $table->string('user_phone')->nullable();
+            $table->longText('user_image')->nullable();
             $table->enum('role', ['customer', 'admin']);
             $table->timestamps();
         });

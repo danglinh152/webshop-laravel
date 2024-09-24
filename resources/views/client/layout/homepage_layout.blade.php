@@ -115,7 +115,7 @@ $avatar = session('image');
                                         style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
                                     @endif
 
-                                    <div class="my-3" style="color: black; font-size: 20px; font-weight: 700;">
+                                    <div class="text-dark fw-bold fs-5 my-3">
                                         {{ Session::get('user_name') }}
                                     </div>
                                 </li>

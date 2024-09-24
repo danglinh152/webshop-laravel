@@ -25,34 +25,46 @@ class UserController extends Controller
     public function add_user(Request $request)
     {
         $data = array();
-        $data['name'] = $request->f_name . ' ' . $request->l_name;
-        $data['email'] = $request->email;
-        $data['password'] = $request->password;
-        $data['remember_token'] =  '';
+        $data['user_email'] = $request->email;
+        $data['user_password'] = md5($request->password);
+        $data['user_first_name'] = $request->first_name;
+        $data['user_last_name'] = $request->last_name;
+        $data['user_address'] = null;
+        $data['user_phone'] = null;
+        $data['user_image'] = null;
+        $data['role'] = 'customer';
         DB::table('tbl_user')->insert($data);
-        Session::put('register_message','Tạo tài khoản thành công!');
-        return view('admin.dashboard.dashboard');
+        Session::put('err_msg', "Tạo tài khoản thành công!");
+        return Redirect::to('/login');
     }
 
     public function login(Request $request)
     {
-        $email = $request->email;
-        $password = $request->password;
-        $result1 = DB::table('tbl_user')->where('email', $email)->where('password', $password)->first();
-        $result2 = DB::table('tbl_admin')->where('admin_email', $email)->where('admin_password', $password)->first();
-        if ($result2) {
-            Session::put('admin_email', $email);
-            return Redirect::to('/admin/dashboard');
-        }else if ($result1) {
-            Session::put('user_name', $result1->name);
-            Session::put('password', $password);
-            return Redirect::to('/');
+        $user_email = $request->email;
+        $user_password = md5($request->password);
+
+        $result = DB::table('tbl_user')->where('user_email', $user_email)->where('user_password', $user_password)->first();
+        if ($result) {
+            if ($result->role == 'admin') {
+                Session::put('admin_name', $result->user_first_name . ' ' . $result->user_last_name);
+                Session::put('admin_id', $result->user_id);
+                Session::put('image', $result->user_image);
+                return Redirect::to('/admin/dashboard');
+            } else {
+                // client
+                Session::put('user_name', $result->user_first_name . ' ' . $result->user_last_name);
+                Session::put('user_id', $result->user_id);
+                Session::put('image', $result->user_image);
+                return Redirect::to('/');
+            }
         } else {
-            return Redirect::to('login');
+            Session::put('err_msg', "Mật khẩu hoặc tài khoản sai! Vui lòng nhập lại!");
+            return Redirect::to('/login');
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         Session::put('user_name', null);
         return Redirect::to('/login');
     }
@@ -117,9 +129,3 @@ class UserController extends Controller
     //     return Redirect::to('admin/product');
     // }
 }
-
-
-
-
-
-

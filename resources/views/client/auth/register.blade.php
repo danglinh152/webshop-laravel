@@ -15,17 +15,17 @@
 
 <body>
     <div class="wrapper">
-        <form  action="{{URL::to('/admin/user/add-user')}}" method="POST" class="form-login" id="form-login">
+        <form action="{{URL::to('/admin/user/add-user')}}" method="POST" class="form-login" id="form-login">
             {{csrf_field()}}
             <h1>Register</h1>
             <div class="input-field">
                 <div class="input-box">
-                    <input id="f_name" name="f_name" type="text" placeholder=" " />
+                    <input id="f_name" name="first_name" type="text" placeholder=" " />
                     <label class="input-label">First name</label>
                     <span class="error-message"></span>
                 </div>
                 <div class="input-box">
-                    <input id="l_name" name="l_name" type="text" placeholder=" " />
+                    <input id="l_name" name="last_name" type="text" placeholder=" " />
                     <label class="input-label">Last name</label>
                     <span class="error-message"></span>
                 </div>

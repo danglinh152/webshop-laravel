@@ -183,7 +183,7 @@
                         $avatar = session('image');
                         ?>
                         <div class="profile-block flex items-center gap-2">
-                            <p class="text-black"> <?php if ($admin_name) echo $admin_name ?> </p>
+                            <p class="text-black font-bold"> Welcome back, <?php if ($admin_name) echo $admin_name ?> </p>
                             <li class="relative">
                                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
                                     @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
