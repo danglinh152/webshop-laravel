@@ -31,22 +31,33 @@ Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPa
 
 //admin
 Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
-Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
-Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
-Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
-Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
-Route::get('/admin/product/update', 'App\Http\Controllers\admin\ProductController@productUpdatePage');
-Route::get('/admin/voucher', 'App\Http\Controllers\admin\VoucherController@getVoucherPage');
-Route::get('/admin/voucher/create', 'App\Http\Controllers\admin\VoucherController@addVoucherPage');
-Route::get('/admin/voucher/update', 'App\Http\Controllers\admin\VoucherController@updateVoucherPage');
-Route::get('/admin/user', 'App\Http\Controllers\admin\UserController@getUserPage');
-Route::get('/admin/user/create', 'App\Http\Controllers\admin\UserController@addUserPage');
-Route::get('/admin/user/update', 'App\Http\Controllers\admin\UserController@updateUserPage');
+Route::post('/login', 'App\Http\Controllers\admin\DashboardController@dashboard');
+
+// Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+// Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
+// Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
+// Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
+// Route::get('/admin/product/update', 'App\Http\Controllers\admin\ProductController@productUpdatePage');
+// Route::get('/admin/voucher', 'App\Http\Controllers\admin\VoucherController@getVoucherPage');
+// Route::get('/admin/voucher/create', 'App\Http\Controllers\admin\VoucherController@addVoucherPage');
+// Route::get('/admin/voucher/update', 'App\Http\Controllers\admin\VoucherController@updateVoucherPage');
+// Route::get('/admin/user', 'App\Http\Controllers\admin\UserController@getUserPage');
+// Route::get('/admin/user/create', 'App\Http\Controllers\admin\UserController@addUserPage');
+// Route::get('/admin/user/update', 'App\Http\Controllers\admin\UserController@updateUserPage');
 Route::group(['middleware' => 'admin.auth'], function () {
     // Các route khác có thể thêm vào đây
-    // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
-
-    // Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
+    Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+    Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
+    Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
+    Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
+    Route::get('/admin/product/update', 'App\Http\Controllers\admin\ProductController@productUpdatePage');
+    Route::get('/admin/voucher', 'App\Http\Controllers\admin\VoucherController@getVoucherPage');
+    Route::get('/admin/voucher/create', 'App\Http\Controllers\admin\VoucherController@addVoucherPage');
+    Route::get('/admin/voucher/update', 'App\Http\Controllers\admin\VoucherController@updateVoucherPage');
+    Route::get('/admin/user', 'App\Http\Controllers\admin\UserController@getUserPage');
+    Route::get('/admin/user/create', 'App\Http\Controllers\admin\UserController@addUserPage');
+    Route::get('/admin/user/update', 'App\Http\Controllers\admin\UserController@updateUserPage');
+    Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
 });
 
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
