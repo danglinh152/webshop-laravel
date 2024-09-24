@@ -63,7 +63,7 @@
         </form>
     </div>
 
-    <script src="{{('public/frontend/admin/js/login-scripts.js')}}"></script>
+    <script src="{{('public/frontend/user/js/login-scripts.js')}}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             Validator({

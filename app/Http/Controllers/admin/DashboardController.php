@@ -27,14 +27,23 @@ class DashboardController extends Controller
 
     public function dashboard(Request $request)
     {
-        $admin_email = $request->email;
-        $admin_password = md5($request->password);
+        $user_email = $request->email;
+        $user_password = md5($request->password);
 
-        $result = DB::table('tbl_admin')->where('admin_email', $admin_email)->where('admin_password', $admin_password)->first();
+        $result = DB::table('tbl_user')->where('user_email', $user_email)->where('user_password', $user_password)->first();
         if ($result) {
-            Session::put('admin_name', $result->admin_name);
-            Session::put('admin_id', $result->admin_id);
-            return Redirect::to('/admin/dashboard');
+            if ($result->role == 'admin') {
+                Session::put('admin_name', $result->user_first_name . ' ' . $result->user_last_name);
+                Session::put('admin_id', $result->user_id);
+                Session::put('image', $result->user_image);
+                return Redirect::to('/admin/dashboard');
+            } else {
+                // client
+                Session::put('user_name', $result->user_first_name . ' ' . $result->user_last_name);
+                Session::put('user_id', $result->user_id);
+                Session::put('image', $result->user_image);
+                return Redirect::to('/');
+            }
         } else {
             Session::put('err_msg', "Mật khẩu hoặc tài khoản sai! Vui lòng nhập lại!");
             return Redirect::to('/login');
@@ -43,8 +52,8 @@ class DashboardController extends Controller
 
     public function logout(Request $request)
     {
-        Session::put('admin_name', null);
-        Session::put('admin_id', null);
+        Session::put('user_name', null);
+        Session::put('user_id', null);
         return Redirect::to('/login');
     }
 }

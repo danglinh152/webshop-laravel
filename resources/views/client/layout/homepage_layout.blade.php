@@ -47,6 +47,9 @@
 
 <?php
 $message = Session::get('message');
+$user_name = session('user_name');
+$user_id = session('user_id');
+$avatar = session('image');
 ?>
 
 <body>
@@ -92,40 +95,51 @@ $message = Session::get('message');
                             </span>
                         </a>
                         @if (Session::has('user_name'))
-                            <div class="dropdown my-auto">
-                                <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
-                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fas fa-user fa-2x"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
-                                    <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
-                                        <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; object-fit: cover;"
-                                            src="" />
-                                        <div class="text-center my-3">
-                                            {{ Session::get('user_name') }}
-                                        </div>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
-                                    <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <!-- <form action="{{URL::to('/logout')}}" method="post">
+                        <div class="dropdown my-auto">
+                            <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-user fa-2x"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
+                                <li class="d-flex align-items-center flex-column" style="min-width: 250px;">
+                                    @if ($avatar)
+                                    <img class=""
+                                        src="{{ $avatar }}"
+                                        alt="" aria-hidden="true"
+                                        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
+                                    @else
+                                    <img class=""
+                                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                        alt="" aria-hidden="true"
+                                        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
+                                    @endif
+
+                                    <div class="my-3" style="color: black; font-size: 20px; font-weight: 700;">
+                                        {{ Session::get('user_name') }}
+                                    </div>
+                                </li>
+
+                                <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
+                                <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <!-- <form action="{{URL::to('/logout')}}" method="post">
                                             <button class="dropdown-item" href="#">Đăng xuất</button>
                                         </form> -->
-                                        <a class="dropdown-item" href="{{URL::to('/logout')}}">Đăng xuất</a>
-                                    </li>
-                                </ul>
+                                    <a class="dropdown-item" href="{{URL::to('/logout')}}">Đăng xuất</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     @elseif(!Session::has('user_name'))
-                        <div class="navbar-nav mx-auto me-5">
-                            <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;" href="{{ URL::to('/login') }}">
-                                Đăng nhập
-                            </a>
-                        </div>
+                    <div class="navbar-nav mx-auto me-5">
+                        <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;" href="{{ URL::to('/login') }}">
+                            Đăng nhập
+                        </a>
+                    </div>
                     @endif
 
 

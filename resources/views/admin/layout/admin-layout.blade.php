@@ -178,15 +178,30 @@
               </button>
             </li> -->
                         <!-- Profile menu -->
+                        <?php
+                        $admin_name = session('admin_name');
+                        $avatar = session('image');
+                        ?>
                         <div class="profile-block flex items-center gap-2">
-                            <p class="text-black"> Welcome back, Đặng Mun </p>
+                            <p class="text-black"> <?php if ($admin_name) echo $admin_name ?> </p>
                             <li class="relative">
                                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
                                     @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                                     aria-haspopup="true">
+
+
+                                    @if ($avatar)
+                                    <img class="object-cover w-8 h-8 rounded-full"
+                                        src="{{ $avatar }}"
+                                        alt="" aria-hidden="true" />
+                                    @else
                                     <img class="object-cover w-8 h-8 rounded-full"
                                         src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
                                         alt="" aria-hidden="true" />
+                                    @endif
+
+
+
                                 </button>
 
 
