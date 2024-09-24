@@ -2,7 +2,10 @@
 @section('update-user')
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
-        <form action="{{URL::to('/admin/product/save-product')}}" method="post" enctype="multipart/form-data">
+        @foreach ($get_user as $key => $user )
+
+        <form action="{{ URL::to('/admin/user/update-user/'.$user->user_id) }}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
             <div class="flex justify-between items-center">
                 <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700"> Update user</h2>
             </div>
@@ -24,67 +27,71 @@
                     </div>
                 </div>
                  <div class="ml-20 mt-2 sm:col-span-3">
-                    <img style="" class="h-36 w-36 rounded-full object-cover " src="{{asset('public/images/avt.jpg')}}"
+                    <img style="" class="h-36 w-36 rounded-full object-cover " src="{{asset('public/backend/users-images/'.$user->user_image)}}"
                         alt="img preview" id="imgPreview">
                     </div>
                 <div class="sm:col-span-3">
                     <label class="block text-base font-medium leading-6 text-gray-500">First name</label>
                     <div class="mt-2">
-                        <input type="text" name="product_name"
+                        <input type="text" name="f_name" value="{{$user->user_first_name}}"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
-                
-               
-                
+
+
+
                 <div class="sm:col-span-3">
                     <label class="block text-base font-medium leading-6 text-gray-500">Last name</label>
                     <div class="mt-2">
-                        <input type="text" name="product_price"
+                        <input type="text" name="l_name" value="{{$user->user_last_name}}"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3 mt-4">
                     <label class="block text-base font-medium leading-6 text-gray-500">Email</label>
                     <div class="mt-2">
-                        <input type="email" name="product_sort_desc"
+                        <input type="email" name="email" value="{{$user->user_email}}"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3 mt-4">
                     <label class="block text-base font-medium leading-6 text-gray-500">Password</label>
                     <div class="mt-2">
-                        <input type="password" name="product_quantity"
+                        <input type="password" name="password" value="{{$user->user_password}}"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3">
                     <label class="block text-base font-medium leading-6 text-gray-500">Phone</label>
                     <div class="mt-2">
-                        <input type="text" name="product_name"
+                        <input type="text" name="phone" value="{{$user->user_phone}}"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3">
                     <label class="block text-base font-medium leading-6 text-gray-500">Address</label>
                     <div class="mt-2">
-                        <input type="text" name="product_price"
+                        <input type="text" name="address" value="{{$user->user_address}}"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3 mt-4">
                     <label class="block text-base font-medium leading-6 text-gray-500">Role</label>
                     <div class="mt-2">
-                        <select onchange="updateFactoryOptions()" id="category" name="product_cate"
+                        <select onchange="updateFactoryOptions()" id="category" name="role"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="USER">USER</option>
+                            @if ($user->role=='admin')
+                            <option selected value="admin">ADMIN</option>
+                            <option value="customer">USER</option>
+                            @else
+                            <option value="admin">ADMIN</option>
+                            <option selected value="customer">USER</option>
+                            @endif
 
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="sm:col-span-full mt-4">
                     <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                         <i class="fa-solid fa-download mr-2" style="color: #000000;"></i> Update user
@@ -95,6 +102,8 @@
                 </div>
             </div>
         </form>
+        @endforeach
+
 </main>
 <script>
     fileUpload.onchange = evt => {

@@ -26,61 +26,36 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y">
+                        @foreach ($all_user as $key => $user)
                         <tr class="text-gray-700">
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm font-medium text-gray-500">
-                                    1
+                                    {{$user->user_id}}
                                 </div>
                             </td>
                             <td class="px-4 py-3">
-                                <img class="w-24 h-24 object-cover rounded-full" src="{{asset('public/images/avt.jpg')}}" alt="">
+                                <img class="w-24 h-24 object-cover rounded-full" src="{{asset('public/backend/users-images/'.$user->user_image)}}" alt="">
                             </td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lê Tiến Đạt</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$user->user_first_name . ' ' . $user->user_last_name}}</td>
                             <td class="px-4 py-3 text-sm font-medium text-gray-500">
-                                tiendat123@gmail.com
+                                {{$user->user_email}}
                             </td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">USER</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">0123456789</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$user->role}}</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$user->user_phone}}</td>
                             <td class="px-4 py-3 text-sm flex mt-7">
-                              
-                                <a href="{{URL::to('admin/user/update')}}"
+
+                                <a href="{{URL::to('admin/user/edit-user/'.$user->user_id)}}"
                                     class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
                                     <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
                                 </a>
-                                <a href="#" onclick="return confirm('Are you sure you want to delete this product?');"
+                                <a href="{{URL::to('admin/user/delete-user/'.$user->user_id)}}" onclick="return confirm('Are you sure you want to delete this user?');"
                                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
                                     <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
                                 </a>
                             </td>
                         </tr>
-<tr class="text-gray-700">
-                            <td class="px-4 py-3">
-                                <div class="flex items-center text-sm font-medium text-gray-500">
-                                    2
-                                </div>
-                            </td>
-                            <td class="px-4 py-3">
-                                <img class="w-24 h-24 object-cover rounded-full" src="{{asset('public/images/avt.jpg')}}" alt="">
-                            </td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lê Văn Đạt</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">
-                                admin123@gmail.com
-                            </td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">ADMIN</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">0123456789</td>
-                            <td class="px-4 py-3 text-sm flex mt-7">
-                                
-                                <a href="{{URL::to('admin/user/update')}}"
-                                    class="mx-2 px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
-                                    <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
-                                </a>
-                                <a href="#" onclick="return confirm('Are you sure you want to delete this user?');"
-                                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
-                                    <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
-                                </a>
-                            </td>
-                        </tr>
-                       
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
