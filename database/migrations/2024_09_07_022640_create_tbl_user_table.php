@@ -26,7 +26,8 @@ return new class extends Migration
         });
 
         DB::table('tbl_user')->insert([
-            ['user_email' => 'admin@gmail.com', 'user_password' => md5('admin'), 'user_first_name' => 'Mua Dong', 'user_last_name' => 'Khong Lanh', 'role' => 'admin'],
+            ['user_email' => 'admin@gmail.com', 'user_password' => md5('admin'), 'user_first_name' => 'Ẹt', 'user_last_name' => 'Min', 'role' => 'admin'],
+            ['user_email' => 'client@gmail.com', 'user_password' => md5('client'), 'user_first_name' => 'Du', 'user_last_name' => 'Xơ', 'role' => 'customer']
         ]);
     }
 
