@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('password_reset_table', function (Blueprint $table) {
-            $table->string('email');
-            $table->string('token');
-            $table->timestamp('created_at');
+        Schema::create('product_voucher', function (Blueprint $table) {
+            $table->increments('product_voucher_id');
+            $table->integer('voucher_id');
+            $table->integer('product_id');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('password_reset_table');
+        Schema::dropIfExists('product_voucher');
     }
 };
