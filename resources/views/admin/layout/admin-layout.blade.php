@@ -27,7 +27,7 @@
             <div class="py-1 px-1 text-gray-500 flex flex-col h-full justify-between">
                 <div class="mb-6">
 
-                    <a href="#">
+                    <a href="{{URL::to('admin/dashboard')}}">
                         <img style="width: 80%; height: 55px; object-fit: cover; border-radius: 10px;"
                             src="{{asset('public/frontend/admin/img/logo.png')}}" alt="">
                     </a>
@@ -271,6 +271,9 @@
             @yield('update-user')
         </div>
     </div>
+    <script src="{{asset('public/frontend/admin/js/add-products.js')}}"></script>
+
+
 </body>
 
 </html>

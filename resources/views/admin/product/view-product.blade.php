@@ -2,8 +2,8 @@
 @section('view-product')
 <main class="h-full overflow-y-auto">
     @foreach ($view_product as $key => $view_pro)
-    
-    
+
+
     <div class="container px-6 mx-auto">
         <h2 class="my-6 ml-6 text-2xl font-semibold text-gray-900">Product detail - {{$view_pro->product_id}}</h2>
         <div class="grid grid-cols-8 mx-auto ml-6 mr-12 border rounded-lg">
@@ -25,7 +25,7 @@
                 <p class="mt-1 px-4 text-base font-nomal text-gray-600">{{$view_pro->product_long_desc}}</p>
                 <div class="px-4 flex justify-between mt-4">
                     <p class="text-base font-medium text-gray-800">Price:
-                                {{number_format($view_pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}} 
+                        {{number_format($view_pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}}
                     </p>
                     <p class="text-base font-medium text-gray-800 mr-24">Quantity: {{$view_pro->product_quantity}}</p>
                 </div>

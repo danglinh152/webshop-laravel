@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -23,6 +24,10 @@ return new class extends Migration
             $table->enum('role', ['customer', 'admin']);
             $table->timestamps();
         });
+
+        DB::table('tbl_user')->insert([
+            ['user_email' => 'admin@gmail.com', 'user_password' => md5('admin'), 'user_first_name' => 'Mua Dong', 'user_last_name' => 'Khong Lanh', 'role' => 'admin'],
+        ]);
     }
 
     /**

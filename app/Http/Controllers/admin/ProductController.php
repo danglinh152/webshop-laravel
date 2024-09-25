@@ -14,17 +14,13 @@ class ProductController extends Controller
 {
     public function showProductPage()
     {
-        $all_product = DB::table('products')->orderby('product_id','desc')->get();
+        $all_product = DB::table('products')->orderby('product_id', 'desc')->get();
         $manager_product = view('admin.product.show-product')->with('all_product', $all_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.show-product', @$manager_product);
-        
     }
     public function addProductPage()
     {
-        
-
         return view('admin.product.add-product');
-      
     }
     public function productDetailPage()
     {
@@ -34,7 +30,7 @@ class ProductController extends Controller
     {
         return view('admin.product.update-product');
     }
-  
+
     public function save_product(Request $request)
     {
         $data = array();
@@ -44,35 +40,39 @@ class ProductController extends Controller
         $data['product_quantity'] = $request->product_quantity;
         $data['product_target'] = $request->product_target;
         $data['product_price'] = $request->product_price;
-        $data['category_id'] = $request->product_cate;
+        if ($request->product_cate === 'laptop') {
+            $data['category_id'] = 2;
+        } else if ($request->product_cate === 'phone') {
+            $data['category_id'] = 3;
+        } else {
+            $data['category_id'] = 1;
+        }
         $data['product_fact'] = $request->product_fact;
-        $get_image = $request->file('product_image');   
-        if($get_image){
-            $new_image =$get_image->getClientOriginalName();
-            $get_image->move('public/backend/products-images',$new_image);
-            $data['product_image'] = $new_image;
+        $get_image = $request->file('product_image');
+        if ($get_image) {
+            $new_image = $get_image->getClientOriginalName();
+            $get_image->move('public/backend/products-images', $new_image);
+            $data['product_image'] = ($new_image);
             DB::table('products')->insert($data);
             Session::put('message', 'Thêm sản phẩm thành công.');
             return Redirect::to('admin/product');
-        }else{
+        } else {
             $data['product_image'] = '';
             DB::table('products')->insert($data);
             Session::put('message', 'Thêm sản phẩm thành công.');
             return Redirect::to('admin/product');
         }
-        
     }
     public function edit_product($product_id)
     {
-        $get_product = DB::table('products')->join('categories', 'categories.category_id','=','products.category_id')->where('product_id', $product_id)->get();
+        $get_product = DB::table('products')->join('categories', 'categories.category_id', '=', 'products.category_id')->where('product_id', $product_id)->get();
         $manager_product = view('admin.product.update-product')->with('get_product', $get_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.update-product', @$manager_product);
-        
     }
-    
+
     public function update_product(Request $request, $product_id)
     {
-       
+
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_sort_desc'] = $request->product_sort_desc;
@@ -80,30 +80,33 @@ class ProductController extends Controller
         $data['product_quantity'] = $request->product_quantity;
         $data['product_target'] = $request->product_target;
         $data['product_price'] = $request->product_price;
-        $data['category_id'] = $request->product_cate;
+        if ($request->product_cate === 'laptop') {
+            $data['category_id'] = 2;
+        } else if ($request->product_cate === 'phone') {
+            $data['category_id'] = 3;
+        } else {
+            $data['category_id'] = 1;
+        }
         $data['product_fact'] = $request->product_fact;
-        $get_image = $request->file('product_image');   
-        if($get_image){
-            $new_image =$get_image->getClientOriginalName();
-            $get_image->move('public/backend/products-images',$new_image);
+        $get_image = $request->file('product_image');
+        if ($get_image) {
+            $new_image = $get_image->getClientOriginalName();
+            $get_image->move('public/backend/products-images', $new_image);
             $data['product_image'] = $new_image;
-            
+
             $check = DB::table('products')->where('product_id', $product_id)->update($data);
-            if(isset($check)){
+            if (isset($check)) {
                 Session::put('message', 'Cập nhật sản phẩm thành công.');
-            }
-            else Session::put('message', 'Cập nhật sản phẩm thất bại.');
+            } else Session::put('message', 'Cập nhật sản phẩm thất bại.');
             return Redirect::to('admin/product');
-        }else{
-            
+        } else {
+
             $check = DB::table('products')->where('product_id', $product_id)->update($data);
-            if(isset($check)){
+            if (isset($check)) {
                 Session::put('message', 'Cập nhật sản phẩm thành công.');
-            }
-            else Session::put('message', 'Cập nhật sản phẩm thất bại.');
+            } else Session::put('message', 'Cập nhật sản phẩm thất bại.');
             return Redirect::to('admin/product');
         }
-        
     }
     public function view_product($product_id)
     {

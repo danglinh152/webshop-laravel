@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('product_sort_desc');
             $table->text('product_long_desc');
             $table->integer('product_quantity');
-            $table->string('product_image');
-            $table->integer('category_id'); 
+            $table->longText('product_image');
+            $table->string('category_id');
             $table->string('product_fact');
             $table->string('product_target');
             $table->timestamps();

@@ -3,18 +3,19 @@ function updateFactoryOptions() {
     const factorySelect = document.getElementById('factory');
     const target = document.getElementById('target');
 
+
     // Clear existing options
     factorySelect.innerHTML = '';
 
     // Kiểm tra và thay đổi lớp của target
-    if (category === '2') {
+    if (category === 'phone') {
         target.classList.replace('block', 'hidden');
-    } else {
+    } else if (category === 'laptop') {
         target.classList.replace('hidden', 'block');
     }
 
     let options = [];
-    if (category === '1') {
+    if (category === 'laptop') {
         options = [
             { value: 'Dell', text: 'Dell' },
             { value: 'Acer', text: 'Acer' },
@@ -24,13 +25,19 @@ function updateFactoryOptions() {
             { value: 'HP', text: 'HP' }
 
         ];
-    } else if (category === '2') {
+    }
+    else if (category === 'phone') {
         options = [
             { value: 'Iphone', text: 'Iphone' },
             { value: 'Oppo', text: 'Oppo' },
             { value: 'Xiaomi', text: 'Xiaomi' },
             { value: 'Samsung', text: 'Samsung' }
 
+        ];
+    }
+    else {
+        options = [
+            { value: 'Chưa xác định', text: '---' }
         ];
     }
 

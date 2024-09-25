@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function getUserPage()
     {
-        $all_user = DB::table("tbl_user")->orderby('user_id','desc')->get();
+        $all_user = DB::table("tbl_user")->orderby('user_id', 'desc')->get();
         return view('admin.user.show-user')->with('all_user', $all_user);
     }
     public function addUserPage()
@@ -23,27 +23,26 @@ class UserController extends Controller
         return view('admin.user.add-user');
     }
 
-    public function saveUser(Request $request) {
+    public function saveUser(Request $request)
+    {
         $data = array();
         $data['user_first_name'] = $request->f_name;
         $data['user_last_name'] = $request->l_name;
         $data['user_email'] = $request->email;
-        $data['user_password'] = $request->password;
+        $data['user_password'] = md5($request->password);
         $data['user_phone'] = $request->phone;
         $data['user_address'] = $request->address;
         $data['role'] = $request->role;
         $get_image = $request->file('fileUpload');
-        if($get_image){
-            $new_image =$get_image->getClientOriginalName();
-            $get_image->move('public/backend/users-images',$new_image);
+        if ($get_image) {
+            $new_image = $get_image->getClientOriginalName();
+            $get_image->move('public/backend/users-images', $new_image);
             $data['user_image'] = $new_image;
             DB::table('tbl_user')->insert($data);
-            Session::put('message', 'Thêm sản phẩm thành công.');
             return Redirect::to('admin/user');
-        }else{
+        } else {
             $data['user_image'] = '';
             DB::table('tbl_user')->insert($data);
-            Session::put('message', 'Thêm sản phẩm thành công.');
             return Redirect::to('admin/user');
         }
     }
@@ -59,30 +58,27 @@ class UserController extends Controller
         $data['user_first_name'] = $request->f_name;
         $data['user_last_name'] = $request->l_name;
         $data['user_email'] = $request->email;
-        $data['user_password'] = $request->password;
+        $data['user_password'] = md5($request->password);
         $data['user_phone'] = $request->phone;
         $data['user_address'] = $request->address;
         $data['role'] = $request->role;
         $get_image = $request->file('fileUpload');
-        if($get_image){
-            $new_image =$get_image->getClientOriginalName();
-            $get_image->move('public/backend/users-images',$new_image);
+        if ($get_image) {
+            $new_image = $get_image->getClientOriginalName();
+            $get_image->move('public/backend/users-images', $new_image);
             $data['user_image'] = $new_image;
             $check = DB::table('tbl_user')->where('user_id', $user_id)->update($data);
-            if(isset($check)){
+            if (isset($check)) {
                 Session::put('message', 'Cập nhật người dùng thành công.');
-            }
-            else Session::put('message', 'Cập nhật người dùng thất bại.');
+            } else Session::put('message', 'Cập nhật người dùng thất bại.');
             return Redirect::to('admin/user');
-        }else{
+        } else {
             $check = DB::table('tbl_user')->where('user_id', $user_id)->update($data);
-            if(isset($check)){
+            if (isset($check)) {
                 Session::put('message', 'Cập nhật người dùng thành công.');
-            }
-            else Session::put('message', 'Cập nhật người dùng thất bại.');
+            } else Session::put('message', 'Cập nhật người dùng thất bại.');
             return Redirect::to('admin/user');
         }
-
     }
 
     public function delete_user($user_id)
@@ -91,5 +87,4 @@ class UserController extends Controller
         Session::put('message', 'Xóa người dùng thành công');
         return Redirect::to('admin/user');
     }
-
 }
