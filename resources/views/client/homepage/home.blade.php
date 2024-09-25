@@ -1,4 +1,4 @@
-@extends('client.layout.homepage_layout')
+@extends('client.layout.homepage-layout')
 @section('content')
 <!-- Hero  -->
 <div class="container-fluid py-5 mb-5 hero-header">
@@ -66,26 +66,28 @@
                     <div class="row g-4">
                         <div class="col-lg-12">
                             <div class="row g-4">
+                                @foreach ($all_product as $key => $pro)
                                 <div class="col-md-6 col-lg-4 col-xl-3">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
+                                            <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
                                                 class="w-100 rounded-top" alt="">
                                         </div>
                                         <div
                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
                                             <h4 style="font-size: 16px;">
                                                 <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
+                                                    {{$pro->product_name}} </a>
                                             </h4>
                                             <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
+                                                {{$pro->product_short_desc}}
+                                            </p>
                                             <div
                                                 class="d-flex flex-lg-wrap justify-content-center flex-column">
                                                 <p style="text-align: center; width: 100%;font-size: 16px;"
                                                     class="text-dark  fw-bold mb-2">
                                                     <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
+                                                        value="{{$pro->product_price}}" /> {{$pro->product_price}} đ
                                                 </p>
                                                 <form
                                                     action="/add-product-to-cart/${product.id}"
@@ -102,216 +104,8 @@
 
                                 </div>
 
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                @endforeach
 
-                                </div>
-
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/frontend/client/img/lenovo-loq.jpg')}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    Laptop Lenovo LOQ </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="" /> 16999998 đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -319,57 +113,56 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Features Section  -->
-<div class="container-fluid featurs py-5">
-    <div class="container py-5">
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="featurs-item text-center rounded bg-light p-4">
-                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                        <i class="fas fa-car-side fa-3x text-white"></i>
-                    </div>
-                    <div class="featurs-content text-center">
-                        <h5>Free Shipping</h5>
-                        <p class="mb-0">Hỏa tốc trong 2h</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="featurs-item text-center rounded bg-light p-4">
-                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                        <i class="fas fa-user-shield fa-3x text-white"></i>
-                    </div>
-                    <div class="featurs-content text-center">
-                        <h5>Security Payment</h5>
-                        <p class="mb-0">Giao dịch an toàn</p>
+    <!-- Features Section  -->
+    <div class="container-fluid features py-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="featurs-item text-center rounded bg-light p-4">
+                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                            <i class="fas fa-car-side fa-3x text-white"></i>
+                        </div>
+                        <div class="featurs-content text-center">
+                            <h5>Free Shipping</h5>
+                            <p class="mb-0">Hỏa tốc trong 2h</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="featurs-item text-center rounded bg-light p-4">
-                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                        <i class="fas fa-exchange-alt fa-3x text-white"></i>
-                    </div>
-                    <div class="featurs-content text-center">
-                        <h5>30 Day Return</h5>
-                        <p class="mb-0">Đổi trả miễn phí</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="featurs-item text-center rounded bg-light p-4">
+                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                            <i class="fas fa-user-shield fa-3x text-white"></i>
+                        </div>
+                        <div class="featurs-content text-center">
+                            <h5>Security Payment</h5>
+                            <p class="mb-0">Giao dịch an toàn</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="featurs-item text-center rounded bg-light p-4">
-                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                        <i class="fa fa-phone-alt fa-3x text-white"></i>
+                <div class="col-md-6 col-lg-3">
+                    <div class="featurs-item text-center rounded bg-light p-4">
+                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                            <i class="fas fa-exchange-alt fa-3x text-white"></i>
+                        </div>
+                        <div class="featurs-content text-center">
+                            <h5>30 Day Return</h5>
+                            <p class="mb-0">Đổi trả miễn phí</p>
+                        </div>
                     </div>
-                    <div class="featurs-content text-center">
-                        <h5>24/7 Support</h5>
-                        <p class="mb-0">Hỗ trợ nhiệt tình</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="featurs-item text-center rounded bg-light p-4">
+                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                            <i class="fa fa-phone-alt fa-3x text-white"></i>
+                        </div>
+                        <div class="featurs-content text-center">
+                            <h5>24/7 Support</h5>
+                            <p class="mb-0">Hỗ trợ nhiệt tình</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@stop
+    @stop

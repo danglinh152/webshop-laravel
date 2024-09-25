@@ -20,7 +20,7 @@
                     <p class="text-base font-medium text-gray-800 mr-24">Target: {{$view_pro->product_target}}</p>
                 </div>
 
-                <p class="mt-3 px-4 text-base font-medium text-gray-800">Short detail: {{$view_pro->product_sort_desc}}</p>
+                <p class="mt-3 px-4 text-base font-medium text-gray-800">Short detail: {{$view_pro->product_short_desc}}</p>
                 <p class="mt-3 px-4 text-base font-medium text-gray-800">Description:</p>
                 <p class="mt-1 px-4 text-base font-nomal text-gray-600">{{$view_pro->product_long_desc}}</p>
                 <div class="px-4 flex justify-between mt-4">

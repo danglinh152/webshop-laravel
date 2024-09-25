@@ -5,6 +5,9 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
+
 class ItemController extends Controller
 {
     public function productDetailPage()
@@ -14,6 +17,8 @@ class ItemController extends Controller
 
     public function productShowPage()
     {
-        return view('client.product.show');
+        $all_product = DB::table('products')->orderby('product_id', 'desc')->get();
+        $manager_product = view('client.homepage.home')->with('all_product', $all_product);
+        return view(view: 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
     }
 }

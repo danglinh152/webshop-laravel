@@ -2,7 +2,8 @@
 @section('add-voucher')
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
-        <form action="{{URL::to('/admin/product/save-product')}}" method="post" enctype="multipart/form-data">
+        <form action="{{URL::to('/admin/voucher/save-voucher')}}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="flex justify-between items-center">
                 <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700"> Create a new voucher</h2>
             </div>
@@ -17,7 +18,7 @@
                 <div class="sm:col-span-3">
                     <label class="block text-base font-medium leading-6 text-gray-500">Discount value</label>
                     <div class="mt-2">
-                        <input type="number" name="voucher_desc"
+                        <input type="number" name="discount_value"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
@@ -26,25 +27,25 @@
                     <label class="block text-base font-medium leading-6 text-gray-500">Voucher
                         description</label>
                     <div class="mt-2">
-                        <input type = "text" class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                        <input name="voucher_desc" type="text" class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3 mt-4">
                     <label class="block text-base font-medium leading-6 text-gray-500">Start date
-                        </label>
+                    </label>
                     <div class="mt-2">
-                        <input type="date" name="product_sort_desc"
+                        <input type="date" name="start_date"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
                 <div class="sm:col-span-3 mt-4">
                     <label class="block text-base font-medium leading-6 text-gray-500">End date</label>
                     <div class="mt-2">
-                        <input type="date" name="product_quantity" 
+                        <input type="date" name="end_date"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                     </div>
                 </div>
-               
+
 
                 <div class="sm:col-span-full mt-4">
                     <button type="submit" class="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">

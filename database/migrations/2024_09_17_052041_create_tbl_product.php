@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('product_id');
             $table->string('product_name');
             $table->string('product_price');
-            $table->text('product_sort_desc');
+            $table->text('product_short_desc');
             $table->text('product_long_desc');
             $table->integer('product_quantity');
             $table->longText('product_image');

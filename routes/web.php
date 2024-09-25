@@ -24,7 +24,7 @@ Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 Route::get('/product/id', 'App\Http\Controllers\client\ItemController@productDetailPage');
 
-Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPage');
+Route::get('/home', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 
 
@@ -50,7 +50,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
     Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
     Route::get('/admin/product/update', 'App\Http\Controllers\admin\ProductController@productUpdatePage');
-    Route::get('/admin/voucher', 'App\Http\Controllers\admin\VoucherController@getVoucherPage');
+    Route::get('/admin/voucher', 'App\Http\Controllers\admin\VoucherController@showVoucherPage');
     Route::get('/admin/voucher/create', 'App\Http\Controllers\admin\VoucherController@addVoucherPage');
     Route::get('/admin/voucher/update', 'App\Http\Controllers\admin\VoucherController@updateVoucherPage');
     Route::get('/admin/user', 'App\Http\Controllers\admin\UserController@getUserPage');
@@ -82,5 +82,8 @@ Route::post('/admin/user/update-user/{user_id}', 'App\Http\Controllers\admin\Use
 Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\UserController@delete_user');
 
 
-
-
+//voucher
+Route::post('/admin/voucher/save-voucher', 'App\Http\Controllers\admin\VoucherController@save_voucher');
+Route::get('/admin/voucher/edit-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@edit_voucher');
+Route::post('/admin/voucher/update-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@update_voucher');
+Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@delete_voucher');

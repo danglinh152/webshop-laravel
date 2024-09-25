@@ -34,14 +34,14 @@ class DashboardController extends Controller
             if ($result->role == 'admin') {
                 Session::put('admin_name', $result->user_first_name . ' ' . $result->user_last_name);
                 Session::put('admin_id', $result->user_id);
-                Session::put('image', asset('public/backend/products-images/' . $result->user_image)); // Use url() instead of asset()
+                Session::put('image', asset('public/backend/users-images/' . $result->user_image)); // Use url() instead of asset()
                 return Redirect::to('/admin/dashboard');
             } else {
                 // client
                 Session::put('user_name', $result->user_first_name . ' ' . $result->user_last_name);
                 Session::put('user_id', $result->user_id);
-                Session::put('image', asset('public/backend/products-images/' . $result->user_image)); // Use url() instead of asset()
-                return Redirect::to('/');
+                Session::put('image', asset('public/backend/users-images/' . $result->user_image)); // Use url() instead of asset()
+                return Redirect::to('/home');
             }
         } else {
             Session::put('err_msg', "Mật khẩu hoặc tài khoản sai! Vui lòng nhập lại!");
