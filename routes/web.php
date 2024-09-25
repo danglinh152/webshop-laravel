@@ -76,3 +76,11 @@ Route::post('/check-otp', 'App\Http\Controllers\admin\MailController@verify');
 Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
 Route::post('/login', 'App\Http\Controllers\client\UserController@login');
 Route::get('/logout', 'App\Http\Controllers\client\UserController@logout');
+Route::post('/admin/user/save-user', 'App\Http\Controllers\admin\UserController@saveUser');
+Route::get('/admin/user/edit-user/{user_id}', 'App\Http\Controllers\admin\UserController@updateUserPage');
+Route::post('/admin/user/update-user/{user_id}', 'App\Http\Controllers\admin\UserController@update_user');
+Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\UserController@delete_user');
+
+
+
+
