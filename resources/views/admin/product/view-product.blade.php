@@ -25,7 +25,7 @@
                 <p class="mt-1 px-4 text-base font-nomal text-gray-600">{{$view_pro->product_long_desc}}</p>
                 <div class="px-4 flex justify-between mt-4">
                     <p class="text-base font-medium text-gray-800">Price:
-                        {{number_format($view_pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}}
+                        {{number_format($view_pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}} đ
                     </p>
                     <p class="text-base font-medium text-gray-800 mr-24">Quantity: {{$view_pro->product_quantity}}</p>
                 </div>

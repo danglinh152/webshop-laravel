@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
-    public function productDetailPage()
+    public function productDetailPage($product_id)
     {
-        return view('client.product.detail');
+        $get_product = DB::table('product')->where('product_id', $product_id)->get();
+        return view('client.product.detail')->with('get_product', $get_product);
     }
 
     public function getHomePage()
@@ -23,6 +24,7 @@ class ItemController extends Controller
     }
     public function productShowPage()
     {
-        return view(view: 'client.product.show');
+        $all_product = DB::table('product')->orderBy('product_id', 'desc')->get();
+        return view('client.product.show')->with('all_product', $all_product);
     }
 }

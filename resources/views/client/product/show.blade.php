@@ -130,90 +130,99 @@
                              </div>
                          </div>
                          <div class="col-12 col-md-8">
-                             <div class="row g-4 d-flex text-center">
-                                 <c:if test="${totalPages == 0}">
-                                     <div>Không tìm thấy sản phẩm</div>
-                                 </c:if>
+                             <div class="row g-4 d-flex text-center mb-4">
+                                 <?php
+                                    if ($all_product->isEmpty()) {
+                                        echo '<div>Không tìm thấy sản phẩm</div>';
+                                    }
+                                    ?>
+
+
+                                 @foreach ($all_product as $key => $pro)
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruite-item">
-                                         <div class="fruite-img">
-                                             <img src="{{asset('public/backend/products-images/lenovo-loq.jpg')}}"
-                                                 class="w-100 rounded-top" alt="">
-                                         </div>
-                                         <div
-                                             class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                             <h4 style="font-size: 16px;">
-                                                 <a href="{{URL::to('/product/id')}}">Laptop Lenovo LOQ</a>
-                                             </h4>
-                                             <p style="font-size: 13px;">Intel Core i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám
-                                             </p>
-                                             <div
-                                                 class="d-flex flex-lg-wrap flex-column justify-content-between">
-                                                 <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                     class="text-dark  fw-bold mb-2">
-                                                     19,000,000 đ
-                                                 </p>
-                                                 <form
-                                                     action="#"
-                                                     method="post" class="">
-                                                     <button
-                                                         class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                             class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                         Add to cart
-                                                     </button>
-                                                 </form>
+                                         <a href=" {{URL::to('/product/'.$pro->product_id)}}">
+                                             <div class="fruite-img">
+                                                 <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
+                                                     class="w-100 rounded-top" alt="">
                                              </div>
-                                         </div>
+                                             <div
+                                                 class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
+                                                 <h4 style="font-size: 16px;">
+                                                     {{$pro->product_name}}
+                                                 </h4>
+                                                 <p style="font-size: 13px;">{{$pro->product_short_desc}}
+                                                 </p>
+                                                 <div
+                                                     class="d-flex flex-lg-wrap flex-column justify-content-between">
+                                                     <p style="text-align: center; width: 100%;font-size: 16px;"
+                                                         class="text-dark  fw-bold mb-2">
+                                                         {{number_format($pro->product_price, 0, ',', '.')}} đ
+                                                     </p>
+                                                     <form
+                                                         action="#"
+                                                         method="post" class="">
+                                                         <button
+                                                             class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
+                                                                 class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                             Add to cart
+                                                         </button>
+                                                     </form>
+                                                 </div>
+                                             </div>
+                                         </a>
                                      </div>
                                  </div>
-                                 <nav aria-label="Page navigation example mb-4">
-                                     <ul class="pagination justify-content-center d-flex">
-                                         <li class="page-item">
-                                             <!-- <a class="page-link" onclick="return false"
+                                 @endforeach
+                             </div>
+                             <nav aria-label="Page navigation example mb-4">
+                                 <ul class="pagination justify-content-center d-flex">
+                                     <li class="page-item">
+                                         <!-- <a class="page-link" onclick="return false"
                                                  aria-label="Previous">
                                                  <span aria-hidden="true">&laquo;</span>
                                              </a> -->
-                                             <a class="page-link"
-                                                 href="#"
-                                                 aria-label="Previous">
-                                                 <span aria-hidden="true">&laquo;</span>
-                                             </a>
-                                         </li>
-                                         <li class="page-item">
-                                             <a class="page-link"
-                                                 href="#">1
-                                             </a>
-                                         </li>
-                                         <li class="page-item">
-                                             <a class="page-link"
-                                                 href="#">2
-                                             </a>
-                                         </li>
-                                         <li class="page-item">
-                                             <a class="page-link"
-                                                 href="#">3
-                                             </a>
-                                         </li>
+                                         <a class="page-link"
+                                             href="#"
+                                             aria-label="Previous">
+                                             <span aria-hidden="true">&laquo;</span>
+                                         </a>
+                                     </li>
+                                     <li class="page-item">
+                                         <a class="page-link"
+                                             href="#">1
+                                         </a>
+                                     </li>
+                                     <li class="page-item">
+                                         <a class="page-link"
+                                             href="#">2
+                                         </a>
+                                     </li>
+                                     <li class="page-item">
+                                         <a class="page-link"
+                                             href="#">3
+                                         </a>
+                                     </li>
 
-                                         <li class="page-item">
-                                             <!-- <a class="page-link" onclick="return false"
+                                     <li class="page-item">
+                                         <!-- <a class="page-link" onclick="return false"
                                                      aria-label="Previous">
                                                      <span aria-hidden="true">&raquo;</span>
                                                  </a> -->
-                                             <a class="page-link"
-                                                 href="#"
-                                                 aria-label="Previous">
-                                                 <span aria-hidden="true">&raquo;</span>
-                                             </a>
-                                         </li>
-                                     </ul>
-                                 </nav>
-                             </div>
+                                         <a class="page-link"
+                                             href="#"
+                                             aria-label="Previous">
+                                             <span aria-hidden="true">&raquo;</span>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </nav>
                          </div>
                      </div>
                  </div>
              </div>
          </div>
      </div>
+ </div>
  </div>
  @stop

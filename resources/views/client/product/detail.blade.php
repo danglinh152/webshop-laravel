@@ -9,26 +9,36 @@
                      <div>
                          <nav aria-label="breadcrumb">
                              <ol class="breadcrumb">
-                                 <li class="breadcrumb-item"><a href="{{URL::to('')}}">Home</a></li>
+                                 <li class="breadcrumb-item"><a href="{{URL::to('/')}}">Home</a></li>
                                  <li class="breadcrumb-item active" aria-current="page">Product
                                      detail
                                  </li>
                              </ol>
                          </nav>
                      </div>
+                     @foreach ($get_product as $key => $get_product)
+                     <?php
+                        if (!$get_product) {
+                            echo '<div class="col-lg-6">
+                            Nothing        
+                            </div>
+                            ';
+                        }
+                        ?>
                      <div class="col-lg-6">
                          <div class="border rounded">
                              <a href="#">
-                                 <img src="{{asset('public/backend/products-images/lenovo-loq.jpg')}}"
+                                 <img src="{{asset('public/backend/products-images/' . $get_product->product_image)}}"
                                      class="img-fluid rounded" alt="Image">
                              </a>
                          </div>
                      </div>
+
                      <div class="col-lg-6">
-                         <h4 class="fw-bold mb-3">Laptop Lenovo LOQ</h4>
-                         <p class="mb-3">Lenovo - Graphic</p>
+                         <h4 class="fw-bold mb-3">{{$get_product->product_name}}</h4>
+                         <p class="mb-3">{{$get_product->product_fact}}</p>
                          <h5 class="fw-bold mb-3">
-                             19,000,000 đ
+                             {{number_format($get_product->product_price, 0, ',', '.')}} đ
                          </h5>
                          <div class="d-flex mb-4">
                              <i class="fa fa-star text-warning"></i>
@@ -37,8 +47,7 @@
                              <i class="fa fa-star text-warning"></i>
                              <i class="fa fa-star"></i>
                          </div>
-                         <p class="mb-4">Short detail: Intel Core
-                             i5-12450HX | 16GB | 512GB | 15.6 inch | Win 11 | Xám</p>
+                         <p class="mb-4">Short detail: {{$get_product->product_short_desc}}</p>
                          <div class="input-group quantity mb-5" style="width: 100px;">
                              <div class="input-group-btn">
                                  <button
@@ -79,16 +88,11 @@
                          <div class="tab-content mb-5">
                              <div class="tab-pane active" id="nav-about" role="tabpanel"
                                  aria-labelledby="nav-about-tab">
-                                 <p>Trong thế giới laptop gaming đầy
-                                     cạnh tranh hiện nay, việc tìm kiếm một chiếc máy vừa đáp ứng nhu cầu hiệu suất cao vừa
-                                     thể hiện phong cách cá nhân có thể là một thách thức. Tuy nhiên, Lenovo LOQ 15IAX9
-                                     83FQ0005VN dường như đã giải quyết
-                                     được vấn đề này với cấu hình mạnh mẽ và thiết kế đột phá, đem đến một lựa chọn hấp dẫn
-                                     cho game thủ và những người yêu
-                                     thích công nghệ.</p>
+                                 <p>{{$get_product->product_long_desc}}</p>
                              </div>
                          </div>
                      </div>
+                     @endforeach
                  </div>
              </div>
              <div class="col-lg-4 col-xl-3">
