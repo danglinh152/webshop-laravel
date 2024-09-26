@@ -23,32 +23,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <c:if test="">
-                        <tr>
-                            <td colspan="6">
-                                Không có sản phẩm trong giỏ hàng
-                            </td>
-                        </tr>
-                    </c:if> -->
-                    <c:forEach var="cartDetail" items="${cartDetails}" varStatus="status">
                         <tr>
                             <th scope="row">
                                 <div class="d-flex align-items-center">
-                                    <img src="/img/product/${cartDetail.product.image}"
+                                    <img src="{{asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg')}}"
                                         class="img-fluid me-5 rounded-circle"
                                         style="width: 80px; height: 80px;" alt="">
                                 </div>
                             </th>
                             <td>
                                 <p class="mb-0 mt-4">
-                                    <a href="/product/${cartDetail.product.id}" target="_blank">
-                                        ${cartDetail.product.name}
+                                    <a href="{{URL::to('/product/id')}}" target="_blank">
+                                        Laptop Asus Tuf gaming
                                     </a>
                                 </p>
                             </td>
                             <td>
                                 <p class="mb-0 mt-4">
-                                    <fmt:formatNumber type="number" value="${cartDetail.price}" /> đ
+                                     19,000,000đ
                                 </p>
                             </td>
                             <td>
@@ -61,7 +53,7 @@
                                     </div>
                                     <input type="text"
                                         class="form-control form-control-sm text-center border-0"
-                                        value="${cartDetail.quantity}"
+                                        value="0"
                                         data-cart-detail-id="${cartDetail.id}"
                                         data-cart-detail-price="${cartDetail.price}"
                                         data-cart-detail-index="${status.index}">
@@ -74,16 +66,14 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 mt-4" data-cart-detail-id="${cartDetail.id}">
+                                <p class="mb-0 mt-4" data-cart-detail-id="">
                                     <fmt:formatNumber type="number"
-                                        value="${cartDetail.price * cartDetail.quantity}" /> đ
+                                        value="" /> 19,000,000 đ
                                 </p>
                             </td>
                             <td>
                                 <form method="post"
                                     action="/delete-product-from-cart/${cartDetail.id}">
-                                    <input type="hidden" name="${_csrf.parameterName}"
-                                        value="${_csrf.token}" />
                                     <button class="btn btn-md rounded-circle bg-light border mt-4">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
@@ -94,7 +84,6 @@
                 </tbody>
             </table>
         </div>
-        <c:if test="${not empty cartDetails}">
             <div class="mt-5 row g-4 justify-content-start">
                 <div class="col-md-6"></div>
                 <div class="col-12 col-md-6">
@@ -123,37 +112,16 @@
                                 <fmt:formatNumber type="number" value="${priceTotal}" /> đ
                             </p>
                         </div>
-                        <form:form action="/confirm-checkout" method="post" modelAttribute="cart">
-                            <input type="hidden" name="${_csrf.parameterName}"
-                                value="${_csrf.token}" />
-                            <div style="display: none;">
-                                <c:forEach var="cartDetail" items="${cart.cartDetails}"
-                                    varStatus="status">
-                                    <div class="mb-3">
-                                        <div class="form-group">
-                                            <label>Id:</label>
-                                            <form:input class="form-control" type="text"
-                                                value="${cartDetail.id}"
-                                                path="cartDetails[${status.index}].id" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Quantity:</label>
-                                            <form:input class="form-control" type="text"
-                                                value="${cartDetail.quantity}"
-                                                path="cartDetails[${status.index}].quantity" />
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div>
+                        <form action="" method="post">
+                            
                             <button
                                 class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">Xác
                                 nhận thanh toán
                             </button>
-                        </form:form>
+                        </form>
                     </div>
                 </div>
             </div>
-        </c:if>
     </div>
 </div>
 @stop

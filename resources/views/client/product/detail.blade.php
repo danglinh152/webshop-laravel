@@ -1,4 +1,4 @@
- @extends('client.layout.homepage_layout')
+ @extends('client.layout.homepage-layout')
  @section('productDetail')
  <!-- Single Product Start -->
  <div class="container-fluid py-5 mt-2">

@@ -113,6 +113,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <!-- Features Section  -->
     <div class="container-fluid features py-5">

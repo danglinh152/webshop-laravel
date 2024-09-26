@@ -1,4 +1,4 @@
- @extends('client.layout.homepage_layout')
+ @extends('client.layout.homepage-layout')
  @section('productShow')
  <!-- Laptop Shop -->
  <div class="container-fluid fruite" style="padding-top: 100px;">

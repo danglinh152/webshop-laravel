@@ -15,10 +15,14 @@ class ItemController extends Controller
         return view('client.product.detail');
     }
 
-    public function productShowPage()
+    public function getHomePage()
     {
         $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
         $manager_product = view('client.homepage.home')->with('all_product', $all_product);
         return view(view: 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
+    }
+    public function productShowPage()
+    {
+        return view(view: 'client.product.show');
     }
 }

@@ -24,10 +24,11 @@ Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 Route::get('/product/id', 'App\Http\Controllers\client\ItemController@productDetailPage');
 
-Route::get('/', 'App\Http\Controllers\client\ItemController@productShowPage');
+Route::get('/', 'App\Http\Controllers\client\ItemController@getHomePage');
 
+Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPage');
 
-
+Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
 
 //admin
 
