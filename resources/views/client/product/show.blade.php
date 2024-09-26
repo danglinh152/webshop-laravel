@@ -176,46 +176,7 @@
                                  @endforeach
                              </div>
                              <nav aria-label="Page navigation example mb-4">
-                                 <ul class="pagination justify-content-center d-flex">
-                                     <li class="page-item">
-                                         <!-- <a class="page-link" onclick="return false"
-                                                 aria-label="Previous">
-                                                 <span aria-hidden="true">&laquo;</span>
-                                             </a> -->
-                                         <a class="page-link"
-                                             href="#"
-                                             aria-label="Previous">
-                                             <span aria-hidden="true">&laquo;</span>
-                                         </a>
-                                     </li>
-                                     <li class="page-item">
-                                         <a class="page-link"
-                                             href="#">1
-                                         </a>
-                                     </li>
-                                     <li class="page-item">
-                                         <a class="page-link"
-                                             href="#">2
-                                         </a>
-                                     </li>
-                                     <li class="page-item">
-                                         <a class="page-link"
-                                             href="#">3
-                                         </a>
-                                     </li>
-
-                                     <li class="page-item">
-                                         <!-- <a class="page-link" onclick="return false"
-                                                     aria-label="Previous">
-                                                     <span aria-hidden="true">&raquo;</span>
-                                                 </a> -->
-                                         <a class="page-link"
-                                             href="#"
-                                             aria-label="Previous">
-                                             <span aria-hidden="true">&raquo;</span>
-                                         </a>
-                                     </li>
-                                 </ul>
+                                 {{ $all_product->links('vendor.pagination.custom-pagination') }} <!-- Use your custom view -->
                              </nav>
                          </div>
                      </div>

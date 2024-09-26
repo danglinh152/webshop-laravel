@@ -24,7 +24,7 @@ class ItemController extends Controller
     }
     public function productShowPage()
     {
-        $all_product = DB::table('product')->orderBy('product_id', 'desc')->get();
+        $all_product = DB::table('product')->orderBy('product_id', 'desc')->paginate(6);
         return view('client.product.show')->with('all_product', $all_product);
     }
 }

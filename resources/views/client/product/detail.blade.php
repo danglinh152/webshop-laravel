@@ -4,7 +4,7 @@
  <div class="container-fluid py-5 mt-2">
      <div class="container py-5">
          <div class="row g-4 mb-5">
-             <div class="col-lg-8 col-xl-9">
+             <div class="col-lg-11 col-xl-11">
                  <div class="row g-4">
                      <div>
                          <nav aria-label="breadcrumb">
@@ -29,7 +29,7 @@
                          <div class="border rounded">
                              <a href="#">
                                  <img src="{{asset('public/backend/products-images/' . $get_product->product_image)}}"
-                                     class="img-fluid rounded" alt="Image">
+                                     class="img-fluid rounded" alt="Image" style="height: 450px;">
                              </a>
                          </div>
                      </div>
@@ -95,51 +95,7 @@
                      @endforeach
                  </div>
              </div>
-             <div class="col-lg-4 col-xl-3">
-                 <div class="row g-4 fruite">
-                     <div class="col-lg-12">
-                         <div class="mb-4">
-                             <h4>Categories</h4>
-                             <ul class="list-unstyled fruite-categorie">
-                                 <li>
-                                     <div class="d-flex justify-content-between fruite-name">
-                                         <a href="#"><i
-                                                 class="fas fa-apple-alt me-2"></i>Lenovo</a>
-                                         <span>(3)</span>
-                                     </div>
-                                 </li>
-                                 <li>
-                                     <div class="d-flex justify-content-between fruite-name">
-                                         <a href="#"><i
-                                                 class="fas fa-apple-alt me-2"></i>Acer</a>
-                                         <span>(5)</span>
-                                     </div>
-                                 </li>
-                                 <li>
-                                     <div class="d-flex justify-content-between fruite-name">
-                                         <a href="#"><i
-                                                 class="fas fa-apple-alt me-2"></i>Asus</a>
-                                         <span>(2)</span>
-                                     </div>
-                                 </li>
-                                 <li>
-                                     <div class="d-flex justify-content-between fruite-name">
-                                         <a href="#"><i class="fas fa-apple-alt me-2"></i>MSI</a>
-                                         <span>(8)</span>
-                                     </div>
-                                 </li>
-                                 <li>
-                                     <div class="d-flex justify-content-between fruite-name">
-                                         <a href="#"><i
-                                                 class="fas fa-apple-alt me-2"></i>Dell</a>
-                                         <span>(5)</span>
-                                     </div>
-                                 </li>
-                             </ul>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+
          </div>
 
      </div>
