@@ -17,117 +17,63 @@
                  <div id="tab-1" class="tab-pane fade show p-0 active">
                      <div class="row g-4">
                          <div class="col-12 col-md-4">
-                             <div class="row g-4">
-                                 <div class="col-12" id="factoryFilter">
-                                     <div class="mb-2"><b>Hãng sản xuất</b></div>
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="factory-1" value="MSI">
-                                         <label class="form-check-label"
-                                             for="factory-1">MSI</label>
-                                     </div>
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="factory-2" value="ASUS">
-                                         <label class="form-check-label"
-                                             for="factory-2">Asus</label>
+                             <form action="{{ URL::to('/product-filter') }}" method="GET">
+                                 <div class="row g-4">
+                                     <div class="col-12" id="factoryFilter">
+                                         <div class="mb-2"><b>Hãng sản xuất</b></div>
+                                         @foreach(['MSI', 'ASUS', 'LENOVO', 'ACER'] as $factory)
+                                         <div class="form-check form-check-inline">
+                                             <input class="form-check-input" type="checkbox" id="factory-{{ strtolower($factory) }}" value="{{ $factory }}" name="factory[]"
+                                                 {{ in_array($factory, $factories) ? 'checked' : '' }}>
+                                             <label class="form-check-label" for="factory-{{ strtolower($factory) }}">{{ $factory }}</label>
+                                         </div>
+                                         @endforeach
                                      </div>
 
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="factory-3" value="LENOVO">
-                                         <label class="form-check-label"
-                                             for="factory-3">Lenovo</label>
+                                     <div class="col-12" id="targetFilter">
+                                         <div class="mb-2"><b>Mục đích sử dụng</b></div>
+                                         @foreach(['Gaming', 'Văn phòng', 'Đồ họa'] as $target)
+                                         <div class="form-check form-check-inline">
+                                             <input class="form-check-input" type="checkbox" id="target-{{ strtolower($target) }}" value="{{ $target }}" name="target[]"
+                                                 {{ in_array($target, $targets) ? 'checked' : '' }}>
+                                             <label class="form-check-label" for="target-{{ strtolower($target) }}">{{ $target }}</label>
+                                         </div>
+                                         @endforeach
                                      </div>
 
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="factory-6" value="ACER">
-                                         <label class="form-check-label"
-                                             for="factory-6">Acer</label>
+                                     <div class="col-12" id="priceFilter">
+                                         <div class="mb-2"><b>Mức giá</b></div>
+                                         @foreach(['1015' => 'Từ 10 - 15 triệu', '1520' => 'Từ 15 - 20 triệu', '20' => 'Trên 20 triệu'] as $price => $label)
+                                         <div class="form-check form-check-inline">
+                                             <input class="form-check-input" type="checkbox" id="price-{{ $loop->index + 3 }}" value="{{ $price }}" name="price[]"
+                                                 {{ in_array($price, $prices) ? 'checked' : '' }}>
+                                             <label class="form-check-label" for="price-{{ $loop->index + 3 }}">{{ $label }}</label>
+                                         </div>
+                                         @endforeach
+                                     </div>
+
+                                     <div class="col-12">
+                                         <div class="mb-2"><b>Sắp xếp</b></div>
+                                         @foreach([
+                                         'gia-tang-dan' => 'Giá tăng dần',
+                                         'gia-giam-dan' => 'Giá giảm dần',
+                                         'gia-nothing' => 'Không sắp xếp'
+                                         ] as $value => $label)
+                                         <div class="form-check form-check-inline">
+                                             <input class="form-check-input" type="radio" id="sort-{{ $loop->index + 1 }}" value="{{ $value }}" name="radio-sort"
+                                                 {{ $sort === $value ? 'checked' : '' }}>
+                                             <label class="form-check-label" for="sort-{{ $loop->index + 1 }}">{{ $label }}</label>
+                                         </div>
+                                         @endforeach
                                      </div>
                                  </div>
-                                 <div class="col-12" id="targetFilter">
-                                     <div class="mb-2"><b>Mục đích sử dụng</b></div>
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="target-1" value="Gaming">
-                                         <label class="form-check-label"
-                                             for="target-1">Gaming</label>
-                                     </div>
-
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="target-2" value="Văn phòng">
-                                         <label class="form-check-label" for="target-2">Sinh viên
-                                             - văn
-                                             phòng</label>
-                                     </div>
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="target-3" value="Đồ họa">
-                                         <label class="form-check-label" for="target-3">Đồ
-                                             họa</label>
-                                     </div>
+                                 <button type="submit"
+                                     class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4">
+                                     Lọc Sản Phẩm
+                                 </button>
+                             </form>
 
 
-
-                                 </div>
-                                 <div class="col-12" id="priceFilter">
-                                     <div class="mb-2"><b>Mức giá</b></div>
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="price-3" value="10-15-trieu">
-                                         <label class="form-check-label" for="price-3">Từ 10 - 15
-                                             triệu</label>
-                                     </div>
-
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="price-4" value="15-20-trieu">
-                                         <label class="form-check-label" for="price-4">Từ 15 - 20
-                                             triệu</label>
-                                     </div>
-
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="checkbox"
-                                             id="price-5" value="tren-20-triệu">
-                                         <label class="form-check-label" for="price-5">Trên 20
-                                             triệu</label>
-                                     </div>
-                                 </div>
-                                 <div class="col-12">
-                                     <div class="mb-2"><b>Sắp xếp</b></div>
-
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" id="sort-1"
-                                             value="gia-tang-dan" name="radio-sort">
-                                         <label class="form-check-label" for="sort-1">Giá tăng
-                                             dần</label>
-                                     </div>
-
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" id="sort-2"
-                                             value="gia-giam-dan" name="radio-sort">
-                                         <label class="form-check-label" for="sort-2">Giá giảm
-                                             dần</label>
-                                     </div>
-
-                                     <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" id="sort-3"
-                                             value="gia-nothing" name="radio-sort" checked>
-                                         <label class="form-check-label" for="sort-3">Không sắp
-                                             xếp</label>
-                                     </div>
-
-                                 </div>
-                                 <div class="col-12">
-                                     <button id="btnFilter"
-                                         class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4">
-                                         Lọc Sản Phẩm
-                                     </button>
-                                 </div>
-                             </div>
                          </div>
                          <div class="col-12 col-md-8">
                              <div class="row g-4 d-flex text-center mb-4">

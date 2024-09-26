@@ -23,6 +23,7 @@ Route::get('/forgot-password', 'App\Http\Controllers\client\HomeController@forgo
 Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 Route::get('/product/{product_id}', 'App\Http\Controllers\client\ItemController@productDetailPage');
+Route::get('/product-filter', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 Route::get('/', 'App\Http\Controllers\client\ItemController@getHomePage');
 

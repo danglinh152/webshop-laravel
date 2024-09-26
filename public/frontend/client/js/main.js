@@ -17,25 +17,25 @@
         if ($(window).width() < 992) {
             if ($(this).scrollTop() > 55) {
                 $('.fixed-top').addClass('shadow');
-            } 
+            }
         } else {
             if ($(this).scrollTop() > 55) {
                 $('.fixed-top').addClass('shadow').css('top', 0);
-            } 
-        } 
+            }
+        }
     });
-    
-    
-   // Back to top button
-   $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-        $('.back-to-top').fadeIn('slow');
-    } else {
-        $('.back-to-top').fadeOut('slow');
-    }
+
+
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
@@ -48,27 +48,27 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
-            0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:1
+            768: {
+                items: 1
             },
-            992:{
-                items:2
+            992: {
+                items: 2
             },
-            1200:{
-                items:2
+            1200: {
+                items: 2
             }
         }
     });
@@ -82,27 +82,27 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
-            0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:2
+            768: {
+                items: 2
             },
-            992:{
-                items:3
+            992: {
+                items: 3
             },
-            1200:{
-                items:4
+            1200: {
+                items: 4
             }
         }
     });
@@ -143,7 +143,7 @@
     // Product Quantity
 
 
- $('.quantity button').on('click', function () {
+    $('.quantity button').on('click', function () {
         let change = 0;
 
         var button = $(this);
@@ -167,8 +167,8 @@
         const el = document.getElementById(`cartDetails${index}.quantity`);
         $(el).val(newVal);
 
-     const quantity = document.getElementById("quantity");
-     $(quantity).val(newVal)
+        const quantity = document.getElementById("quantity");
+        $(quantity).val(newVal)
 
 
         //get price
@@ -179,8 +179,8 @@
         if (priceElement) {
             const newPrice = +price * newVal;
             priceElement.text(formatCurrency(newPrice.toFixed(2)) + " đ");
-     }
-     
+        }
+
 
         //update total cart price
         const totalPriceElement = $(`p[data-cart-total-price]`);
@@ -250,29 +250,10 @@
         let sortValue = $('input[name="radio-sort"]:checked').val();
 
         const currentUrl = new URL(window.location.href);
-        const searchParams = currentUrl.searchParams;
+        // currentUrl.pathname = 'webshop-laravel/product-filter';
+        // window.location.href = currentUrl.toString();
 
-        // Add or update query parameters
-        searchParams.set('page', '1');
-        searchParams.set('sort', sortValue);
 
-        //reset
-        searchParams.delete('factory');
-        searchParams.delete('target');
-        searchParams.delete('price');
-
-        if (factoryArr.length > 0) {
-            searchParams.set('factory', factoryArr.join(','));
-        }
-        if (targetArr.length > 0) {
-            searchParams.set('target', targetArr.join(','));
-        }
-        if (priceArr.length > 0) {
-            searchParams.set('price', priceArr.join(','));
-        }
-
-        // Update the URL and reload the page
-        window.location.href = currentUrl.toString();
     });
 
     //handle auto checkbox after page loading

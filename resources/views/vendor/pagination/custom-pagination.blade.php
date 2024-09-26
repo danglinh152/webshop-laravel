@@ -18,7 +18,23 @@
         @if ($page == $paginator->currentPage())
         <span class="current">{{ $page }}</span>
         @else
-        <a href="{{ $url }}">{{ $page }}</a>
+
+
+        @php
+        $newUri = Request::getRequestUri(); // Khai báo và khởi tạo biến $newUri
+
+        if (str_contains($newUri, '&page=')) {
+        // Thay thế giá trị của page hiện tại
+        $newUri = preg_replace('/(&page=)[0-9]+/', '&page=' . $page, $newUri);
+        } else {
+        // Nếu không có thì thêm mới vào URL
+        $newUri .= (strpos($newUri, '?') === false ? '?' : '&') . 'page=' . $page;
+        }
+        @endphp
+
+        <a href="{{ $newUri }}">{{ $page }}</a>
+
+
         @endif
         @endforeach
         @endif
