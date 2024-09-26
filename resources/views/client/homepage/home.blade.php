@@ -42,7 +42,7 @@
 
 
 <!-- Laptop Shop -->
-<div class="container-fluid fruite py-5">
+<div class="container-fluid fruite">
     <div class="container py-5">
         <div class="tab-class text-center">
             <div class="row g-4">
@@ -106,6 +106,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

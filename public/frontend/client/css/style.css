@@ -417,6 +417,10 @@
 /*  */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
+
+
+
+
 .swiper-slide.tranding-slide {
     margin: 0 200px;
     display: flex;
@@ -450,28 +454,23 @@
     text-wrap: nowrap;
 }
 
-#tranding {
-    padding: 4rem 0;
-}
 
 
 
 #tranding .tranding-slider {
-    height: 50rem;
-    padding: 2rem 0;
+    height: 35rem;
 }
 
 
 .tranding-slide {
     width: 32rem;
-    height: 40rem;
+    height: 30rem;
 }
 
 
 .tranding-slide .tranding-slide-img img {
-    background-color: red;
-    width: 40rem;
-    height: 30rem;
+    width: 30rem;
+    height: 20rem;
     border-radius: 2rem;
     object-fit: cover;
 }
