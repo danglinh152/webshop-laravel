@@ -29,6 +29,7 @@
     <link href="{{asset('public/frontend/client/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link href="{{asset('public/frontend/client/css/style.css')}}" rel="stylesheet">
     <style>
         dialog {
@@ -232,6 +233,10 @@ $avatar = session('image');
     <script src="{{asset('/public/frontend/client/lib/waypoints/waypoints.min.js')}}"></script>
     <script src="{{asset('/public/frontend/client/lib/lightbox/js/lightbox.min.js')}}"></script>
     <script src="{{asset('/public/frontend/client/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="{{asset('/public/frontend/client/js/swiper-scripts.js')}}"></script>
 
     <!-- Template Javascript -->
     <script src="{{asset('/public/frontend/client/js/main.js')}}"></script>
@@ -252,6 +257,7 @@ $avatar = session('image');
             }
         });
     </script>
+
 </body>
 
 </html>

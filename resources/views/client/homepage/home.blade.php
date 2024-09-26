@@ -63,48 +63,42 @@
             </div>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
-                    <div class="row g-4">
-                        <div class="col-lg-12">
-                            <div class="row g-4">
-                                @foreach ($all_product as $key => $pro)
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="rounded position-relative fruite-item">
-                                        <div class="fruite-img">
-                                            <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
-                                                class="w-100 rounded-top" alt="">
-                                        </div>
-                                        <div
-                                            class="p-4 border border-secondary border-top-0 rounded-bottom fruit-content">
-                                            <h4 style="font-size: 16px;">
-                                                <a href="{{URL::to('/product/id')}}">
-                                                    {{$pro->product_name}} </a>
-                                            </h4>
-                                            <p style="font-size: 13px;">
-                                                {{$pro->product_short_desc}}
-                                            </p>
-                                            <div
-                                                class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                    class="text-dark  fw-bold mb-2">
-                                                    <fmt:formatNumber type="number"
-                                                        value="{{$pro->product_price}}" /> {{$pro->product_price}} đ
-                                                </p>
-                                                <form
-                                                    action="/add-product-to-cart/${product.id}"
-                                                    method="post" class="">
-                                                    <button
-                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                        Add to cart
-                                                    </button>
-                                                </form>
+                    <div id="tranding">
+                        <div class="container">
+                            <div class="swiper tranding-slider">
+                                <div class="swiper-wrapper">
+                                    <!-- Slide-start -->
+                                    @foreach ($all_product as $key => $pro)
+                                    <div class="swiper-slide tranding-slide">
+                                        <a href="{{URL::to('/product/id')}}">
+                                            <div class="tranding-slide-img">
+                                                <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}" alt="Tranding">
                                             </div>
-                                        </div>
-                                    </div>
+                                            <div class="tranding-slide-content">
 
+                                                <div class="tranding-slide-content-bottom">
+                                                    <a href="{{URL::to('/product/id')}}" class="product-name">
+                                                        {{$pro->product_name}} </a>
+                                                    <p class="product-desc">
+                                                        {{$pro->product_short_desc}}
+                                                    </p>
+                                                    <p class="product-price">{{$pro->product_price}} đ</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    @endforeach
                                 </div>
 
-                                @endforeach
+                                <div class="tranding-slider-control">
+                                    <div class="swiper-button-prev slider-arrow">
+                                        <ion-icon name="arrow-back-outline"></ion-icon>
+                                    </div>
+                                    <div class="swiper-button-next slider-arrow">
+                                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
 
                             </div>
                         </div>
@@ -113,56 +107,58 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Features Section  -->
-    <div class="container-fluid features py-5">
-        <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fas fa-car-side fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>Free Shipping</h5>
-                            <p class="mb-0">Hỏa tốc trong 2h</p>
-                        </div>
+<!-- Features Section  -->
+<div class="container-fluid features py-5">
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fas fa-car-side fa-3x text-white"></i>
+                    </div>
+                    <div class="featurs-content text-center">
+                        <h5>Free Shipping</h5>
+                        <p class="mb-0">Hỏa tốc trong 2h</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fas fa-user-shield fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>Security Payment</h5>
-                            <p class="mb-0">Giao dịch an toàn</p>
-                        </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fas fa-user-shield fa-3x text-white"></i>
+                    </div>
+                    <div class="featurs-content text-center">
+                        <h5>Security Payment</h5>
+                        <p class="mb-0">Giao dịch an toàn</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fas fa-exchange-alt fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>30 Day Return</h5>
-                            <p class="mb-0">Đổi trả miễn phí</p>
-                        </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fas fa-exchange-alt fa-3x text-white"></i>
+                    </div>
+                    <div class="featurs-content text-center">
+                        <h5>30 Day Return</h5>
+                        <p class="mb-0">Đổi trả miễn phí</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="featurs-item text-center rounded bg-light p-4">
-                        <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
-                            <i class="fa fa-phone-alt fa-3x text-white"></i>
-                        </div>
-                        <div class="featurs-content text-center">
-                            <h5>24/7 Support</h5>
-                            <p class="mb-0">Hỗ trợ nhiệt tình</p>
-                        </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="featurs-item text-center rounded bg-light p-4">
+                    <div class="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                        <i class="fa fa-phone-alt fa-3x text-white"></i>
+                    </div>
+                    <div class="featurs-content text-center">
+                        <h5>24/7 Support</h5>
+                        <p class="mb-0">Hỗ trợ nhiệt tình</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @stop
+</div>
+
+@stop
