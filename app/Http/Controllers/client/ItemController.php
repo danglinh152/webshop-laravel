@@ -17,7 +17,7 @@ class ItemController extends Controller
 
     public function productShowPage()
     {
-        $all_product = DB::table('products')->orderby('product_id', 'desc')->get();
+        $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
         $manager_product = view('client.homepage.home')->with('all_product', $all_product);
         return view(view: 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
     }
