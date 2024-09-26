@@ -41,7 +41,7 @@ class DashboardController extends Controller
                 Session::put('user_name', $result->user_first_name . ' ' . $result->user_last_name);
                 Session::put('user_id', $result->user_id);
                 Session::put('image', asset('public/backend/users-images/' . $result->user_image)); // Use url() instead of asset()
-                return Redirect::to('/home');
+                return Redirect::to('/');
             }
         } else {
             Session::put('err_msg', "Mật khẩu hoặc tài khoản sai! Vui lòng nhập lại!");

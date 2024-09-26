@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('category_id');
             $table->string('product_fact');
             $table->string('product_target');
+            $table->enum('status', ['show', 'hide'])->default('show');
             $table->timestamps();
         });
     }

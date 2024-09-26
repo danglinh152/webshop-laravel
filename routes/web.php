@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //client
-Route::get('/', 'App\Http\Controllers\client\HomeController@index');
+Route::get('/login', 'App\Http\Controllers\client\HomeController@index');
 
 Route::get('/register', 'App\Http\Controllers\client\HomeController@register');
 
@@ -24,7 +24,7 @@ Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 Route::get('/product/id', 'App\Http\Controllers\client\ItemController@productDetailPage');
 
-Route::get('/home', 'App\Http\Controllers\client\ItemController@productShowPage');
+Route::get('/', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 
 
