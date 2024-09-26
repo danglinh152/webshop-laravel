@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function showProductPage()
     {
-        $all_product = DB::table('products')->orderby('product_id', 'desc')->get();
+        $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
         $manager_product = view('admin.product.show-product')->with('all_product', $all_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.show-product', @$manager_product);
     }
@@ -53,19 +53,19 @@ class ProductController extends Controller
             $new_image = $get_image->getClientOriginalName();
             $get_image->move('public/backend/products-images', $new_image);
             $data['product_image'] = ($new_image);
-            DB::table('products')->insert($data);
+            DB::table('product')->insert($data);
             Session::put('message', 'Thêm sản phẩm thành công.');
             return Redirect::to('admin/product');
         } else {
             $data['product_image'] = '';
-            DB::table('products')->insert($data);
+            DB::table('product')->insert($data);
             Session::put('message', 'Thêm sản phẩm thành công.');
             return Redirect::to('admin/product');
         }
     }
     public function edit_product($product_id)
     {
-        $get_product = DB::table('products')->join('categories', 'categories.category_id', '=', 'products.category_id')->where('product_id', $product_id)->get();
+        $get_product = DB::table('product')->join('category', 'category.category_id', '=', 'product.category_id')->where('product_id', $product_id)->get();
         $manager_product = view('admin.product.update-product')->with('get_product', $get_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.update-product', @$manager_product);
     }
@@ -94,14 +94,14 @@ class ProductController extends Controller
             $get_image->move('public/backend/products-images', $new_image);
             $data['product_image'] = $new_image;
 
-            $check = DB::table('products')->where('product_id', $product_id)->update($data);
+            $check = DB::table('product')->where('product_id', $product_id)->update($data);
             if (isset($check)) {
                 Session::put('message', 'Cập nhật sản phẩm thành công.');
             } else Session::put('message', 'Cập nhật sản phẩm thất bại.');
             return Redirect::to('admin/product');
         } else {
 
-            $check = DB::table('products')->where('product_id', $product_id)->update($data);
+            $check = DB::table('product')->where('product_id', $product_id)->update($data);
             if (isset($check)) {
                 Session::put('message', 'Cập nhật sản phẩm thành công.');
             } else Session::put('message', 'Cập nhật sản phẩm thất bại.');
@@ -110,13 +110,13 @@ class ProductController extends Controller
     }
     public function view_product($product_id)
     {
-        $view_product = DB::table('products')->where('product_id', $product_id)->get();
+        $view_product = DB::table('product')->where('product_id', $product_id)->get();
         $manager_product = view('admin.product.view-product')->with('view_product', $view_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.view-product', @$manager_product);
     }
     public function delete_product($product_id)
     {
-        DB::table('products')->where('product_id', $product_id)->delete();
+        DB::table('product')->where('product_id', $product_id)->delete();
         Session::put('message', 'Xóa sản phẩm thành công');
         return Redirect::to('admin/product');
     }
