@@ -35,7 +35,7 @@
                         <li class="relative px-6 py-3 sidebar-item">
                             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg dashboard-active hidden"
                                 aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800"
+                            <a class="inline-flex items-center w-full text-sm font-semibold dashboard-text transition-colors duration-150 hover:text-gray-800"
                                 href="{{URL::to('admin/dashboard')}}">
                                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,7 +52,7 @@
                             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg store-active hidden"
                                 aria-hidden="true"></span>
                             <button
-                                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
+                                class="inline-flex items-center justify-between w-full text-sm font-semibold store-text transition-colors duration-150 hover:text-gray-800"
                                 @click="toggleStoreMenu" aria-haspopup="true">
                                 <span class="inline-flex items-center">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -79,12 +79,12 @@
                                     x-transition:leave-end="opacity-0 max-h-0"
                                     class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
                                     aria-label="submenu">
-                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
+                                    <li class="px-2 py-1 product-text transition-colors duration-150 hover:text-gray-800">
                                         <a class="w-full text-base" href="{{URL::to('admin/product')}}">
                                             Product
                                         </a>
                                     </li>
-                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
+                                    <li class="px-2 py-1 voucher-text transition-colors duration-150 hover:text-gray-800">
                                         <a class="w-full text-base" href="{{URL::to('admin/voucher')}}">
                                             Voucher
                                         </a>
@@ -98,7 +98,7 @@
                             <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg management-active hidden"
                                 aria-hidden="true"></span>
                             <button
-                                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
+                                class="inline-flex items-center justify-between w-full text-sm font-semibold management-text transition-colors duration-150 hover:text-gray-800"
                                 @click="toggleManagementMenu" aria-haspopup="true">
                                 <span class="inline-flex items-center">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -127,11 +127,11 @@
                                     class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
                                     aria-label="submenu">
                                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
-                                        <a class="w-full text-base" href="{{URL::to('admin/user')}}">
+                                        <a class="w-full text-base user-text" href="{{URL::to('admin/user')}}">
                                             User
                                         </a>
                                     </li>
-                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
+                                    <li class="px-2 py-1 order-text transition-colors duration-150 hover:text-gray-800">
                                         <a class="w-full text-base" href="{{URL::to('admin/order')}}">
                                             Order
                                         </a>
@@ -277,63 +277,72 @@
     </div>
     <script src="{{asset('public/frontend/admin/js/add-products.js')}}"></script>
     <script>
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     const currentRoute = window.location.pathname;
-        //     if (
-        //         currentRoute.includes("webshop-laravel/admin/user") ||
-        //         currentRoute.includes("webshop-laravel/admin/order")
-        //     ) {
-        //         const sidebarMenu = document.querySelectorAll("[x-data]");
-
-        //         sidebarMenu.forEach((menu) => {
-        //             if (menu.__x && menu.__x.$data) {
-        //                 const activeNode = document.querySelector(".management-active");
-        //                 if (activeNode) {
-        //                     menu.__x.$data.isManagementMenuOpen = true;
-        //                     activeNode.classList.remove("hidden");
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-
-
         document.addEventListener("DOMContentLoaded", function () {
             const currentRoute = window.location.pathname;
+            const userRoute = "webshop-laravel/admin/user"
+            const orderRoute = "webshop-laravel/admin/order"
+            const productRoute = "webshop-laravel/admin/product"
+            const voucherRoute = "webshop-laravel/admin/voucher"
+            const dashboardRoute = "webshop-laravel/admin/dashboard"
             if (
-                currentRoute.includes("webshop-laravel/admin/user") ||
-                currentRoute.includes("webshop-laravel/admin/order")
+                currentRoute.includes(userRoute) ||
+                currentRoute.includes(orderRoute)
             ) {
                 const sidebarMenu = document.querySelectorAll("[x-data]");
-
                 sidebarMenu.forEach((menu) => {
-                    if (menu.__x && menu.__x.$data) {
-                        const activeNode = document.querySelector(".management-active");
-                        if (activeNode) {
-                            menu.__x.$data.isManagementMenuOpen = true;
-                            activeNode.classList.remove("hidden");
-                        }
-                    }
-                });
+                    if (menu.__x && menu.__x.$data)
+                        menu.__x.$data.isManagementMenuOpen = true;
+                })
+                const activeNode = document.querySelector(".management-active");
+                const activeText = document.querySelector(".management-text");
+
+                activeNode.classList.remove("hidden");
+                activeText.classList.add('text-gray-800');
+                setTimeout(() => {
+                if (currentRoute.includes(userRoute)) {
+                    const userText = document.querySelector('.user-text');
+
+                    console.log(userText);
+                    userText.classList.add('text-gray-800');
+                }
+                if (currentRoute.includes(orderRoute)) {
+                    const orderText =document.querySelector('.order-text')
+                    console.log(orderText);
+                    orderText.classList.add('text-gray-800');
+                }
+                }, 500);
             } else if (
-                currentRoute.includes("webshop-laravel/admin/product") ||
-                currentRoute.includes("webshop-laravel/admin/voucher")
+                currentRoute.includes(productRoute) ||
+                currentRoute.includes(voucherRoute)
             ) {
                 const sidebarMenu = document.querySelectorAll("[x-data]");
-
                 sidebarMenu.forEach((menu) => {
-                    if (menu.__x && menu.__x.$data) {
-                        const activeNode = document.querySelector(".store-active");
-                        if (activeNode) {
-                            menu.__x.$data.isStoreMenuOpen = true;
-                            activeNode.classList.remove("hidden");
-                        }
-                    }
-                });
-            } else if (currentRoute.includes("webshop-laravel/admin/dashboard")) {
+                    if (menu.__x && menu.__x.$data)
+                        menu.__x.$data.isStoreMenuOpen = true;
+                })
+                const activeNode = document.querySelector(".store-active");
+                const activeText = document.querySelector(".store-text");
+                activeNode.classList.remove("hidden");
+                activeNode.classList.add('text-gray-800');
+                setTimeout(() => {
+                if (currentRoute.includes(productRoute)) {
+                    const productText = document.querySelector('.product-text');
+                    console.log(productText);
+                    productText.classList.add('text-gray-800');
+                }
+                if (currentRoute.includes(voucherRoute)) {
+                    const voucherText =document.querySelector('.voucher-text')
+                    console.log(voucherText);
+                    voucherText.classList.add('text-gray-800');
+                }
+                }, 500);
+
+            } else if (currentRoute.includes(dashboardRoute)) {
                 const activeNode = document.querySelector(".dashboard-active");
+                const activeText = document.querySelector(".dashboard-text");
                 if (activeNode) {
                     activeNode.classList.remove("hidden");
+                    activeText.classList.add('text-gray-800')
                 }
             }
 
