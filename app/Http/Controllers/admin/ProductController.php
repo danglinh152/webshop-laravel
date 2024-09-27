@@ -120,4 +120,16 @@ class ProductController extends Controller
         Session::put('message', 'Xóa sản phẩm thành công');
         return Redirect::to('admin/product');
     }
+    public function active_product($product_id)
+    {
+        DB::table('product')->where('product_id', $product_id)->update(['status' => 'show']);
+        Session::put('message', 'Đã hiển thị sản phẩm');
+        return Redirect::to('admin/product');
+    }
+    public function unactive_product($product_id)
+    {
+        DB::table('product')->where('product_id', $product_id)->update(['status' => 'hide']);
+        Session::put('message', 'Đã ẩn sản phẩm');
+        return Redirect::to('admin/product');
+    } 
 }

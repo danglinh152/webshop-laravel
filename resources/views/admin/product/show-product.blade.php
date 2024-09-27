@@ -34,6 +34,7 @@
                         <th class="px-4 py-3 text-gray-700 text-base">Name</th>
                         <th class="px-4 py-3 text-gray-700 text-base">Price</th>
                         <th class="px-4 py-3 text-gray-700 text-base">Factory</th>
+                        <th class="px-4 py-3 text-gray-700 text-base">Status</th>
                         <th class="px-4 py-3 text-gray-700 text-base">Action</th>
                     </tr>
                 </thead>
@@ -53,6 +54,18 @@
                             {{number_format($pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}} đ
                         </td>
                         <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$pro->product_fact}}</td>
+                        <td class="px-4 py-3 text-sm font-medium text-gray-500">
+                            <?php
+                if($pro->status == 'hide'){
+                 ?>
+                   <a href="{{URL::to('/admin/product/active-product/'.$pro->product_id)}}" > <span style="color: red ; font-size: 28px" class ="fa fa-thumbs-down"></span>
+                <?php
+                }else{?> 
+                    <a href="{{URL::to('/admin/product/unactive-product/'.$pro->product_id)}}" > <span style= "color: green; font-size: 28px" class ="fa fa-thumbs-up"></span>
+                <?php
+                }?>
+            </span>
+                        </td>
                         <td class="px-4 py-3 text-sm flex">
                             <a href="{{URL::to('admin/product/view-details/'.$pro->product_id)}}"
                                 class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-purple">
