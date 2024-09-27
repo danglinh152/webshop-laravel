@@ -19,10 +19,14 @@ function updateFactoryOptions() {
         options = [
             { value: 'Dell', text: 'Dell' },
             { value: 'Acer', text: 'Acer' },
-            { value: 'Macbook', text: 'Macbook' },
+            { value: 'Apple', text: 'apple' },
             { value: 'Asus', text: 'Asus' },
             { value: 'Lenovo', text: 'Lenovo' },
-            { value: 'HP', text: 'HP' }
+            { value: 'Msi', text: 'Msi' },
+            { value: 'HP', text: 'HP' },
+            { value: 'Gigabyte', text: 'Gigabyte' },
+            { value: 'LG', text: 'LG' }
+
 
         ];
     }

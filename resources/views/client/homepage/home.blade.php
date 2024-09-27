@@ -52,8 +52,8 @@
                 <div class="col-lg-8 text-end">
                     <ul class="nav nav-pills d-inline-flex text-center ">
                         <li class="nav-item">
-                            <a class="d-flex m-2 py-2 bg-light rounded-pill active"
-                                data-bs-toggle="pill" href="#">
+                            <a class="d-flex m-2 py-2 bg-light active rounded-pill"
+                                href="{{URL::to('/product')}}">
                                 <span class="text-dark" style="width: 130px;">All
                                     Products</span>
                             </a>
@@ -70,13 +70,13 @@
                                     <!-- Slide-start -->
                                     @foreach ($all_product as $key => $pro)
                                     <div class="swiper-slide tranding-slide">
-                                        <a href="{{URL::to('/product/id')}}">
+                                        <a href=" {{URL::to('/product/'.$pro->product_id)}}">
                                             <div class="tranding-slide-img">
                                                 <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}" alt="Tranding">
                                             </div>
                                             <div class="tranding-slide-content">
                                                 <div class="tranding-slide-content-bottom">
-                                                    <a href="{{URL::to('/product/id')}}" class="product-name">
+                                                    <a href=" {{URL::to('/product/'.$pro->product_id)}}" class="product-name">
                                                         {{$pro->product_name}} </a>
                                                     <p class="product-desc mb-0 mt-2">
                                                         {{$pro->product_short_desc}}

@@ -50,7 +50,7 @@
                         <td class="px-4 py-3 text-sm font-medium text-gray-500"><img src="{{asset('public/backend/products-images/'.$pro->product_image)}}" width="60px" height="60px" alt=""></td>
                         <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$pro->product_name}}</td>
                         <td class="px-4 py-3 text-sm font-medium text-gray-500">
-                            {{number_format($pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}}
+                            {{number_format($pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}} đ
                         </td>
                         <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$pro->product_fact}}</td>
                         <td class="px-4 py-3 text-sm flex">
