@@ -45,7 +45,7 @@
                                          <div class="mb-2"><b>Mức giá</b></div>
                                          @foreach(['1015' => 'Từ 10 - 15 triệu', '1520' => 'Từ 15 - 20 triệu', '20' => 'Trên 20 triệu'] as $price => $label)
                                          <div class="form-check form-check-inline">
-                                             <input class="form-check-input" type="checkbox" id="price-{{ $loop->index + 3 }}" value="{{ $price }}" name="price[]"
+                                             <input class="form-check-input" type="radio" id="price-{{ $loop->index + 3 }}" value="{{ $price }}" name="price[]"
                                                  {{ in_array($price, $prices) ? 'checked' : '' }}>
                                              <label class="form-check-label" for="price-{{ $loop->index + 3 }}">{{ $label }}</label>
                                          </div>
