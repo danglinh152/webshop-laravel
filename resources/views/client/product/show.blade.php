@@ -45,7 +45,7 @@
                                          <div class="mb-2"><b>Mức giá</b></div>
                                          @foreach(['1015' => 'Từ 10 - 15 triệu', '1520' => 'Từ 15 - 20 triệu', '20' => 'Trên 20 triệu'] as $price => $label)
                                          <div class="form-check form-check-inline">
-                                             <input class="form-check-input" type="checkbox" id="price-{{ $loop->index + 3 }}" value="{{ $price }}" name="price[]"
+                                             <input class="form-check-input" type="radio" id="price-{{ $loop->index + 3 }}" value="{{ $price }}" name="price[]"
                                                  {{ in_array($price, $prices) ? 'checked' : '' }}>
                                              <label class="form-check-label" for="price-{{ $loop->index + 3 }}">{{ $label }}</label>
                                          </div>
@@ -86,9 +86,9 @@
 
                                  @foreach ($all_product as $key => $pro)
                                  <div class="col-md-6 col-lg-4 col-xl-4">
-                                     <div class="rounded position-relative fruite-item">
+                                     <div class="rounded position-relative fruit-item">
                                          <a href=" {{URL::to('/product/'.$pro->product_id)}}">
-                                             <div class="fruite-img">
+                                             <div class="fruit-img">
                                                  <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
                                                      class="w-100 rounded-top" alt="">
                                              </div>
