@@ -86,9 +86,9 @@
 
                                  @foreach ($all_product as $key => $pro)
                                  <div class="col-md-6 col-lg-4 col-xl-4">
-                                     <div class="rounded position-relative fruite-item">
+                                     <div class="rounded position-relative fruit-item">
                                          <a href=" {{URL::to('/product/'.$pro->product_id)}}">
-                                             <div class="fruite-img">
+                                             <div class="fruit-img">
                                                  <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
                                                      class="w-100 rounded-top" alt="">
                                              </div>
