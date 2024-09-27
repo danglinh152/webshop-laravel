@@ -32,8 +32,8 @@
                             src="{{asset('public/frontend/admin/img/logo.png')}}" alt="">
                     </a>
                     <ul class="mt-6">
-                        <li class="relative px-6 py-3">
-                            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg"
+                        <li class="relative px-6 py-3 sidebar-item">
+                            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg dashboard-active hidden"
                                 aria-hidden="true"></span>
                             <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800"
                                 href="{{URL::to('admin/dashboard')}}">
@@ -48,7 +48,9 @@
                         </li>
                     </ul>
                     <ul class="mt-2">
-                        <li class="relative px-6 py-3">
+                        <li class="relative px-6 py-3 sidebar-item">
+                            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg store-active hidden"
+                                aria-hidden="true"></span>
                             <button
                                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                                 @click="toggleStoreMenu" aria-haspopup="true">
@@ -92,10 +94,12 @@
                         </li>
                     </ul>
                     <ul class="mt-2">
-                        <li class="relative px-6 py-3">
+                        <li class="relative px-6 py-3 sidebar-item">
+                            <span class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg management-active hidden"
+                                aria-hidden="true"></span>
                             <button
                                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
-                                @click="togglePagesMenu" aria-haspopup="true">
+                                @click="toggleManagementMenu" aria-haspopup="true">
                                 <span class="inline-flex items-center">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -112,7 +116,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </button>
-                            <template x-if="isPagesMenuOpen">
+                            <template x-if="isManagementMenuOpen">
 
                                 <ul x-transition:enter="transition-all ease-in-out duration-300"
                                     x-transition:enter-start="opacity-25 max-h-0"
@@ -272,8 +276,39 @@
         </div>
     </div>
     <script src="{{asset('public/frontend/admin/js/add-products.js')}}"></script>
+    <script>
+        // const currentRoute = window.location.pathname;
+        // const app = data();
 
+        // if (currentRoute.includes("webshop-laravel/admin/user")) {
+        //     const activeNode = document.querySelector(".management-active");
+        //     if (activeNode) {
+        //         activeNode.classList.remove("hidden");
+        //     }
+        //     app.isManagementMenuOpen = true;
+        // }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentRoute = window.location.pathname;
+            if (
+                currentRoute.includes("webshop-laravel/admin/user") ||
+                currentRoute.includes("webshop-laravel/admin/order")
+            ) {
+                const sidebarMenu = document.querySelectorAll("[x-data]");
+
+                sidebarMenu.forEach((menu) => {
+                    if (menu.__x && menu.__x.$data) {
+                        const activeNode = document.querySelector(".management-active");
+                        if (activeNode) {
+                            menu.__x.$data.isManagementMenuOpen = true;
+                            activeNode.classList.remove("hidden");
+                        }
+                    }
+                });
+            }
+        });
+
+    </script>
 </body>
 
 </html>
