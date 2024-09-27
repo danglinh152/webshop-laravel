@@ -23,6 +23,7 @@ Route::get('/forgot-password', 'App\Http\Controllers\client\HomeController@forgo
 Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');
 
 Route::get('/product/{product_id}', 'App\Http\Controllers\client\ItemController@productDetailPage');
+Route::get('/product-filter', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 Route::get('/', 'App\Http\Controllers\client\ItemController@getHomePage');
 
@@ -62,12 +63,14 @@ Route::group(['middleware' => 'admin.auth'], function () {
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
 
 
-//product
+//admin product
 Route::post('/admin/product/save-product', 'App\Http\Controllers\admin\ProductController@save_product');
 Route::get('/admin/product/edit-product/{product_id}', 'App\Http\Controllers\admin\ProductController@edit_product');
 Route::post('/admin/product/update-product/{product_id}', 'App\Http\Controllers\admin\ProductController@update_product');
 Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\admin\ProductController@view_product');
 Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
+Route::get('/admin/product/active-product/{product_id}', 'App\Http\Controllers\admin\ProductController@active_product');
+Route::get('/admin/product/unactive-product/{product_id}', 'App\Http\Controllers\admin\ProductController@unactive_product');
 
 //send mail
 Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');

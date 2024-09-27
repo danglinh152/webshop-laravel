@@ -6,7 +6,7 @@
         <form action="{{ URL::to('/admin/voucher/update-voucher/'.$vou->voucher_id) }}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="flex justify-between items-center">
-                <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700">Create a new voucher</h2>
+                <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700">Update voucher</h2>
             </div>
             <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-6 w-3/5 mx-auto">
                 <div class="sm:col-span-3">

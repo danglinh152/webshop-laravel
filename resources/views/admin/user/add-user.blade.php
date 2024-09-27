@@ -2,14 +2,14 @@
 @section('add-user')
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
-        <form action="{{URL::to('/admin/user/save-user')}}" method="post" enctype="multipart/form-data">\
+        <form action="{{URL::to('/admin/user/save-user')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="flex justify-between items-center">
-                <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700"> Create new user</h2>
+                <h2 class="my-3 mt-6 text-2xl font-semibold text-gray-700">Create new user</h2>
             </div>
             <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-6 w-3/5 mx-auto">
 
-                 <div class="sm:col-span-3">
+                <div class="sm:col-span-3">
 
 
                     <label class="block text-base font-medium leading-6 text-gray-500">Avatar</label>
@@ -26,10 +26,10 @@
                         </div>
                     </div>
                 </div>
-                 <div class="ml-20 mt-2 sm:col-span-3">
+                <div class="ml-20 mt-2 sm:col-span-3">
                     <img style="" class="h-36 w-36 rounded-full object-cover " src="{{asset('public/images/avt.jpg')}}"
-                        alt="img preview" id="imgPreview">
-                    </div>
+                        alt="" id="imgPreview">
+                </div>
                 <div class="sm:col-span-3">
                     <label class="block text-base font-medium leading-6 text-gray-500">First name</label>
                     <div class="mt-2">

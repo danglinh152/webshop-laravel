@@ -22,7 +22,11 @@ function updateFactoryOptions() {
             { value: 'Macbook', text: 'Macbook' },
             { value: 'Asus', text: 'Asus' },
             { value: 'Lenovo', text: 'Lenovo' },
-            { value: 'HP', text: 'HP' }
+            { value: 'Msi', text: 'Msi' },
+            { value: 'HP', text: 'HP' },
+            { value: 'Gigabyte', text: 'Gigabyte' },
+            { value: 'LG', text: 'LG' }
+
 
         ];
     }
