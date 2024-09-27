@@ -425,7 +425,6 @@
     margin: 0 200px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
 }
 
 .text-center {
@@ -439,38 +438,38 @@
 }
 
 .tranding-slide .tranding-slide-content .tranding-slide-content-bottom .product-price {
-    font-size: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: #000;
 }
 
 .product-desc {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #000;
 }
 
 .tranding-slide .tranding-slide-content .tranding-slide-content-bottom .product-name {
-    font-size: 2.5rem;
-    color: #000;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0300a4;
     text-wrap: nowrap;
 }
 
 
-
-
 #tranding .tranding-slider {
-    height: 35rem;
+    height: 32rem;
 }
 
 
 .tranding-slide {
-    width: 32rem;
-    height: 30rem;
+    width: 26rem;
+    height: 26rem;
 }
 
 
 .tranding-slide .tranding-slide-img img {
-    width: 30rem;
-    height: 20rem;
+    width: 27rem;
+    height: 22rem;
     border-radius: 2rem;
     object-fit: cover;
 }
