@@ -21,7 +21,7 @@
                                  <div class="row g-4">
                                      <div class="col-12" id="factoryFilter">
                                          <div class="mb-2"><b>Hãng sản xuất</b></div>
-                                         @foreach(['MSI', 'ASUS', 'LENOVO', 'ACER'] as $factory)
+                                         @foreach(['Dell', 'Acer', 'Macbook', 'Asus', 'Lenovo', 'Msi', 'HP', 'Gigabyte', 'LG', 'Iphone', 'Oppo', 'Xiaomi', 'Samsung'] as $factory)
                                          <div class="form-check form-check-inline">
                                              <input class="form-check-input" type="checkbox" id="factory-{{ strtolower($factory) }}" value="{{ $factory }}" name="factory[]"
                                                  {{ in_array($factory, $factories) ? 'checked' : '' }}>

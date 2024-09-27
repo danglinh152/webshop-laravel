@@ -10,18 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
-    public function productDetailPage()
+    public function productDetailPage($product_id)
     {
+        $get_product = DB::table('product')->where('product_id', $product_id)->get();
 
-
-        $get_product = DB::table('product')->get();
         return view('client.product.detail')->with('get_product', $get_product);
     }
 
 
     public function getHomePage()
     {
-        $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
+        $all_product = DB::table('product')->orderby('product_id', 'asc')->get();
         $manager_product = view('client.homepage.home')->with('all_product', $all_product);
         return view(view: 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
     }
