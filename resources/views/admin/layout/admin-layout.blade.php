@@ -277,16 +277,26 @@
     </div>
     <script src="{{asset('public/frontend/admin/js/add-products.js')}}"></script>
     <script>
-        // const currentRoute = window.location.pathname;
-        // const app = data();
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const currentRoute = window.location.pathname;
+        //     if (
+        //         currentRoute.includes("webshop-laravel/admin/user") ||
+        //         currentRoute.includes("webshop-laravel/admin/order")
+        //     ) {
+        //         const sidebarMenu = document.querySelectorAll("[x-data]");
 
-        // if (currentRoute.includes("webshop-laravel/admin/user")) {
-        //     const activeNode = document.querySelector(".management-active");
-        //     if (activeNode) {
-        //         activeNode.classList.remove("hidden");
+        //         sidebarMenu.forEach((menu) => {
+        //             if (menu.__x && menu.__x.$data) {
+        //                 const activeNode = document.querySelector(".management-active");
+        //                 if (activeNode) {
+        //                     menu.__x.$data.isManagementMenuOpen = true;
+        //                     activeNode.classList.remove("hidden");
+        //                 }
+        //             }
+        //         });
         //     }
-        //     app.isManagementMenuOpen = true;
-        // }
+        // });
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const currentRoute = window.location.pathname;
@@ -305,7 +315,41 @@
                         }
                     }
                 });
+            } else if (
+                currentRoute.includes("webshop-laravel/admin/product") ||
+                currentRoute.includes("webshop-laravel/admin/voucher")
+            ) {
+                const sidebarMenu = document.querySelectorAll("[x-data]");
+
+                sidebarMenu.forEach((menu) => {
+                    if (menu.__x && menu.__x.$data) {
+                        const activeNode = document.querySelector(".store-active");
+                        if (activeNode) {
+                            menu.__x.$data.isStoreMenuOpen = true;
+                            activeNode.classList.remove("hidden");
+                        }
+                    }
+                });
+            } else if (currentRoute.includes("webshop-laravel/admin/dashboard")) {
+                const activeNode = document.querySelector(".dashboard-active");
+                if (activeNode) {
+                    activeNode.classList.remove("hidden");
+                }
             }
+
+            //onClick
+            const allSideMenu = document.querySelectorAll(".sidebar-item");
+            allSideMenu.forEach((item) => {
+                const childActive = item.children[0];
+
+                item.addEventListener("click", function () {
+                    allSideMenu.forEach((i) => {
+                        i.children[0].classList.add("hidden");
+                        console.log(i.children[0]);
+                    });
+                    childActive.classList.remove("hidden");
+                });
+            });
         });
 
     </script>
