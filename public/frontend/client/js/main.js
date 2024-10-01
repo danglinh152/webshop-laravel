@@ -138,10 +138,49 @@
         });
     });
 
-
+    
 
     // Product Quantity
+    $('.checkCart input').on("click", function () {
+    const index = this.getAttribute("index");
+    const checkElement = document.getElementById(`check-cart-detail${index}`);
+        if (checkElement.checked === true) {
+            const cartTotal = document.getElementById(`total${index}`).getAttribute("data_cart_detail_total");
+            console.log(cartTotal);
+            const totalPriceElement = $(`p[data-cart-total-price]`);
+            if (totalPriceElement && totalPriceElement.length) {
+                const currentTotal = totalPriceElement[0].getAttribute("data-cart-total-price");
+                console.log(currentTotal);
+                let newTotal = (+currentTotal) + (+cartTotal);
+                //update
+                totalPriceElement?.each(function (index, element) {
+                    //update text
+                    $(totalPriceElement[index]).text(formatCurrency(newTotal.toFixed(2)) + " đ");
 
+                    //update data-attribute
+                    $(totalPriceElement[index]).attr("data-cart-total-price", newTotal);
+                });
+            }
+        }
+        else {
+            const cartTotal = document.getElementById(`total${index}`).getAttribute("data_cart_detail_total");
+            console.log(cartTotal);
+            const totalPriceElement = $(`p[data-cart-total-price]`);
+            if (totalPriceElement && totalPriceElement.length) {
+                const currentTotal = totalPriceElement[0].getAttribute("data-cart-total-price");
+                console.log(currentTotal);
+                let newTotal = (+currentTotal) - (+cartTotal);
+                //update
+                totalPriceElement?.each(function (index, element) {
+                    //update text
+                    $(totalPriceElement[index]).text(formatCurrency(newTotal.toFixed(2)) + " đ");
+
+                    //update data-attribute
+                    $(totalPriceElement[index]).attr("data-cart-total-price", newTotal);
+                });
+            }
+        }
+})
 
     $('.quantity button').on('click', function () {
         let change = 0;
@@ -161,11 +200,11 @@
         }
         const input = button.parent().parent().find('input');
         input.val(newVal);
-
+        console.log(newVal);
         //set form index
         const index = input.attr("data-cart-detail-index")
-        const el = document.getElementById(`cartDetails${index}.quantity`);
-        $(el).val(newVal);
+        // const el = document.getElementById(`cartDetails${index}.quantity`);
+        // $(el).val(newVal);
 
         const quantity = document.getElementById("quantity");
         $(quantity).val(newVal)
@@ -173,40 +212,44 @@
 
         //get price
         const price = input.attr("data-cart-detail-price");
-        const id = input.attr("data-cart-detail-id");
-
-        const priceElement = $(`p[data-cart-detail-id='${id}']`);
+        const priceElement = document.getElementById(`total${index}`);
         if (priceElement) {
             const newPrice = +price * newVal;
-            priceElement.text(formatCurrency(newPrice.toFixed(2)) + " đ");
+            priceElement.innerText = (formatCurrency(newPrice.toFixed(2)) + " đ");
+            priceElement.setAttribute("data_cart_detail_total", newPrice);
         }
+        
 
+        const checkElement = document.getElementById(`check-cart-detail${index}`);
+        if (checkElement.checked === true) {
+            //update total cart price
+            const totalPriceElement = $(`p[data-cart-total-price]`);
 
-        //update total cart price
-        const totalPriceElement = $(`p[data-cart-total-price]`);
+            if (totalPriceElement && totalPriceElement.length) {
+                const currentTotal = totalPriceElement.first().attr("data-cart-total-price");
+                let newTotal = +currentTotal;
+                if (change === 0) {
+                    newTotal = +currentTotal;
+                } else {
+                    newTotal = change * (+price) + (+currentTotal);
+                }
 
-        if (totalPriceElement && totalPriceElement.length) {
-            const currentTotal = totalPriceElement.first().attr("data-cart-total-price");
-            let newTotal = +currentTotal;
-            if (change === 0) {
-                newTotal = +currentTotal;
-            } else {
-                newTotal = change * (+price) + (+currentTotal);
+                //reset change
+                change = 0;
+
+                //update
+                totalPriceElement?.each(function (index, element) {
+                    //update text
+                    $(totalPriceElement[index]).text(formatCurrency(newTotal.toFixed(2)) + " đ");
+
+                    //update data-attribute
+                    $(totalPriceElement[index]).attr("data-cart-total-price", newTotal);
+                });
             }
-
-            //reset change
-            change = 0;
-
-            //update
-            totalPriceElement?.each(function (index, element) {
-                //update text
-                $(totalPriceElement[index]).text(formatCurrency(newTotal.toFixed(2)) + " đ");
-
-                //update data-attribute
-                $(totalPriceElement[index]).attr("data-cart-total-price", newTotal);
-            });
         }
     });
+
+    
 
     function formatCurrency(value) {
         // Use the 'vi-VN' locale to format the number according to Vietnamese currency format
