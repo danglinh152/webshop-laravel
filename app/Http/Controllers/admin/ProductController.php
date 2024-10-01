@@ -122,7 +122,7 @@ class ProductController extends Controller
     }
     public function active_product($product_id)
     {
-        DB::table('product')->where('product_id', $product_id)->update(['status' => 'show']);
+        DB::table('product')->where('product_id', operator: $product_id)->update(['status' => 'show']);
         Session::put('message', 'Đã hiển thị sản phẩm');
         return Redirect::to('admin/product');
     }

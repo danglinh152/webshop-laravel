@@ -84,6 +84,8 @@ Route::get('/admin/user/edit-user/{user_id}', 'App\Http\Controllers\admin\UserCo
 Route::post('/admin/user/update-user/{user_id}', 'App\Http\Controllers\admin\UserController@update_user');
 Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\UserController@delete_user');
 
+//client add to cart
+Route::post('/product/add-to-card/{product_id}', 'App\Http\Controllers\client\CartController@addTocart');
 
 //voucher
 Route::post('/admin/voucher/save-voucher', 'App\Http\Controllers\admin\VoucherController@save_voucher');

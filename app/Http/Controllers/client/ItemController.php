@@ -20,7 +20,7 @@ class ItemController extends Controller
 
     public function getHomePage()
     {
-        $all_product = DB::table('product')->where('status','show')->orderby('product_id', 'asc')->get();
+        $all_product = DB::table('product')->where('status', 'show')->orderby('product_id', 'asc')->get();
         $manager_product = view('client.homepage.home')->with('all_product', $all_product);
         return view(view: 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
     }
@@ -63,13 +63,13 @@ class ItemController extends Controller
             $min_value = $product_prices[0];
             $max_value = $product_prices[0];
             foreach ($product_prices as $product_price) {
-                if ((int)$product_price === 9999999999999999999999999999) {
+                if ((int) $product_price === 9999999999999999999999999999) {
                     $min_value = 20000000;
                     $max_value = 9999999999999999999999999999;
                 } else {
-                    if ((int)$product_price < $min_value) {
+                    if ((int) $product_price < $min_value) {
                         $min_value = $product_price;
-                    } else if ((int)$product_price > $max_value) {
+                    } else if ((int) $product_price > $max_value) {
                         $max_value = $product_price;
                     }
                 }
@@ -101,5 +101,6 @@ class ItemController extends Controller
             'prices' => $prices,
             'sort' => $sort,
         ]);
+
     }
 }
