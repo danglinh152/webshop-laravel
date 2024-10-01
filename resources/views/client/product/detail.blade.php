@@ -140,6 +140,22 @@
                             </div>
                         </div>
                     </form>
+                    <div class="container">
+                        <p class="h5">Người dùng Shopee</p>
+                        <div class="mt-2 d-flex align-items-center">
+                            <i class="bi bi-star-fill text-secondary me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                        </div>
+                        <span class="mt-1 text-muted small">2021-09-21 16:28</span>
+                        <p class="mt-3" style="max-width: 840px;">
+                            Chào bạn, cám ơn bạn đã quan tâm và ủng hộ sản phẩm của shop. Shop hi vọng vẫn sẽ tiếp tục nhận được sự tin yêu từ bạn trong các đơn hàng tiếp theo. Bạn nhấn theo dõi shop để nhận được nhiều ưu đãi hơn nhé. Chúc bạn luôn xinh đẹp và có làn da khoẻ mịn rạng ngời nhé ❤️
+                        </p>
+                    </div>
+
+
                      @endforeach
                  </div>
              </div>
