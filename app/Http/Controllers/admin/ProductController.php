@@ -131,5 +131,15 @@ class ProductController extends Controller
         DB::table('product')->where('product_id', $product_id)->update(['status' => 'hide']);
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
-    } 
+    }
+
+    public function post_review(Request $request , $product_id) {
+        $data = array();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['comment'] = $request->review_content;
+        DB::table('review')->insert($data);
+        // Session::put('message', 'Thêm review thành công.');
+        // return Redirect::to('');
+    }
 }
