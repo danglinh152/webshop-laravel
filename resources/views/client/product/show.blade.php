@@ -72,8 +72,6 @@
                                      Lọc Sản Phẩm
                                  </button>
                              </form>
-
-
                          </div>
                          <div class="col-12 col-md-8">
                              <div class="row g-4 d-flex text-center mb-4">
@@ -82,8 +80,6 @@
                                         echo '<div>Không tìm thấy sản phẩm</div>';
                                     }
                                     ?>
-
-
                                  @foreach ($all_product as $key => $pro)
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruit-item">
