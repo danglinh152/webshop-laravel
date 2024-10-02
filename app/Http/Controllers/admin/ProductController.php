@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function showProductPage()
     {
-        $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
+        $all_product = DB::table('product')->orderby('product_id', 'asc')->get();
         $manager_product = view('admin.product.show-product')->with('all_product', $all_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.show-product', @$manager_product);
     }
@@ -131,5 +131,5 @@ class ProductController extends Controller
         DB::table('product')->where('product_id', $product_id)->update(['status' => 'hide']);
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
-    } 
+    }
 }

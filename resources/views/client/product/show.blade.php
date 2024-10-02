@@ -88,7 +88,7 @@
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruit-item">
                                          <a href=" {{URL::to('/product/'.$pro->product_id)}}">
-                                             <div class="fruit-img">
+                                             <div class="fruit-img" style="height: 220px;">
                                                  <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
                                                      class="w-100 rounded-top" alt="">
                                              </div>
