@@ -84,7 +84,7 @@
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruit-item">
                                          <a href=" {{URL::to('/product/'.$pro->product_id)}}">
-                                             <div class="fruit-img">
+                                             <div class="fruit-img" style="height: 220px;">
                                                  <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
                                                      class="w-100 rounded-top" alt="">
                                              </div>
@@ -101,9 +101,9 @@
                                                          class="text-dark  fw-bold mb-2">
                                                          {{number_format($pro->product_price, 0, ',', '.')}} đ
                                                      </p>
-                                                     <form
-                                                         action="#"
-                                                         method="post" class="">
+                                                     
+                                                    <form  action="{{URL::to('/product/add-to-card/'.$pro->product_id)}}" method="post" class="">
+                                                        {{csrf_field()}}
                                                          <button
                                                              class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
                                                                  class="fa fa-shopping-bag me-2 text-primary"></i>

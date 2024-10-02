@@ -70,8 +70,8 @@
                              <input type="hidden" name="quantity" id="quantity" value="1">
                              <button type="submit"
                                  class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                     class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                 cart</button>
+                                     class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                            </button>
                          </form>
 
                      </div>
@@ -140,22 +140,38 @@
                             </div>
                         </div>
                     </form>
+                    <div>
+                        @foreach ($all_review as $key => $review)
                     <div class="container">
-                        <p class="h5">Người dùng Shopee</p>
-                        <div class="mt-2 d-flex align-items-center">
+                        <p class="h5">{{$review->user_first_name. ' ' .$review->user_last_name}}</p>
+                        <?php
+                            $i = 1;
+                            $rating = $review->rating;
+                            while ($i < 6) {
+                                if ($i < $rating) {
+                                    echo '<i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>';
+                                    continue;
+                                }
+                                else {
+                                    echo '<i class="bi bi-star-fill text-secondary me-1" style="font-size: 18px;"></i>';
+                                }
+                            }
+
+                        ?>
+                        <!-- <div class="mt-2 d-flex align-items-center">
                             <i class="bi bi-star-fill text-secondary me-1" style="font-size: 18px;"></i>
                             <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
                             <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
                             <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
                             <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
-                        </div>
-                        <span class="mt-1 text-muted small">2021-09-21 16:28</span>
+                        </div> -->
+                        <span class="mt-1 text-muted small">{{$review->updated_at}}</span>
                         <p class="mt-3" style="max-width: 840px;">
-                            Chào bạn, cám ơn bạn đã quan tâm và ủng hộ sản phẩm của shop. Shop hi vọng vẫn sẽ tiếp tục nhận được sự tin yêu từ bạn trong các đơn hàng tiếp theo. Bạn nhấn theo dõi shop để nhận được nhiều ưu đãi hơn nhé. Chúc bạn luôn xinh đẹp và có làn da khoẻ mịn rạng ngời nhé ❤️
+                            {{$review->comment}}
                         </p>
                     </div>
-
-
+                        @endforeach
+                    </div>
                      @endforeach
                  </div>
              </div>

@@ -97,7 +97,6 @@
                                     <div class="swiper-button-next slider-arrow">
                                         <ion-icon name="arrow-forward-outline"></ion-icon>
                                     </div>
-                                    <div class="swiper-pagination"></div>
                                 </div>
 
                             </div>
