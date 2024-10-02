@@ -23,7 +23,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for ($i = 0; $i < 2; $i++)
+                        <?php 
+                        $i = 0; ?>
+        
+                        @foreach ($cart as $key => $cart_value )
+                        
+                        
                             <tr>
                                 <th scope="row" class="d-flex align-items-center gap-3">
                                     <div class="checkCart">
@@ -31,21 +36,21 @@
                                             index="{{ $i }}" id="check-cart-detail{{ $i }}">
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                                            class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;"
+                                        <img src="{{asset('public/backend/products-images/'.$cart_value->product_image)}}"
+                                            class="img-fluid me-5" style="width: 80px; height: 80px;"
                                             alt="">
                                     </div>
                                 </th>
                                 <td>
                                     <p class="mb-0 mt-4">
-                                        <a href="{{ URL::to('/product/id') }}" target="_blank">
-                                            Laptop Asus Tuf gaming
+                                        <a href="{{ URL::to('/product/'.$cart_value->product_id) }}" target="_blank">
+                                           {{$cart_value->product_name}}
                                         </a>
                                     </p>
                                 </td>
                                 <td>
                                     <p class="mb-0 mt-4" id="price{{ $i }}">
-                                        19,000,000
+                                        {{number_format($cart_value->product_price, 0, ',', ',')}}đ
                                     </p>
                                 </td>
                                 <td>
@@ -56,7 +61,7 @@
                                             </button>
                                         </div>
                                         <input type="text" class="form-control form-control-sm text-center border-0"
-                                            value="1" data-cart-detail-id="" data-cart-detail-price="19000000"
+                                            value="{{$cart_value->quantity}}" data-cart-detail-id="" data-cart-detail-price="{{$cart_value->product_price}}"
                                             data-cart-detail-index="{{ $i }}" disabled
                                             style="background: transparent">
                                         <div class="input-group-btn">
@@ -67,8 +72,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4" id="total{{ $i }}" data_cart_detail_total="19000000">
-                                        19,000,000 đ
+                                    <p class="mb-0 mt-4" id="total{{ $i }}" data_cart_detail_total="{{$cart_value->product_price * $cart_value->quantity}}">
+                                        {{number_format($cart_value->product_price * $cart_value->quantity, 0, ',', ',')}}đ
                                     </p>
                                 </td>
                                 <td>
@@ -79,7 +84,8 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endfor
+                            <?php $i++ ?>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
