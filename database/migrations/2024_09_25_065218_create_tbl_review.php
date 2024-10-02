@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('review_id');
             $table->integer('user_id');
             $table->integer('product_id');
-            $table->integer('rating');
+            $table->double('rating');
             $table->longText('comment');
             $table->timestamps();
         });
