@@ -122,7 +122,7 @@ class ProductController extends Controller
     }
     public function active_product($product_id)
     {
-        DB::table('product')->where('product_id', $product_id)->update(['status' => 'show']);
+        DB::table('product')->where('product_id', operator: $product_id)->update(['status' => 'show']);
         Session::put('message', 'Đã hiển thị sản phẩm');
         return Redirect::to('admin/product');
     }
@@ -132,4 +132,26 @@ class ProductController extends Controller
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
     }
+<<<<<<< HEAD
+=======
+
+    public function post_review(Request $request , $product_id, $user_id) {
+        $data = array();
+        // $data['name'] = $request->name;
+        // $data['email'] = $request->email;
+        $data['user_id'] = $user_id;
+        $data['rating'] = $request->rating;
+        $data['comment'] = $request->review_content;
+        DB::table('review')->where('product_id', $product_id)->insert($data);
+        // Session::put('message', 'Thêm review thành công.');
+        // return Redirect::to('');
+    }
+
+    public function view_review($product_id)
+    {
+        $all_review = DB::table('review')->join('tbl_user', 'tbl_user.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
+
+        return view('client.product.detail')->with('all_review', $all_review);
+    }
+>>>>>>> 0f30f76ad297c07c3db93bbcd013c5429f7ec933
 }

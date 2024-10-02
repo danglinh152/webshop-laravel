@@ -105,9 +105,9 @@
                                                          class="text-dark  fw-bold mb-2">
                                                          {{number_format($pro->product_price, 0, ',', '.')}} đ
                                                      </p>
-                                                     <form
-                                                         action="#"
-                                                         method="post" class="">
+                                                     
+                                                    <form  action="{{URL::to('/product/add-to-card/'.$pro->product_id)}}" method="post" class="">
+                                                        {{csrf_field()}}
                                                          <button
                                                              class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
                                                                  class="fa fa-shopping-bag me-2 text-primary"></i>

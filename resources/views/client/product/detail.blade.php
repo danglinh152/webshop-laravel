@@ -20,7 +20,7 @@
                      <?php
                         if (!$get_product) {
                             echo '<div class="col-lg-6">
-                            Nothing        
+                            Nothing
                             </div>
                             ';
                         }
@@ -70,8 +70,8 @@
                              <input type="hidden" name="quantity" id="quantity" value="1">
                              <button type="submit"
                                  class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                     class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-                                 cart</button>
+                                     class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                            </button>
                          </form>
 
                      </div>
@@ -92,6 +92,86 @@
                              </div>
                          </div>
                      </div>
+                     <form action="#">
+                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="border-bottom rounded">
+                                    <input type="text" name="name" class="form-control border-0 me-4" placeholder="Your Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="border-bottom rounded">
+                                    <input type="email" name="email" class="form-control border-0" placeholder="Your Email">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="border-bottom rounded my-4">
+                                    <textarea name="review_content" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review" spellcheck="false"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-between py-3 mb-5">
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 me-3">Please rate:</p>
+                                        <div id="rating" class="d-flex align-items-center">
+                                            <input type="hidden" name="rating" id="rating-input" value="0">
+                                            <svg class="me-1" style="width: 16px; height: 16px; color: #E4E4E4;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                            </svg>
+                                            <svg class="me-1" style="width: 16px; height: 16px; color: #E4E4E4;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                            </svg>
+                                            <svg class="me-1" style="width: 16px; height: 16px; color: #E4E4E4;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                            </svg>
+                                            <svg class="me-1" style="width: 16px; height: 16px; color: #E4E4E4;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                            </svg>
+                                            <svg class="me-1" style="width: 16px; height: 16px; color: #E4E4E4;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                            </svg>
+                                            <p id="rating-text" class="mb-0 ms-1 text-muted">Rating: 0 stars</p>
+                                        </div>
+
+                                    </div>
+                                    <a href="#" id="submit-btn" class="btn border border-secondary text-primary rounded-pill px-4 py-3">Post Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div>
+                        @foreach ($all_review as $key => $review)
+                    <div class="container">
+                        <p class="h5">{{$review->user_first_name. ' ' .$review->user_last_name}}</p>
+                        <?php
+                            $i = 1;
+                            $rating = $review->rating;
+                            while ($i < 6) {
+                                if ($i < $rating) {
+                                    echo '<i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>';
+                                    continue;
+                                }
+                                else {
+                                    echo '<i class="bi bi-star-fill text-secondary me-1" style="font-size: 18px;"></i>';
+                                }
+                            }
+
+                        ?>
+                        <!-- <div class="mt-2 d-flex align-items-center">
+                            <i class="bi bi-star-fill text-secondary me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                            <i class="bi bi-star-fill text-warning me-1" style="font-size: 18px;"></i>
+                        </div> -->
+                        <span class="mt-1 text-muted small">{{$review->updated_at}}</span>
+                        <p class="mt-3" style="max-width: 840px;">
+                            {{$review->comment}}
+                        </p>
+                    </div>
+                        @endforeach
+                    </div>
                      @endforeach
                  </div>
              </div>
@@ -100,4 +180,43 @@
 
      </div>
  </div>
- @stop
+ <script>
+    const stars = document.querySelectorAll('#rating svg');
+    const ratingText = document.getElementById('rating-text');
+    const ratingInput =document.getElementById('rating-input')
+    let selectedRating = 0;
+
+    // Hover and click functionality for stars
+    stars.forEach((star, index) => {
+        star.addEventListener('click', () => {
+            selectedRating = index + 1;
+            updateStars(selectedRating);
+            ratingInput.value = selectedRating
+            console.log(ratingInput);
+
+        });
+    });
+
+    function updateStars(rating) {
+        stars.forEach((star, i) => {
+            if (i < rating) {
+                star.classList.add('text-warning');
+            } else {
+                star.classList.remove('text-warning');
+            }
+        });
+        ratingText.innerHTML = `Rating: ${rating} star${rating > 1 ? 's' : ''}`;
+    }
+
+    const submitBtn = document.getElementById('submit-btn');
+
+    submitBtn.addEventListener('click', () => {
+        if (selectedRating > 0) {
+            resultDiv.classList.remove('hidden');
+            submittedRatingText.textContent = selectedRating;
+        } else {
+            alert('Please select a rating before submitting.');
+        }
+    });
+</script>
+@stop
