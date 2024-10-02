@@ -30,6 +30,7 @@ Route::get('/', 'App\Http\Controllers\client\ItemController@getHomePage');
 Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
+Route::get('/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 
 //admin
 

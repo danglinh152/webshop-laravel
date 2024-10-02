@@ -12,4 +12,8 @@ class CartController extends Controller
     {
         return view('client.cart.show');
     }
+    public function getCheckoutPage()
+    {
+        return view('client.cart.checkout');
+    }
 }
