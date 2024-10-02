@@ -72,8 +72,6 @@
                                      Lọc Sản Phẩm
                                  </button>
                              </form>
-
-
                          </div>
                          <div class="col-12 col-md-8">
                              <div class="row g-4 d-flex text-center mb-4">
@@ -82,13 +80,11 @@
                                         echo '<div>Không tìm thấy sản phẩm</div>';
                                     }
                                     ?>
-
-
                                  @foreach ($all_product as $key => $pro)
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruit-item">
                                          <a href=" {{URL::to('/product/'.$pro->product_id)}}">
-                                             <div class="fruit-img">
+                                             <div class="fruit-img" style="height: 220px;">
                                                  <img src="{{asset('public/backend/products-images/'.$pro->product_image)}}"
                                                      class="w-100 rounded-top" alt="">
                                              </div>

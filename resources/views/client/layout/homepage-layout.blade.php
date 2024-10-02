@@ -15,7 +15,7 @@
         rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -53,12 +53,12 @@ $avatar = session('image');
 
 <body>
     <?php if ($message): ?>
-    <dialog id="forget-password-dialog">
-        <h2>Welcome Back to 10pm Store!</h2>
-        <p><?php echo $message; ?></p>
-        <button id="close-dialog">Close</button>
-    </dialog>
-    <?php Session::put('message', null); ?>
+        <dialog id="forget-password-dialog">
+            <h2>Welcome Back to 10pm Store!</h2>
+            <p><?php echo $message; ?></p>
+            <button id="close-dialog">Close</button>
+        </dialog>
+        <?php Session::put('message', null); ?>
     <?php endif; ?>
 
     <!-- Spinner  -->
@@ -95,45 +95,45 @@ $avatar = session('image');
                             </span>
                         </a>
                         @if (Session::has('user_name'))
-                            <div class="dropdown my-auto">
-                                <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
-                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fas fa-user fa-2x"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
-                                    <li class="d-flex align-items-center flex-column" style="min-width: 250px;">
-                                        @if ($avatar)
-                                            <img class="" src="{{ $avatar }}" alt=""
-                                                aria-hidden="true"
-                                                style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
-                                        @else
-                                            <img class=""
-                                                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                                                alt="" aria-hidden="true"
-                                                style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
-                                        @endif
+                        <div class="dropdown my-auto">
+                            <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-user fa-2x"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
+                                <li class="d-flex align-items-center flex-column" style="min-width: 250px;">
+                                    @if ($avatar)
+                                    <img class="" src="{{ $avatar }}" alt=""
+                                        aria-hidden="true"
+                                        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
+                                    @else
+                                    <img class=""
+                                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                        alt="" aria-hidden="true"
+                                        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
+                                    @endif
 
-                                        <div class="text-dark fw-bold fs-5 my-3">
-                                            {{ Session::get('user_name') }}
-                                        </div>
-                                    </li>
+                                    <div class="text-dark fw-bold fs-5 my-3">
+                                        {{ Session::get('user_name') }}
+                                    </div>
+                                </li>
 
-                                    <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
-                                    <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <!-- <form action="{{ URL::to('/logout') }}" method="post">
+                                <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
+                                <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <!-- <form action="{{ URL::to('/logout') }}" method="post">
                                             <button class="dropdown-item" href="#">Đăng xuất</button>
                                         </form> -->
-                                        <a class="dropdown-item" href="{{ URL::to('/logout') }}">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </div>
+                                    <a class="dropdown-item" href="{{ URL::to('/logout') }}">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                @elseif(!Session::has('user_name'))
+                    @elseif(!Session::has('user_name'))
                     <div class="navbar-nav mx-auto me-5">
                         <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;"
                             href="{{ URL::to('/login') }}">
@@ -155,6 +155,7 @@ $avatar = session('image');
     @yield('productDetail')
     @yield('productShow')
     @yield('cartShow')
+    @yield('checkout')
 
     <!-- Footer  -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
