@@ -47,6 +47,7 @@ class GoogleAuthController extends Controller
 
             session(['user_name' => $google_user->getName()]);
             session(['user_id' => $google_user->getId()]);
+            session(['image' => $google_user->getAvatar()]);
             return redirect()->to('/'); // Redirect to the home page
         } catch (Exception $e) {
             // Log the error for debugging
