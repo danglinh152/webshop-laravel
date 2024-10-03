@@ -106,8 +106,8 @@ body {
     transition: 0.25s ease;
 }
 
-.input-box input:not(:placeholder-shown)+.input-label,
-.input-box input:focus+.input-label {
+.input-box input:not(:placeholder-shown) + .input-label,
+.input-box input:focus + .input-label {
     top: 0;
     padding: 0 10px;
     display: inline-block;
@@ -119,14 +119,25 @@ body {
 .wrapper .btn {
     width: 100%;
     height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.wrapper .login-btn {
     background-color: var(--primary-color);
+    color: #eee;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 16px;
-    color: #fff;
     font-weight: 600;
     margin-top: 10px;
 }
@@ -160,7 +171,6 @@ body {
     color: var(--primary-color);
 }
 
-
 .form-login .err-msg {
     margin-top: 10px;
     color: red;
@@ -176,4 +186,84 @@ body {
     margin-left: 2px;
     text-decoration: none;
     color: var(--primary-color);
+}
+
+/* .divided-login span::before {
+    display: inline-block;
+    content: "";
+    position: relative;
+    height: 1px;
+    width: 50px;
+    color: #888;
+}
+
+.divided-login span {
+    position: relative;
+    color: #888;
+    background-color: tr;
+}
+
+.divided-login span::after {
+    content: "";
+    position: relative;
+    height: 5px;
+    width: 50px;
+    color: #888;
+} */
+
+.divided-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 17px;
+}
+
+.divided-login span {
+    position: relative;
+    color: #888;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.divided-login span::before,
+.divided-login span::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 150px;
+    background-color: #888;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.divided-login span::before {
+    left: -160px;
+}
+
+.divided-login span::after {
+    right: -160px;
+}
+
+.btn.login-google,
+.btn.login-facebook {
+    position: relative;
+    gap: 40px;
+    background-color: transparent;
+    border: 1px solid #333;
+}
+
+.btn.login-google img,
+.btn.login-facebook img {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+}
+
+.btn.login-google a,
+.btn.login-facebook a {
+    text-decoration: none;
+    background-color: transparent;
+    color: #333;
 }
