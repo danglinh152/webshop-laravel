@@ -55,6 +55,9 @@
                 <a href="{{URL::to('/forgot-password')}}" class="link-forgot">Forgot your password?</a>
             </div>
             <button type="submit" class="btn">Login</button>
+            <div class="oauth-block d-flex justify-center">
+                <a href="{{URL::to('/auth/google')}}" class="btn">Gu Gồ</a>
+            </div>
             <div class="login-group">
                 <span class="login">
                     <a href="{{URL::to('/')}}" class="link link-login">Back to homepage</a>
