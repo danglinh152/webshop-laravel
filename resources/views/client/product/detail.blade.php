@@ -37,9 +37,56 @@
                     <div class="col-lg-6">
                         <h4 class="fw-bold mb-3">{{$get_product->product_name}}</h4>
                         <p class="mb-3">{{$get_product->product_fact}}</p>
-                        <h5 class="fw-bold mb-3">
+                        <h5 class="fw-bold mb-2">
                             {{number_format($get_product->product_price, 0, ',', '.')}} đ
                         </h5>
+                        <?php
+                            $sum = 0;
+                            $count = 0;
+                        ?>
+                        @if (!$all_review->isEmpty())
+                            @foreach ($all_review as $review)
+                                <?php
+                                    $sum += $review->rating;
+                                    $count++;
+                                ?>
+                            @endforeach
+                            <?php
+                                $rating = $sum / $count;
+                                $i = 1;
+                                $percent = ($rating - floor($rating)) * 100;
+                                echo'<div class="rating-block d-flex mb-2">';
+                                while ($i < 6) {
+                                    if ($i <= $rating) {
+                                        echo    '<div class="position-relative">
+                                                    <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: 100%;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#FFC107"/>
+                                                        </svg>
+                                                    </div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                        <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#E4E4E4"/>
+                                                    </svg>
+                                                </div>';
+                                        $i++;
+                                    }
+                                    else {
+                                        echo    '<div class="position-relative">
+                                                    <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: '.$percent.'%;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#FFC107"/>
+                                                        </svg>
+                                                    </div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                        <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#E4E4E4"/>
+                                                    </svg>
+                                                </div>';
+                                        $i++;
+                                    }
+                                }
+                                echo'</div>';
+                            ?>
+                        @endif
 
                         <p class="mb-4">Short detail: {{$get_product->product_short_desc}}</p>
                         <div class="input-group quantity mb-5" style="width: 100px;">
@@ -135,20 +182,42 @@
                         </div>
                     </form>
                     <div>
+                        @if (!$all_review->isEmpty())
                         @foreach ($all_review as $key => $review)
                         <div class="container my-5">
                             <div class="rating-block d-flex">
                                 <?php
-                                $i = 0;
-                                $rating = $review->rating;
-                                while ($rating >= 1) {
-                                    echo '<i class="bi bi-star-fill text-warning me-1 d-block" style="font-size: 18px;"></i>';
-                                    $rating -= 1;
-                                }
-                                if ($rating > 0) {
-                                    echo '<i class="bi bi-star-fill text-warning me-1 overflow-hidden d-block"" style="font-size: 18px; width: ' . (18 * $rating) . 'px;"></i>';
-                                    $i++;
-                                }
+                                    $i = 1;
+                                    $rating = $review->rating;
+                                    $percent = ($rating - floor($rating)) * 100;
+                                    while ($i < 6) {
+                                        if ($i <= $rating) {
+                                            echo    '<div class="position-relative">
+                                                        <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: 100%;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#FFC107"/>
+                                                            </svg>
+                                                        </div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#E4E4E4"/>
+                                                        </svg>
+                                                    </div>';
+                                            $i++;
+                                        }
+                                        else {
+                                            echo    '<div class="position-relative">
+                                                        <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: '.$percent.'%;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#FFC107"/>
+                                                            </svg>
+                                                        </div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#E4E4E4"/>
+                                                        </svg>
+                                                    </div>';
+                                            $i++;
+                                        }
+                                    }
                                 ?>
                             </div>
                             <span class="mt-1 text-muted small">{{$review->updated_at}}</span>
@@ -157,6 +226,7 @@
                             </p>
                         </div>
                         @endforeach
+                        @endif
                     </div>
                     @endforeach
                 </div>
