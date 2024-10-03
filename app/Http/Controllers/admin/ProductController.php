@@ -132,8 +132,6 @@ class ProductController extends Controller
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
     }
-<<<<<<< HEAD
-=======
 
     public function post_review(Request $request , $product_id, $user_id) {
         $data = array();
@@ -149,9 +147,8 @@ class ProductController extends Controller
 
     public function view_review($product_id)
     {
-        $all_review = DB::table('review')->join('tbl_user', 'tbl_user.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
+        $all_review = DB::table('review')->join('users', 'users.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
 
         return view('client.product.detail')->with('all_review', $all_review);
     }
->>>>>>> 0f30f76ad297c07c3db93bbcd013c5429f7ec933
 }

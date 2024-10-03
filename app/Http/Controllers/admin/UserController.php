@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,7 +14,7 @@ class UserController extends Controller
 {
     public function getUserPage()
     {
-        $all_user = DB::table("tbl_user")->orderby('user_id', 'desc')->get();
+        $all_user = DB::table("users")->orderby('user_id', 'desc')->get();
         return view('admin.user.show-user')->with('all_user', $all_user);
     }
     public function addUserPage()
@@ -38,17 +37,17 @@ class UserController extends Controller
             $new_image = $get_image->getClientOriginalName();
             $get_image->move('public/backend/users-images', $new_image);
             $data['user_image'] = $new_image;
-            DB::table('tbl_user')->insert($data);
+            DB::table('users')->insert($data);
             return Redirect::to('admin/user');
         } else {
             $data['user_image'] = '';
-            DB::table('tbl_user')->insert($data);
+            DB::table('users')->insert($data);
             return Redirect::to('admin/user');
         }
     }
     public function updateUserPage($user_id)
     {
-        $get_user = DB::table('tbl_user')->where('user_id', $user_id)->get();
+        $get_user = DB::table('users')->where('user_id', $user_id)->get();
         return view(view: 'admin.user.update-user')->with('get_user', $get_user);
     }
 
@@ -67,13 +66,13 @@ class UserController extends Controller
             $new_image = $get_image->getClientOriginalName();
             $get_image->move('public/backend/users-images', $new_image);
             $data['user_image'] = $new_image;
-            $check = DB::table('tbl_user')->where('user_id', $user_id)->update($data);
+            $check = DB::table('users')->where('user_id', $user_id)->update($data);
             if (isset($check)) {
                 Session::put('message', 'Cập nhật người dùng thành công.');
             } else Session::put('message', 'Cập nhật người dùng thất bại.');
             return Redirect::to('admin/user');
         } else {
-            $check = DB::table('tbl_user')->where('user_id', $user_id)->update($data);
+            $check = DB::table('users')->where('user_id', $user_id)->update($data);
             if (isset($check)) {
                 Session::put('message', 'Cập nhật người dùng thành công.');
             } else Session::put('message', 'Cập nhật người dùng thất bại.');
@@ -83,7 +82,7 @@ class UserController extends Controller
 
     public function delete_user($user_id)
     {
-        DB::table('tbl_user')->where('user_id', $user_id)->delete();
+        DB::table('users')->where('user_id', $user_id)->delete();
         Session::put('message', 'Xóa người dùng thành công');
         return Redirect::to('admin/user');
     }
