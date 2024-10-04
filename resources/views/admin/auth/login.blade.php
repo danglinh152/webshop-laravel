@@ -58,11 +58,11 @@
             <div class="divided-login">
                 <span>Or</span>
             </div>
-            <button class="login-google btn">
+            <button type="button" class="login-google btn">
                 <img class="social-logo" src="public\frontend\admin\img\google.png" alt="Logo Google">
                 <a href="{{URL::to('/auth/google')}}" class="btn">Login via Google</a>
             </button>
-            <button class="login-facebook btn">
+            <button type="button" class="login-facebook btn">
                 <img class="social-logo" src="public\frontend\admin\img\facebook.png" alt="Logo Facebook">
                 <a href="#">Login via Facebook</a>
             </button>
