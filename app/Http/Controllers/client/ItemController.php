@@ -16,8 +16,6 @@ class ItemController extends Controller
         $all_review = DB::table('review')->where('product_id', $product_id)->get();
         return view('client.product.detail')->with('get_product', $get_product)->with('all_review', $all_review);
     }
-
-
     public function getHomePage()
     {
         $all_product = DB::table('product')->where('status', 'show')->orderby('product_id', 'asc')->get();

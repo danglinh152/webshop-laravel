@@ -27,7 +27,6 @@ function updateFactoryOptions() {
             { value: 'Gigabyte', text: 'Gigabyte' },
             { value: 'LG', text: 'LG' }
 
-
         ];
     }
     else if (category === 'phone') {
@@ -39,11 +38,11 @@ function updateFactoryOptions() {
 
         ];
     }
-    else {
-        options = [
-            { value: 'Chưa xác định', text: '---' }
-        ];
-    }
+    // else {
+    //     options = [
+    //         { value: 'Chưa xác định', text: '---' }
+    //     ];
+    // }
 
     // Populate the factory select element with new options
     options.forEach(option => {

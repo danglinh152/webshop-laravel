@@ -27,8 +27,6 @@
                         $i = 0; ?>
         
                         @foreach ($cart as $key => $cart_value )
-                        
-                        
                             <tr>
                                 <th scope="row" class="d-flex align-items-center gap-3">
                                     <div class="checkCart">

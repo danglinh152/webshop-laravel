@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function showProductPage()
     {
-        $all_product = DB::table('product')->orderby('product_id', 'asc')->get();
+        $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
         $manager_product = view('admin.product.show-product')->with('all_product', $all_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.show-product', @$manager_product);
     }
@@ -132,8 +132,6 @@ class ProductController extends Controller
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
     }
-<<<<<<< HEAD
-=======
 
     public function post_review(Request $request , $product_id, $user_id) {
         $data = array();
@@ -153,5 +151,4 @@ class ProductController extends Controller
 
         return view('client.product.detail')->with('all_review', $all_review);
     }
->>>>>>> 0f30f76ad297c07c3db93bbcd013c5429f7ec933
 }
