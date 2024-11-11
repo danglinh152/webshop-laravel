@@ -32,6 +32,9 @@ Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPa
 Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
 Route::get('/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 
+Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
+Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');
+
 //admin
 
 // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');

@@ -147,7 +147,7 @@ class ProductController extends Controller
 
     public function view_review($product_id)
     {
-        $all_review = DB::table('review')->join('tbl_user', 'tbl_user.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
+        $all_review = DB::table('review')->join('users', 'users.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
 
         return view('client.product.detail')->with('all_review', $all_review);
     }

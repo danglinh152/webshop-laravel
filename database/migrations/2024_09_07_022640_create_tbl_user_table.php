@@ -12,20 +12,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
             $table->string('user_email');
-            $table->string('user_password');
+            $table->string('user_password')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('user_first_name');
-            $table->string('user_last_name');
+            $table->string('user_last_name')->nullable();
             $table->string('user_address')->nullable();
             $table->string('user_phone')->nullable();
             $table->longText('user_image')->nullable();
-            $table->enum('role', ['customer', 'admin']);
+            $table->enum('role', ['customer', 'admin'])->default('customer');
             $table->timestamps();
         });
 
-        DB::table('tbl_user')->insert([
+        DB::table('users')->insert([
             ['user_email' => 'admin@gmail.com', 'user_password' => md5('admin'), 'user_first_name' => 'Ẹt', 'user_last_name' => 'Min', 'role' => 'admin'],
             ['user_email' => 'client@gmail.com', 'user_password' => md5('client'), 'user_first_name' => 'Du', 'user_last_name' => 'Xơ', 'role' => 'customer']
         ]);
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_user');
+        Schema::dropIfExists('users');
     }
 };
