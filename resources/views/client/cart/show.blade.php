@@ -23,9 +23,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                         $i = 0; ?>
-        
+
                         @foreach ($cart as $key => $cart_value )
                             <tr>
                                 <th scope="row" class="d-flex align-items-center gap-3">
@@ -113,7 +113,7 @@
                                 0 đ
                             </p>
                         </div>
-                        <form action="{{ URL::to('/checkout') }}" method="get">
+                        <form action="{{ URL::to('/client/checkout') }}" method="get">
                             <button class="btn border-secondary rounded-pill px-4 py-3 text-primary  mb-4 ms-4">Xác
                                 nhận đơn hàng
                             </button>

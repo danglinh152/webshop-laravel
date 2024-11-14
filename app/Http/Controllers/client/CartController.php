@@ -20,6 +20,13 @@ class CartController extends Controller
         return view('client.cart.show')->with( 'cart', $cart_detail);
     }
 
+    public function getCheckoutPage()
+    {
+        $user_id = Session::get('user_id');
+        $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->get();
+        return view('client.cart.checkout')->with( 'cart', $cart_detail);
+    }
+
     public function addToCart(Request $request, $product_id)
     {
         $user_id = Session::get('user_id');
@@ -54,6 +61,6 @@ class CartController extends Controller
             Session::put('err_msg', 'Bạn cần đăng nhập để truy cập trang này!');
             return Redirect::to('/login');
         }
-        
+
     }
 }

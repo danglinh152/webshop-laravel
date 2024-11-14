@@ -83,19 +83,19 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-5 row g-4 justify-content-start">
-                <div class="col-md-7">
-                    <div class="mb-3">
-                        <h4 class="mt-2">Thông tin người nhận</h4>
 
+            <div class="row mt-5 g-4">
+                <div class="col-md-7">
+                    <form action="{{ URL::to('/client/online-checkout') }}" method="post">
+                        @csrf
+                        <h4 class="mt-2">Thông tin người nhận</h4>
                         <div class="form-group mt-3">
                             <label>Họ tên:</label>
                             <input class="form-control mt-1" type="text" name="receiverName" />
                         </div>
                         <div class="form-group mt-3">
                             <label>Địa chỉ:</label>
-                            <textarea class="form-control mt-1" type="text" name="receiverAddress">
-                            </textarea>
+                            <textarea class="form-control mt-1" name="receiverAddress"></textarea>
                         </div>
                         <div class="form-group mt-3">
                             <label>Số điện thoại:</label>
@@ -103,62 +103,51 @@
                         </div>
                         <div class="form-group mt-3">
                             <label>Ghi chú:</label>
-                            <textarea class="form-control mt-1" type="text" name="receiverAddress">
-                            </textarea>
+                            <textarea class="form-control mt-1" name="receiverNote"></textarea>
                         </div>
 
                         <h4 class="mt-4">Hình thức thanh toán</h4>
-                        <div class="form-check border rounded py-3 w-50 d-flex justify-content-between align-items-center">
-                            <label class="form-check-label" for="">
+                        <div class="form-check border rounded py-3 w-100 d-flex justify-content-between align-items-center">
+                            <label class="form-check-label" for="cod">
                                 COD
                             </label>
-                            <input class="form-check-input mx-2" type="radio" name="payment" id="">
+                            <input class="form-check-input mx-2" type="radio" name="payment" value="cod" id="cod">
                         </div>
-                        <div
-                            class="form-check border rounded mt-3 w-50 py-1 d-flex justify-content-between align-items-center">
-                            <label class="form-check-label " for="">
+                        <div class="form-check border rounded mt-3 w-100 py-1 d-flex justify-content-between align-items-center">
+                            <label class="form-check-label" for="payUrl">
                                 <img src="https://test-payment.momo.vn/v2/gateway/images/logo-momo.png" alt="captureWallet"
                                     class="" style="width: 36%">
                                 Ví MoMo
                             </label>
-                            <input class="form-check-input mx-2" type="radio" name="payment" id="">
+                            <input class="form-check-input mx-2" type="radio" name="payment" value="payUrl" id="payUrl">
                         </div>
-                        {{-- <div class="mt-4"><i class="fa-solid fa-arrow-left m-2" style="color: #0d367d;"></i><a
-                                href="/cart">Quay lại giỏ
-                                hàng</a></div> --}}
-                    </div>
                 </div>
-                <div class="col-12 col-md-5">
-                    <div class="bg-light rounded">
-                        <div class="p-4">
-                            <h4 class="mb-4 ">Thông tin đơn hàng
-                            </h4>
-                            <div class="d-flex justify-content-between mb-4 text-dark">
-                                <p class="mb-0 me-4">Tạm tính:</p>
-                                <p class="mb-0 " data-cart-total-price="0">
-                                    0 đ
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="mb-0 me-4 text-dark">Phí vận chuyển:</p>
-                                <div class="">
-                                    <p class="mb-0 text-dark">0 đ</p>
-                                </div>
+
+                <div class="col-md-5">
+                    <div class="bg-light rounded p-4">
+                        <h4 class="mb-4">Thông tin đơn hàng</h4>
+                        <div class="d-flex justify-content-between mb-4 text-dark">
+                            <p class="mb-0 me-4">Tạm tính:</p>
+                            <p class="mb-0" data-cart-total-price="0">
+                                0 đ
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0 me-4 text-dark">Phí vận chuyển:</p>
+                            <div class="">
+                                <p class="mb-0 text-dark">0 đ</p>
                             </div>
                         </div>
-                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <div class="py-4 my-4 border-top border-bottom d-flex justify-content-between">
                             <p class="mb-0 ps-4 me-4 text-dark">Tổng số tiền:</p>
                             <p class="mb-0 pe-4 text-dark" data-cart-total-price="0">
                                 0 đ
                             </p>
                         </div>
-                        <form action="{{ URL::to('/checkout') }}" method="get">
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary  mb-4 ms-4">Xác
-                                nhận đơn hàng
-                            </button>
-                        </form>
+                        <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>

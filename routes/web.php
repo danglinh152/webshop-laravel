@@ -30,7 +30,6 @@ Route::get('/', 'App\Http\Controllers\client\ItemController@getHomePage');
 Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
-Route::get('/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
 Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');
@@ -75,6 +74,8 @@ Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\adm
 Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
 Route::get('/admin/product/active-product/{product_id}', 'App\Http\Controllers\admin\ProductController@active_product');
 Route::get('/admin/product/unactive-product/{product_id}', 'App\Http\Controllers\admin\ProductController@unactive_product');
+//client product
+Route::post('/client/review/addComment', 'App\Http\Controllers\client\ReviewController@post_review');
 
 //send mail
 Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');
@@ -96,3 +97,8 @@ Route::post('/admin/voucher/save-voucher', 'App\Http\Controllers\admin\VoucherCo
 Route::get('/admin/voucher/edit-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@edit_voucher');
 Route::post('/admin/voucher/update-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@update_voucher');
 Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@delete_voucher');
+
+//checkout
+Route::get('/client/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
+Route::post('/client/online-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@online_checkout');
+Route::post('/client/confirm-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@confirm_checkout');
