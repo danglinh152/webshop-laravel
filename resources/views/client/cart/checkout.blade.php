@@ -112,7 +112,7 @@
                             <div class="form-check-label" style="width: 100%">
                                 <img src="{{ asset('public/frontend/client/img/delivery.jpg') }}" alt=""
                                     class="" style="width: 14%; border-radius:5px">
-                                Trả tiền khi nhận hàng
+                                Thanh toán khi giao hàng
                             </div>
                             <input class="form-check-input" type="radio" name="payment" id="cod">
                         </div>
@@ -126,7 +126,7 @@
                             <input class="form-check-input " type="radio" name="payment" id="momo">
                         </div>
                         <div class="mt-4"><i class="fa-solid fa-arrow-left m-2" style="color: #0d367d;"></i><a
-                                href="/cart">Quay lại giỏ
+                                href="{{ URL::to('/cart') }}">Quay lại giỏ
                                 hàng</a></div>
                     </div>
                 </div>
@@ -154,9 +154,9 @@
                                 0 đ
                             </p>
                         </div>
-                        <form action="{{ URL::to('/checkout') }}" method="get">
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary  mb-4 ms-4">Xác
-                                nhận đơn hàng
+                        <form action="{{ URL::to('/success') }}" method="get">
+                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary  mb-4 ms-4">
+                                Xác nhận đặt hàng
                             </button>
                         </form>
                     </div>
