@@ -334,3 +334,10 @@
     }
 
 })(jQuery);
+
+window.onload() = function () {
+    const checkbox = document.querySelectorAll('input[type="checkbox"]');
+    for (const key in checkbox) {
+        if (key.checked == true) key.checked = false;
+    }
+}

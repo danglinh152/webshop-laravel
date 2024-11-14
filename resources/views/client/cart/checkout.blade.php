@@ -107,25 +107,27 @@
                             </textarea>
                         </div>
 
-                        <h4 class="mt-4">Hình thức thanh toán</h4>
-                        <div class="form-check border rounded py-3 w-50 d-flex justify-content-between align-items-center">
-                            <label class="form-check-label" for="">
-                                COD
-                            </label>
-                            <input class="form-check-input mx-2" type="radio" name="payment" id="">
+                        <h4 class="mt-4 mb-2">Hình thức thanh toán</h4>
+                        <div class="border rounded w-50 d-flex justify-content-between align-items-center px-2 py-2">
+                            <div class="form-check-label" style="width: 100%">
+                                <img src="{{ asset('public/frontend/client/img/delivery.jpg') }}" alt=""
+                                    class="" style="width: 14%; border-radius:5px">
+                                Trả tiền khi nhận hàng
+                            </div>
+                            <input class="form-check-input" type="radio" name="payment" id="cod">
                         </div>
                         <div
-                            class="form-check border rounded mt-3 w-50 py-1 d-flex justify-content-between align-items-center">
-                            <label class="form-check-label " for="">
+                            class="border rounded mt-2 w-50 d-flex justify-content-between align-items-center px-1 py-1 pe-2">
+                            <div class="form-check-label " style="width: 100%">
                                 <img src="https://test-payment.momo.vn/v2/gateway/images/logo-momo.png" alt="captureWallet"
-                                    class="" style="width: 36%">
+                                    class="" style="width: 16%">
                                 Ví MoMo
-                            </label>
-                            <input class="form-check-input mx-2" type="radio" name="payment" id="">
+                            </div>
+                            <input class="form-check-input " type="radio" name="payment" id="momo">
                         </div>
-                        {{-- <div class="mt-4"><i class="fa-solid fa-arrow-left m-2" style="color: #0d367d;"></i><a
+                        <div class="mt-4"><i class="fa-solid fa-arrow-left m-2" style="color: #0d367d;"></i><a
                                 href="/cart">Quay lại giỏ
-                                hàng</a></div> --}}
+                                hàng</a></div>
                     </div>
                 </div>
                 <div class="col-12 col-md-5">
