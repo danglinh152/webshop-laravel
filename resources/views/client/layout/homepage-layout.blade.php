@@ -93,7 +93,7 @@ $avatar = session('image');
                             <span
                                 class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                                 style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
-                                1
+                                {{Session::get('quantity')}}
                             </span>
                         </a>
                         @if (Session::has('user_name'))

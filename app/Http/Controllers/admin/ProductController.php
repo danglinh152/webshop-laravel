@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function showProductPage()
     {
-        $all_product = DB::table('product')->orderby('product_id', 'asc')->get();
+        $all_product = DB::table('product')->orderby('product_id', 'desc')->get();
         $manager_product = view('admin.product.show-product')->with('all_product', $all_product);
         return view(view: 'admin.layout.admin-layout')->with('admin.product.show-product', @$manager_product);
     }
