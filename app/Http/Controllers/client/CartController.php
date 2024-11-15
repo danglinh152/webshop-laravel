@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function getCheckOutPage()
-    {
-        return view('client.cart.checkout');
-    }
 
     public function getSuccessPage()
     {

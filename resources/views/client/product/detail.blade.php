@@ -36,12 +36,11 @@
 
                     <div class="col-lg-6">
                         <h4 class="fw-bold mb-3">{{$product->product_name}}</h4>
-                        <p class="mb-3">{{$get_product->product_fact}}</p>
+                        <p class="mb-3">{{$product->product_fact}}</p>
                         <h5 class="fw-bold mb-2">
-                            {{number_format($get_product->product_price, 0, ',', '.')}} đ
+                            {{number_format($product->product_price, 0, ',', '.')}} đ
                         </h5>
-                        <div class="d-flex mb-4">
-                            <?php
+                        <?php
                             $sum = 0;
                             $count = 0;
                         ?>
@@ -71,9 +70,22 @@
                                                 </div>';
                                         $i++;
                                     }
-                                    else {
+                                    else if ($i > $rating && $percent != 0) {
                                         echo    '<div class="position-relative">
                                                     <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: '.$percent.'%;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#FFC107"/>
+                                                        </svg>
+                                                    </div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                        <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#E4E4E4"/>
+                                                    </svg>
+                                                </div>';
+                                        $i++;
+                                        $percent = 0;
+                                    }else if ($i > $rating && $percent == 0) {
+                                        echo    '<div class="position-relative">
+                                                    <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: 0%;">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                                                             <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#FFC107"/>
                                                         </svg>
@@ -88,9 +100,8 @@
                                 echo'</div>';
                             ?>
                         @endif
-                         </div>
 
-                        <p class="mb-4">Short detail: {{$get_product->product_short_desc}}</p>
+                        <p class="mb-4">Short detail: {{$product->product_short_desc}}</p>
                         <div class="input-group quantity mb-5" style="width: 100px;">
                             <div class="input-group-btn">
                                 <button
@@ -131,29 +142,20 @@
                         <div class="tab-content mb-5">
                             <div class="tab-pane active" id="nav-about" role="tabpanel"
                                 aria-labelledby="nav-about-tab">
-                                <p>{{$get_product->product_long_desc}}</p>
+                                <p>{{$product->product_long_desc}}</p>
                             </div>
                         </div>
                     </div>
-                    <form action="#">
-                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
+                    <form action="{{ url('/client/review/addComment') }}" method="POST">
+                        @csrf
+                        <h4 class="fw-bold mb-5">Leave a Reply</h4>
                         <div class="row g-4">
                             <div class="col-lg-6">
                                 <div class="border-bottom rounded">
-                                    <input type="text" name="name" class="form-control border-0 me-4" placeholder="Your Name">
+                                    <textarea required name="review_content" id="comment" class="form-control border-0" cols="30" rows="8" placeholder="Your Review" spellcheck="false"></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="border-bottom rounded">
-                                    <input type="email" name="email" class="form-control border-0" placeholder="Your Email">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="border-bottom rounded my-4">
-                                    <textarea name="review_content" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review" spellcheck="false"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
                                 <div class="d-flex justify-content-between py-3 mb-5">
                                     <div class="d-flex align-items-center">
                                         <p class="mb-0 me-3">Please rate:</p>
@@ -188,9 +190,9 @@
                         @foreach ($all_review as $key => $review)
                         <div class="container">
                             <p class="mt-3" style="max-width: 840px;">
-                                {{$review->user_first_name}} {{$review->user_last_name}}
+                                {{$review->comment}}
                             </p>
-                            <div class="rating-block d-flex">
+                            <div class="mt-3 rating-block d-flex">
                                 <?php
                                     $i = 1;
                                     $rating = $review->rating;
@@ -225,18 +227,19 @@
                                     }
                                 ?>
                             </div>
-                             <span class="mt-1 text-muted small">{{$review->updated_at}}</span>
-                             <p class="mt-3" style="max-width: 840px;">
-                                 {{$review->comment}}
-                             </p>
-                         </div>
-                         @endforeach
-                     </div>
-                     @endforeach
-                 </div>
-             </div>
+                            <span class="mt-1 text-muted small">{{$review->updated_at}}</span>
+                            <p class="mt-3" style="max-width: 840px;">
+                                {{$review->comment}}
+                            </p>
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+            </div>
 
-         </div>
+        </div>
 
     </div>
 </div>
@@ -245,38 +248,33 @@
     const ratingText = document.getElementById('rating-text');
     const ratingInput = document.getElementById('rating-input')
     let selectedRating = 0;
-
-    // Hover and click functionality for stars
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {
             selectedRating = index + 1;
             updateStars(selectedRating);
             ratingInput.value = selectedRating
-            console.log(ratingInput);
-
         });
     });
 
-     function updateStars(rating) {
-         stars.forEach((star, i) => {
-             if (i < rating) {
-                 star.classList.add('text-warning');
-             } else {
-                 star.classList.remove('text-warning');
-             }
-         });
-         ratingText.innerHTML = `Rating: ${rating} star${rating > 1 ? 's' : ''}`;
-     }
+    function updateStars(rating) {
+        stars.forEach((star, i) => {
+            if (i < rating) {
+                star.classList.add('text-warning');
+            } else {
+                star.classList.remove('text-warning');
+            }
+        });
+        ratingText.innerHTML = `Rating: ${rating} star${rating > 1 ? 's' : ''}`;
+    }
 
-     const submitBtn = document.getElementById('submit-btn');
+    const submitBtn = document.getElementById('submit-btn');
 
-    submitBtn.addEventListener('click', () => {
-        if (selectedRating > 0) {
-            resultDiv.classList.remove('hidden');
-            submittedRatingText.textContent = selectedRating;
-        } else {
-            alert('Please select a rating before submitting.');
-        }
-    });
+    // submitBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     if (selectedRating > 0) {
+    //     } else {
+    //         alert('Please select a rating before submitting.');
+    //     }
+    // });
 </script>
 @stop
