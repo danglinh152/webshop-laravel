@@ -86,7 +86,7 @@
 
             <div class="row mt-5 g-4">
                 <div class="col-md-7">
-                    <form action="{{ URL::to('/client/online-checkout') }}" method="post">
+                    <form class="mb-3" action="{{ URL::to('/client/online-checkout') }}" method="post">
                         @csrf
                         <h4 class="mt-2">Thông tin người nhận</h4>
                         <div class="form-group mt-3">
@@ -106,21 +106,28 @@
                             <textarea class="form-control mt-1" name="receiverNote"></textarea>
                         </div>
 
-                        <h4 class="mt-4">Hình thức thanh toán</h4>
-                        <div class="form-check border rounded py-3 w-100 d-flex justify-content-between align-items-center">
-                            <label class="form-check-label" for="cod">
-                                COD
-                            </label>
+                        <h4 class="mt-4 mb-2">Hình thức thanh toán</h4>
+                        <div class="border rounded w-50 d-flex justify-content-between align-items-center px-2 py-2">
+                            <div class="form-check-label" style="width: 100%">
+                                <img src="{{ asset('public/frontend/client/img/delivery.jpg') }}" alt=""
+                                    class="" style="width: 14%; border-radius:5px">
+                                Thanh toán khi giao hàng
+                            </div>
                             <input class="form-check-input mx-2" type="radio" name="payment" value="cod" id="cod">
                         </div>
-                        <div class="form-check border rounded mt-3 w-100 py-1 d-flex justify-content-between align-items-center">
-                            <label class="form-check-label" for="payUrl">
+                        <div
+                            class="border rounded mt-2 w-50 d-flex justify-content-between align-items-center px-1 py-1 pe-2">
+                            <div class="form-check-label " style="width: 100%">
                                 <img src="https://test-payment.momo.vn/v2/gateway/images/logo-momo.png" alt="captureWallet"
-                                    class="" style="width: 36%">
+                                    class="" style="width: 16%">
                                 Ví MoMo
-                            </label>
+                            </div>
                             <input class="form-check-input mx-2" type="radio" name="payment" value="payUrl" id="payUrl">
                         </div>
+                        <div class="mt-4"><i class="fa-solid fa-arrow-left m-2" style="color: #0d367d;"></i><a
+                                href="{{ URL::to('/cart') }}">Quay lại giỏ
+                                hàng</a></div>
+                    </div>
                 </div>
 
                 <div class="col-md-5">
@@ -144,7 +151,9 @@
                                 0 đ
                             </p>
                         </div>
-                        <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
+                        <form action="{{ URL::to('/checkout') }}" method="get">
+                            <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
+                        </form>
                     </div>
                 </div>
                 </form>
