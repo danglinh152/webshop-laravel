@@ -151,9 +151,7 @@
                                 0 đ
                             </p>
                         </div>
-                        <form action="{{ URL::to('/checkout') }}" method="get">
-                            <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
-                        </form>
+                        <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
                     </div>
                 </div>
                 </form>
