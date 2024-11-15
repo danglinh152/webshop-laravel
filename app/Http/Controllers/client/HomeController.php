@@ -20,4 +20,8 @@ class HomeController extends Controller
     {
         return view('client.auth.otp');
     }
+
+    public function getContactPage(){
+        return view('client.homepage.contact');
+    }
 }

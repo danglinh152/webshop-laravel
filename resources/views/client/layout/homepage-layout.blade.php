@@ -84,7 +84,8 @@ $avatar = session('image');
                             style="font-weight: 600; font-size: 16px;">Trang Chủ</a>
                         <a href="{{ URL::to('/product') }}" class="nav-item nav-link"
                             style="font-weight: 600; font-size: 16px;">Sản Phẩm</a>
-                        <a href="" class="nav-item nav-link" style="font-weight: 600; font-size: 16px;">Liên
+                        <a href="{{ URL::to('/contact') }}" class="nav-item nav-link"
+                            style="font-weight: 600; font-size: 16px;">Liên
                             hệ</a>
                     </div>
                     <div class="d-flex">
@@ -93,7 +94,7 @@ $avatar = session('image');
                             <span
                                 class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                                 style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
-                                {{Session::get('quantity')}}
+                                {{ Session::get('quantity') }}
                             </span>
                         </a>
                         @if (Session::has('user_name'))
@@ -159,6 +160,7 @@ $avatar = session('image');
     @yield('cartShow')
     @yield('checkout')
     @yield('success')
+    @yield('contact')
     <!-- Footer  -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
         <div class="container py-5">
