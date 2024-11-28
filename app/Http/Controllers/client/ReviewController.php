@@ -23,7 +23,7 @@ class ReviewController extends Controller
         $data['comment'] = $request->review_content;
         $data['rating'] = $request->rating;
         DB::table('review')->insert($data);
-        Session::put('message', 'Thêm review thành công.');
+        Session::put('message_review', 'Thêm review thành công.');
         return Redirect::to("/product/{$product_id}");
     }
 

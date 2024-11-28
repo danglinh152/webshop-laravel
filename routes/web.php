@@ -37,6 +37,10 @@ Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPag
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
 Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');
 
+
+Route::get('/auth/facebook', 'App\Http\Controllers\FacebookAuthController@redirect');
+Route::get('/auth/facebook/callback', 'App\Http\Controllers\FacebookAuthController@callbackFacebook');
+
 //admin
 
 // Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');

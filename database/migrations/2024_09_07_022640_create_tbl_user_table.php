@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('user_email');
             $table->string('user_password')->nullable();
             $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->string('user_first_name');
             $table->string('user_last_name')->nullable();
             $table->string('user_address')->nullable();
