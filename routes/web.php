@@ -30,8 +30,11 @@ Route::get('/', 'App\Http\Controllers\client\ItemController@getHomePage');
 Route::get('/product', 'App\Http\Controllers\client\ItemController@productShowPage');
 
 Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
-Route::get('/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
+// Route::get('/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
+
+// Route::get('/success?partnerCode=MOMOBKUN20180529&orderId=1732804656&requestId=1732804656&amount=10000&orderInfo=Thanh+to%C3%A1n+qua+MoMo&orderType=momo_wallet&transId=4248103194&resultCode=1002&message=Transaction+rejected+by+the+issuers+of+the+payment+accounts.&payType=napas&responseTime=1732804678758&extraData=&signature=e442b5c2e45717740f64b8ebc21a58eb101ae3cd62fb75571f0914071c37b6c9', 'App\Http\Controllers\client\CartController@getSuccessPage');
 Route::get('/success', 'App\Http\Controllers\client\CartController@getSuccessPage');
+Route::get('/error', 'App\Http\Controllers\client\CartController@getErrorPage');
 Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPage');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
@@ -106,6 +109,6 @@ Route::post('/admin/voucher/update-voucher/{voucher_id}', 'App\Http\Controllers\
 Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@delete_voucher');
 
 //checkout
-Route::get('/client/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
+Route::post('/client/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 Route::post('/client/online-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@online_checkout');
 Route::post('/client/confirm-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@confirm_checkout');

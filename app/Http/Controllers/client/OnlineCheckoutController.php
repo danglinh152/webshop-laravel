@@ -28,6 +28,7 @@ class OnlineCheckoutController extends Controller
         return $result;
     }
 
+
     public function online_checkout(Request $request)
     {
         $paymentMethod = $request->input('payment');
@@ -91,6 +92,19 @@ class OnlineCheckoutController extends Controller
                 // Handle error if resultCode is not 0
                 echo "Error: " . $jsonResult['message'];
             }
+        }
+    }
+    public function handleIpn(Request $request)
+    {
+        // Retrieve the payment status from MoMo
+        $status = $request->input('status'); // Assuming the status is sent in the request
+
+        if ($status == 'success') {
+            // Redirect to success page
+            return redirect('/success');
+        } else {
+            // Redirect to error page
+            return redirect('/error');
         }
     }
 }
