@@ -117,76 +117,97 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const btnMinus = document.querySelectorAll(".btn-minus"); // Quantity input fields (minus)
+        const btnPlus = document.querySelectorAll(".btn-plus"); // Quantity input fields (plus)
         const subtotalElement = document.getElementById('subtotal');
         const totalAmountElement = document.getElementById('totalAmount');
 
+        // Function to update totals
         function updateTotals() {
             let subtotal = 0;
+
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
                     const row = checkbox.closest('tr');
-                    const total = parseFloat(row.querySelector('p[id^="total"]').getAttribute('data_cart_detail_total'));
-                    subtotal += total;
+                    const quantity = parseInt(row.querySelector('input[type="text"]').value, 10); // Get the quantity
+                    const price = parseFloat(row.querySelector('p[id^="price"]').innerText.replace('đ', '').replace(/,/g, '')); // Get price without formatting
+                    const total = price * quantity; // Calculate total for this item
+                    row.querySelector('p[id^="total"]').innerText = new Intl.NumberFormat('vi-VN').format(total) + 'đ'; // Update total in the row
+                    subtotal += total; // Add the row's total to the subtotal
                 }
             });
+
+            // Update subtotal and total amount
             subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) + 'đ';
             totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) + 'đ'; // Assuming no shipping costs
         }
 
+        // Update totals when checkbox is toggled
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updateTotals);
+        });
+
+        // Update quantity when minus button is clicked
+        btnMinus.forEach(button => {
+            button.addEventListener('click', function() {
+                const quantityInput = button.closest('div.input-group').querySelector('input[type="text"]');
+                let quantity = parseInt(quantityInput.value, 10);
+                if (quantity > 1) {
+                    // quantity--;
+                    quantityInput.value = quantity; // Update the displayed quantity
+                }
+                updateTotals(); // Recalculate totals when quantity changes
+            });
+        });
+
+        // Update quantity when plus button is clicked
+        btnPlus.forEach(button => {
+            button.addEventListener('click', function() {
+                const quantityInput = button.closest('div.input-group').querySelector('input[type="text"]');
+                let quantity = parseInt(quantityInput.value, 10);
+                // quantity++;
+                quantityInput.value = quantity; // Update the displayed quantity
+                updateTotals(); // Recalculate totals when quantity changes
+            });
         });
 
         // Initial calculation
         updateTotals();
     });
 
+
     document.getElementById('confirmOrderButton').addEventListener('click', function() {
         const selectedProducts = [];
+        const quantities = [];
         const form = document.getElementById('checkoutForm');
 
         // Gather selected products and their details
         const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
         checkboxes.forEach((checkbox) => {
-            selectedProducts.push(checkbox.value);
+            selectedProducts.push(checkbox.value); // Push the selected product ID
 
             // Find the row related to the checkbox to get additional details
             const row = checkbox.closest('tr');
             const quantity = row.querySelector('input[type="text"]').value; // Get quantity
-            const price = row.querySelector('p[id^="price"]').innerText.replace('đ', '').replace(/,/g, ''); // Get price
-            const total = row.querySelector('p[id^="total"]').innerText.replace('đ', '').replace(/,/g, ''); // Get total
 
-            // Create hidden inputs for additional cart details
+            quantities.push(quantity); // Push the quantity
+
+            // Create hidden inputs for selected product IDs and quantities
+            const productIdInput = document.createElement('input');
+            productIdInput.type = 'hidden';
+            productIdInput.name = 'selected_products[]'; // Array for product IDs
+            productIdInput.value = checkbox.value;
+            form.appendChild(productIdInput);
+
             const quantityInput = document.createElement('input');
             quantityInput.type = 'hidden';
-            quantityInput.name = 'cart_details[quantity][]'; // Array for quantities
+            quantityInput.name = 'quantities[]'; // Array for quantities
             quantityInput.value = quantity;
             form.appendChild(quantityInput);
-
-            const priceInput = document.createElement('input');
-            priceInput.type = 'hidden';
-            priceInput.name = 'cart_details[price][]'; // Array for prices
-            priceInput.value = price;
-            form.appendChild(priceInput);
-
-            const totalInput = document.createElement('input');
-            totalInput.type = 'hidden';
-            totalInput.name = 'cart_details[total][]'; // Array for totals
-            totalInput.value = total;
-            form.appendChild(totalInput);
         });
 
-        // Create hidden input field to store the selected product IDs
-        selectedProducts.forEach((productId) => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'selected_products[]'; // Ensure it matches the name in the checkbox
-            input.value = productId;
-            form.appendChild(input);
-        });
-
-        // Submit the form
+        // Submit the form with selected products and quantities
         form.submit();
     });
 </script>

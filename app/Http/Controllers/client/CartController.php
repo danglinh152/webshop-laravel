@@ -41,8 +41,15 @@ class CartController extends Controller
     {
         $user_id = Session::get('user_id');
 
-        // Retrieve selected product IDs from the request
+        // Retrieve selected product IDs and quantities from the request
         $selectedProductIds = $request->input('selected_products', []);
+        $quantities = $request->input('quantities', []);
+
+        // Ensure that the quantities correspond to the selected products
+        if (count($selectedProductIds) !== count($quantities)) {
+            // Handle error: Number of selected products must match the number of quantities
+            return redirect()->route('cart')->with('error', 'Product count mismatch.');
+        }
 
         // Get cart details for the selected products
         $cart_detail = DB::table('cart_detail')
@@ -52,8 +59,17 @@ class CartController extends Controller
             ->whereIn('cart_detail.product_id', $selectedProductIds) // Filter by selected product IDs
             ->get();
 
+        // Create an associative array for easy access to quantities
+        $quantitiesAssoc = array_combine($selectedProductIds, $quantities);
+
+        // Attach the quantities to the cart details
+        foreach ($cart_detail as $item) {
+            $item->quantity = isset($quantitiesAssoc[$item->product_id]) ? $quantitiesAssoc[$item->product_id] : 0;
+        }
+
         return view('client.cart.checkout')->with('cart', $cart_detail);
     }
+
 
 
     public function addToCart(Request $request, $product_id)

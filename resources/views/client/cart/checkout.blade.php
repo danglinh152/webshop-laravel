@@ -45,21 +45,13 @@
                             </p>
                         </td>
                         <td>
-                            <div class="input-group quantity mt-4" style="width: 100px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border mt-0">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
+                            <div class="input-group quantity mt-4" style="width: 80px;">
+
                                 <input type="text" class="form-control form-control-sm text-center border-0"
                                     value="{{ $cart_value->quantity }}" data-cart-detail-id="" data-cart-detail-price="{{ $cart_value->product_price }}"
                                     data-cart-detail-index="{{ $i }}" disabled
                                     style="background: transparent">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border mt-0">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
+
                             </div>
                         </td>
                         <td>
