@@ -32,6 +32,13 @@ class OnlineCheckoutController extends Controller
     public function online_checkout(Request $request)
     {
         $paymentMethod = $request->input('payment');
+        $total = $request->input('total');
+        $cart = session('cart');
+        $orderinfo = "";
+        foreach ($cart as $key => $cart_value) {
+            $orderinfo .= $cart_value->product_name . " x " . $cart_value->quantity . ", ";
+        }
+
 
         if ($paymentMethod == 'cod') {
             echo 'COD';  // If COD is selected, display COD message
@@ -45,8 +52,8 @@ class OnlineCheckoutController extends Controller
             $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';  // Replace with your Secret Key
 
             // Order information
-            $orderInfo = "Thanh toán qua MoMo";
-            $amount = "10000";  // Replace with actual amount
+            $orderInfo = $orderinfo;  // Replace with actual order information
+            $amount = $total;  // Replace with actual amount
             $orderId = time() . "";  // Order ID based on current time
             $redirectUrl = "http://localhost:8888/webshop-laravel/success";  // Replace with your actual redirect URL
             $ipnUrl = "http://localhost:8888/webshop-laravel/success";  // IPN URL (Payment Notification URL)
@@ -55,6 +62,7 @@ class OnlineCheckoutController extends Controller
             // Create request ID for MoMo payment
             $requestId = time() . "";
             $requestType = "payWithATM";  // Payment type (can be ATM, credit card, etc.)
+            // $requestType = "captureWallet";  // Payment type (can be ATM, credit card, etc.)
 
             // Create raw data for HMAC SHA256 signature
             $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;

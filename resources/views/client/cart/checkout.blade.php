@@ -1,4 +1,7 @@
 @extends('client.layout.homepage-layout')
+@php
+use Illuminate\Support\Facades\session;
+@endphp
 @section('checkout')
 <div class="container-fluid py-5">
     <div class="container py-5">
@@ -23,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0; ?>
+                    <?php $i = 0; session(['cart' => $cart]); ?>
                     @foreach ($cart as $key => $cart_value)
                     <tr>
                         <th scope="row" class="d-flex align-items-center gap-3">
@@ -129,6 +132,7 @@
                     <div class="py-4 my-4 border-top border-bottom d-flex justify-content-between">
                         <p class="mb-0 ps-4 me-4 text-dark">Tổng số tiền:</p>
                         <p class="mb-0 pe-4 text-dark" id="totalAmount" data-cart-total-price="0">0 đ</p>
+                        <input type="hidden" name="total" id="total" value=""/>
                     </div>
                     <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
                 </div>
@@ -141,6 +145,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const subtotalElement = document.getElementById('subtotal');
         const totalAmountElement = document.getElementById('totalAmount');
+        const totalInput = document.getElementById('total');
 
         function calculateTotal() {
             let total = 20000;
@@ -151,6 +156,7 @@
             });
             subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(total) + 'đ';
             totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(total) + 'đ'; // Assuming no shipping costs
+            totalInput.value = total;
         }
 
         // Initial calculation
