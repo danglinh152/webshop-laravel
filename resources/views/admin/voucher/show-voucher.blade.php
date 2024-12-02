@@ -21,9 +21,8 @@
         ?>
     </div>
 
-
     <div class="container px-6 mt-4">
-        <div class="grid grid-cols-3 gap-6 h-32">
+        <div class="grid grid-cols-3 gap-6 h-32">       
             @foreach ($all_voucher as $key => $vou)
 
             <div class="rounded-xl shadow-lg w-full flex border ">

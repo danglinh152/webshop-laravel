@@ -32,7 +32,7 @@ class VoucherController extends Controller
         $data = array();
         $data['voucher_name'] = $request->voucher_name;
         $data['voucher_desc'] = $request->voucher_desc;
-        $data['discount_value'] = ($request->discount_value) / 100;
+        $data['discount_value'] = ($request->discount_value);
         $data['start_date'] = $request->start_date;
         $data['end_date'] = $request->end_date;
         DB::table('voucher')->insert($data);
@@ -55,13 +55,6 @@ class VoucherController extends Controller
         $data['discount_value'] = $request->discount_value;
         $data['start_date'] = $request->start_date;
         $data['end_date'] = $request->end_date;
-
-        $check = DB::table('voucher')->where('voucher_id', $voucher_id)->update($data);
-        if (isset($check)) {
-            Session::put('message', 'Cập nhật Voucher thành công.');
-        } else Session::put('message', 'Cập nhật Voucher thất bại.');
-        return Redirect::to('admin/voucher');
-
 
         $check = DB::table('voucher')->where('voucher_id', $voucher_id)->update($data);
         if (isset($check)) {
