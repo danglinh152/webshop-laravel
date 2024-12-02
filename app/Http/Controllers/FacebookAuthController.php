@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Exception;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 
-class GoogleAuthController extends Controller
+class FacebookAuthController extends Controller
 {
     public function redirect()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
-
-    public function callbackGoogle()
+    public function callback()
     {
         try {
-            $google_user = Socialite::driver('google')->user();
+            $facebook_user = Socialite::driver('facebook')->user();
 
             // Tìm người dùng trong bảng tbl_user
-            $user = User::where('google_id', $google_user->getId())->first();
+            $user = User::where('facebook_id', $facebook_user->getId())->first();
 
             if (!$user) {
                 // Tạo người dùng mới nếu không tìm thấy
                 $data = [
-                    'user_first_name' => $google_user->getName(),
-                    'user_email' => $google_user->getEmail(),
-                    'google_id' => $google_user->getId(),
+                    'user_first_name' => $facebook_user->getName(),
+                    'user_email' => $facebook_user->getEmail(),
+                    'facebook_id' => $facebook_user->getId(),
                     'role' => 'customer'
                 ];
 
@@ -42,14 +41,14 @@ class GoogleAuthController extends Controller
                 Auth::login($user);
             }
 
-            session(['user_name' => $google_user->getName()]);
-            session(['user_id' => $google_user->getId()]);
-            session(['image' => $google_user->getAvatar()]);
+            session(['user_name' => $facebook_user->getName()]);
+            session(['user_id' => $facebook_user->getId()]);
+            session(['image' => $facebook_user->getAvatar()]);
             return redirect()->to('/'); // Redirect to the home page
         } catch (Exception $e) {
             // Log the error for debugging
-            Log::error('Google OAuth callback error: ' . $e->getMessage());
-            return redirect()->to('/login')->with('error', 'An error occurred while logging in with Google.'); // Error message
+            Log::error('facebook OAuth callback error: ' . $e->getMessage());
+            return redirect()->to('/login')->with('error', 'An error occurred while logging in with facebook.'); // Error message
         }
     }
 }

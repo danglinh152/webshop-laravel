@@ -64,8 +64,9 @@
             </button>
             <button type="button" class="login-facebook btn">
                 <img class="social-logo" src="public\frontend\admin\img\facebook.png" alt="Logo Facebook">
-                <a href="#">Login via Facebook</a>
+                <a href="{{URL::to('/auth/facebook')}}">Login via Facebook</a>
             </button>
+
             <div class="login-group">
                 <span class="login">
                     <a href="{{URL::to('/')}}" class="link link-login">Back to homepage</a>

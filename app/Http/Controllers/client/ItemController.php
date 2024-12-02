@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +15,7 @@ class ItemController extends Controller
     {
         $get_product = DB::table('product')->where('product_id', $product_id)->where('status', 'show')->get();
         $all_review = DB::table('review')->where('product_id', $product_id)->get();
+        Session::put('product_id', $product_id);
         return view('client.product.detail')->with('get_product', $get_product)->with('all_review', $all_review);
     }
     public function getHomePage()

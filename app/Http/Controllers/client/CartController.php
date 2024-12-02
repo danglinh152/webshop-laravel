@@ -13,15 +13,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function getCheckOutPage()
+
+    public function getSuccessPage(Request $request)
     {
-        return view('client.cart.checkout');
+        // Retrieve the message query parameter
+        $message = $request->query('message');
+
+        // Check if the message contains "rejected"
+        if (strpos($message, 'rejected') !== false) {
+            return view('client.cart.error');  // Redirect to error page
+        } else {
+            return view('client.cart.success'); // Redirect to success page
+        }
     }
 
-    public function getSuccessPage()
-    {
-        return view('client.cart.success');
-    }
+
+
 
     public function getCartPage()
     {
@@ -29,6 +36,41 @@ class CartController extends Controller
         $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->get();
         return view('client.cart.show')->with('cart', $cart_detail);
     }
+
+    public function getCheckoutPage(Request $request)
+    {
+        $user_id = Session::get('user_id');
+
+        // Retrieve selected product IDs and quantities from the request
+        $selectedProductIds = $request->input('selected_products', []);
+        $quantities = $request->input('quantities', []);
+
+        // Ensure that the quantities correspond to the selected products
+        if (count($selectedProductIds) !== count($quantities)) {
+            // Handle error: Number of selected products must match the number of quantities
+            return redirect()->route('cart')->with('error', 'Product count mismatch.');
+        }
+
+        // Get cart details for the selected products
+        $cart_detail = DB::table('cart_detail')
+            ->join('product', 'product.product_id', '=', 'cart_detail.product_id')
+            ->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')
+            ->where('user_id', $user_id)
+            ->whereIn('cart_detail.product_id', $selectedProductIds) // Filter by selected product IDs
+            ->get();
+
+        // Create an associative array for easy access to quantities
+        $quantitiesAssoc = array_combine($selectedProductIds, $quantities);
+
+        // Attach the quantities to the cart details
+        foreach ($cart_detail as $item) {
+            $item->quantity = isset($quantitiesAssoc[$item->product_id]) ? $quantitiesAssoc[$item->product_id] : 0;
+        }
+
+        return view('client.cart.checkout')->with('cart', $cart_detail);
+    }
+
+
 
     public function addToCart(Request $request, $product_id)
     {

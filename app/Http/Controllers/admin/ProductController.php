@@ -132,23 +132,4 @@ class ProductController extends Controller
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
     }
-
-    public function post_review(Request $request , $product_id, $user_id) {
-        $data = array();
-        // $data['name'] = $request->name;
-        // $data['email'] = $request->email;
-        $data['user_id'] = $user_id;
-        $data['rating'] = $request->rating;
-        $data['comment'] = $request->review_content;
-        DB::table('review')->where('product_id', $product_id)->insert($data);
-        // Session::put('message', 'Thêm review thành công.');
-        // return Redirect::to('');
-    }
-
-    public function view_review($product_id)
-    {
-        $all_review = DB::table('review')->join('users', 'users.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
-
-        return view('client.product.detail')->with('all_review', $all_review);
-    }
 }
