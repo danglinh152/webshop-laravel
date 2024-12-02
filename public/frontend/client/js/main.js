@@ -251,6 +251,8 @@
 
     
 
+    
+
     function formatCurrency(value) {
         // Use the 'vi-VN' locale to format the number according to Vietnamese currency format
         // and 'VND' as the currency type for Vietnamese đồng

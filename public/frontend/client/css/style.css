@@ -561,3 +561,7 @@
     left: 0;
     width: 100%;
 }
+
+.voucher {
+    border: #000 solid 1px;
+}
