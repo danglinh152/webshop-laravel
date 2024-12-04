@@ -14,21 +14,18 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
 
-    public function getSuccessPage(Request $request)
-    {
-        // Retrieve the message query parameter
-        $message = $request->query('message');
+    // public function getSuccessPage(Request $request)
+    // {
+    //     // Retrieve the message query parameter
+    //     $message = $request->query('message');
 
-        // Check if the message contains "rejected"
-        if (strpos($message, 'rejected') !== false) {
-            return view('client.cart.error');  // Redirect to error page
-        } else {
-            return view('client.cart.success'); // Redirect to success page
-        }
-    }
-
-
-
+    //     // Check if the message contains "rejected"
+    //     if (strpos($message, 'rejected') !== false) {
+    //         return view('client.cart.error');  // Redirect to error page
+    //     } else {
+    //         return view('client.cart.success'); // Redirect to success page
+    //     }
+    // }
 
     public function getCartPage()
     {
