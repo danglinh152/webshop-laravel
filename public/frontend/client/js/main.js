@@ -72,20 +72,54 @@
             }
         }
     });
-
-
-    // vegetable carousel
-    $(".vegetable-carousel").owlCarousel({
+    // Mobile carousel
+    $(".mobile-carousel").owlCarousel({
         autoplay: true,
-        smartSpeed: 1500,
+        smartSpeed: 1000,
+        autoplayTimeout: 2000,
         center: false,
         dots: true,
         loop: true,
         margin: 25,
         nav: true,
         navText: [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
+            '<i class="bi bi-arrow-left mb-5"></i>',
+            '<i class="bi bi-arrow-right mb-5"></i>'
+        ],
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            576: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            992: {
+                items: 3
+            },
+            1200: {
+                items: 5
+            }
+        }
+    });
+
+
+    // vegetable carousel
+    $(".vegetable-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1000,
+        autoplayTimeout: 2000,
+        center: false,
+        dots: true,
+        loop: true,
+        margin: 25,
+        nav: true,
+        navText: [
+            '<i class="bi bi-arrow-left mb-5"></i>',
+            '<i class="bi bi-arrow-right mb-5"></i>'
         ],
         responsiveClass: true,
         responsive: {
@@ -106,6 +140,7 @@
             }
         }
     });
+    
 
 
     // Modal Video
