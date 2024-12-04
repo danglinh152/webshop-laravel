@@ -139,7 +139,6 @@ class OnlineCheckoutController extends Controller
             ]);
             $orderController->save_order($orderRequest);
             return view('client.cart.success');
-            return view('client.cart.success');
         }
     }
 }
