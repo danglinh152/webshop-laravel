@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('product_id');
             $table->integer('quantity');
             $table->double('order_detail_price');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

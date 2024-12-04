@@ -102,16 +102,35 @@ class OnlineCheckoutController extends Controller
             }
         }
     }
+    // public function handleIpn(Request $request)
+    // {
+    //     // Retrieve the payment status from MoMo
+    //     $status = $request->input('status'); // Assuming the status is sent in the request
+
+    //     if ($status == 'success') {
+    //         // Redirect to success page
+    //         return redirect('/success');
+    //     } else {
+    //         // Redirect to error page
+    //         return redirect('/error');
+    //     }
+    // }
+
     public function handleIpn(Request $request)
     {
-        // Retrieve the payment status from MoMo
-        $status = $request->input('status'); // Assuming the status is sent in the request
+        $status = $request->input('status');
 
         if ($status == 'success') {
-            // Redirect to success page
+            $orderRequest = new Request([
+                'total' => $request->input('total'),
+                'receiverPhone' => $request->input('receiverPhone'),
+                'receiverAddress' => $request->input('receiverAddress'),
+                'receiverNote' => $request->input('receiverNote'),
+            ]);
+
+            $this->save_order($orderRequest);
             return redirect('/success');
         } else {
-            // Redirect to error page
             return redirect('/error');
         }
     }
