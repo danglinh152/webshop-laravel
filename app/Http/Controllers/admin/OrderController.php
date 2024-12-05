@@ -14,6 +14,10 @@ class OrderController extends Controller
 {
     public function getOrderPage()
     {
-        return view('admin.user.show-order');
+        return view('admin.order.show-order');
+    }
+    public function getUpdateOrderPage()
+    {
+        return view('admin.order.update-order');
     }
 }

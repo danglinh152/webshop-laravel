@@ -70,6 +70,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/admin/user/create', 'App\Http\Controllers\admin\UserController@addUserPage');
     Route::get('/admin/user/update', 'App\Http\Controllers\admin\UserController@updateUserPage');
     Route::get('/admin/order', 'App\Http\Controllers\admin\OrderController@getOrderPage');
+    Route::get('/admin/order/update', 'App\Http\Controllers\admin\OrderController@getUpdateOrderPage');
     Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
 });
 
