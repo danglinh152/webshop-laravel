@@ -80,6 +80,7 @@
                                         echo '<div>Không tìm thấy sản phẩm</div>';
                                     }
                                     ?>
+                                    
                                  @foreach ($all_product as $key => $pro)
                                  <div class="col-md-6 col-lg-4 col-xl-4">
                                      <div class="rounded position-relative fruit-item">

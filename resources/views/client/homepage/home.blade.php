@@ -127,6 +127,7 @@
                         </ul>
                     </div>
                 </div>
+                @foreach ($phone as  $phone_pro)
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane fade show p-0 active">
                         <div class="row g-4">
@@ -135,57 +136,26 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative mobile-item">
                                             <div class="mobile-img">
-                                                <img src="{{ asset('public/backend/products-images/samsung-galaxy-s23-ultra-green-thumbnew-600x600.jpg') }}"
+                                                <img src="{{ asset('public/backend/products-images/'.$phone_pro->product_image) }}"
                                                     class="w-100 rounded-top" alt="">
                                             </div>
                                             <div
                                                 class="p-4 border border-secondary border-top-0 rounded-bottom mobile-content">
                                                 <h4 style="font-size: 16px;">
                                                     <a href="">
-                                                        Samsung Galaxy S23 Ultra 5G
+                                                        {{$phone_pro-> product_name}}
                                                     </a>
                                                 </h4>
                                                 <p style="font-size: 13px;">
-                                                    8GB/256GB
+                                                    {{$phone_pro -> product_short_desc}}
                                                 </p>
                                                 <div class="d-flex flex-lg-wrap justify-content-center flex-column">
                                                     <p style="text-align: center; width: 100%;font-size: 16px;"
                                                         class="text-dark  fw-bold mb-2">
-                                                        20.190.000đ
+                                                        {{number_format($phone_pro->product_price, 0, ',', '.')}} đ
                                                     </p>
-                                                    <form action="" method="post" class="">
-                                                        <button
-                                                            class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
-                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                            Add to cart
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
-                                        <div class="rounded position-relative mobile-item">
-                                            <div class="mobile-img">
-                                                <img src="{{ asset('public/backend/products-images/samsung-galaxy-a15-4g-vang-thumb-600x600.jpg') }}"
-                                                    class="w-100 rounded-top" alt="">
-                                            </div>
-                                            <div
-                                                class="p-4 border border-secondary border-top-0 rounded-bottom mobile-content">
-                                                <h4 style="font-size: 16px;">
-                                                    <a href="">
-                                                        Samsung Galaxy S23 Ultra 5G
-                                                    </a>
-                                                </h4>
-                                                <p style="font-size: 13px;">
-                                                    8GB/256GB
-                                                </p>
-                                                <div class="d-flex flex-lg-wrap justify-content-center flex-column">
-                                                    <p style="text-align: center; width: 100%;font-size: 16px;"
-                                                        class="text-dark  fw-bold mb-2">
-                                                        20.190.000đ
-                                                    </p>
-                                                    <form action="" method="post" class="">
+                                                    <form action="{{URL::to('/product/add-to-card/'.$phone_pro->product_id)}}" method="post" class="">
+                                                        {{csrf_field()}}
                                                         <button
                                                             class="mx-auto btn border border-secondary rounded-pill px-3 text-primary "><i
                                                                 class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -201,6 +171,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

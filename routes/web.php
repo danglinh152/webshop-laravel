@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //client
 Route::get('/login', 'App\Http\Controllers\admin\DashboardController@index');
-
 Route::get('/register', 'App\Http\Controllers\client\HomeController@register');
-
 Route::get('/forgot-password', 'App\Http\Controllers\client\HomeController@forgotPassword');
 
 Route::get('/verify-otp', 'App\Http\Controllers\client\HomeController@otp');

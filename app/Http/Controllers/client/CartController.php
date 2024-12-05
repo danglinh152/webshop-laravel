@@ -32,9 +32,10 @@ class CartController extends Controller
 
     public function getCartPage()
     {
+        $voucher = DB::table('voucher')->where('quantity', '>', 0)->get();
         $user_id = Session::get('user_id');
         $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->get();
-        return view('client.cart.show')->with('cart', $cart_detail);
+        return view('client.cart.show')->with('cart', $cart_detail)->with('voucher', $voucher);
     }
 
     public function getCheckoutPage(Request $request)
