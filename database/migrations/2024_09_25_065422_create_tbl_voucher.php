@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('discount_value');
             $table->date('start_date');
             $table->date('end_date');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

@@ -13,17 +13,26 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('order_id');
-            $table->timestamp('date');
-            $table->double('payment_cost');
-            $table->double('product_cost');
-            $table->double('shipping_cost');
-            $table->double('total');
-            $table->longText('shipping_address');
-            $table->enum('order_status', ['pending', 'completed', 'shipped', 'cancelled']);
-            $table->integer('user_id');
-            $table->integer('delivery_id');
-            $table->integer('payment_id');
-            $table->timestamps();
+            $table->integer("user_id");
+            $table->integer("voucher_id")->nullable();
+            $table->double("order_total");
+            $table->string("receiverName");
+            $table->string("receiverPhone");
+            $table->string("receiverAddress");
+            $table->string("receiverNote")->nullable();
+            $table->timestamp('created_at')->useCurrent();
+
+            // $table->timestamp('date');
+            // $table->double('payment_cost');
+            // $table->double('product_cost');
+            // $table->double('shipping_cost');
+            // $table->double('total');
+            // $table->longText('shipping_address');
+            // $table->enum('order_status', ['pending', 'completed', 'shipped', 'cancelled']);
+            // $table->integer('user_id');
+            // $table->integer('delivery_id');
+            // $table->integer('payment_id');
+            // $table->timestamps();
         });
     }
 

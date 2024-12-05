@@ -42,7 +42,8 @@
                                 </button>
                             </div>
                         </div>
-                        <form action="#" method="post">
+                        <form action="{{URL::to('/product/add-to-card/'.$product->product_id)}}" method="post">
+                            {{csrf_field()}}
                             <input type="hidden" name="quantity" id="quantity" value="1">
                             <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
                                 <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart

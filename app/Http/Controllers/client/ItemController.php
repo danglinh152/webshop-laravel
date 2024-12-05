@@ -20,8 +20,9 @@ class ItemController extends Controller
     }
     public function getHomePage()
     {
+        $phone = DB::table('product')->where('status', 'show')->where('category_id', 3)->get();
         $all_product = DB::table('product')->where('status', 'show')->orderby('product_id', 'asc')->get();
-        $manager_product = view('client.homepage.home')->with('all_product', $all_product);
+        $manager_product = view('client.homepage.home')->with('all_product', $all_product)->with('phone', $phone);
         return view( 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
     }
     public function productShowPage(Request $request)

@@ -87,79 +87,30 @@
             <div class="mt-5 row g-4 justify-content-start">
                 <div class="col-md-7">
                     <h4 class="mb-2">Mã giảm giá</h4>
+                    
                     <div class="overflow-auto w-75" style="height: 20rem;">
+                        @foreach ($voucher as $vc)
                         <div class="mt-2">
-                            <div class="voucher border rounded d-flex justify-content-between align-items-center px-1 py-1 mb-3"
-                                style="width:30rem">
+                            <div class="voucher border rounded d-flex justify-content-between align-items-center px-1 py-1 mb-2"
+                                style="width: 30rem">
                                 <div class="w-100 d-flex">
                                     <img src="{{ asset('public/frontend/client/img/voucher.png') }}" alt=""
                                         style="height: 6rem; border-radius:5px">
-                                    <div class="px-3">
-                                        <h6>Voucher giảm giá 20%</h6>
-                                        <p class="discount" style="display:none">20</p>
-                                        <p style="font-size: 15px; margin-bottom: 0px; margin-top: 0px">Áp dụng trực tiếp
-                                            lên
-                                            tổng
-                                            số tiền đơn
-                                            hàng</p>
-                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng:
-                                            05.12.2024</p>
-                                        <p
-                                            style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">
-                                            Số lượng còn lại: x10</p>
+                                    <div class="px-3 pt-2">
+                                        <h6>{{$vc->voucher_name}}</h6>
+                                        <p class="discount" style="display:none">{{$vc->discount_value}}</p>
+                                        <p style="font-size: 15px; margin-bottom: 1px; margin-top: 1px">{{$vc->voucher_desc}}</p>
+                                        <p style="margin-top: 1px" style="font-size: 15px">Hạn sử dụng: {{$vc-> end_date}}</p>
                                     </div>
                                 </div>
                                 <input class="form-check-input mx-2" type="radio" name="voucher" value=""
                                     id="" required>
                             </div>
-                            <div class="voucher border rounded d-flex justify-content-between align-items-center px-1 py-1 mb-3"
-                                style="width:30rem">
-                                <div class="w-100 d-flex">
-                                    <img src="{{ asset('public/frontend/client/img/voucher.png') }}" alt=""
-                                        style="height: 6rem; border-radius:5px">
-                                    <div class="px-3">
-                                        <h6>Voucher giảm giá 20%</h6>
-                                        <p class="discount" style="display:none">20</p>
-                                        <p style="font-size: 15px; margin-bottom: 0px; margin-top: 0px">Áp dụng trực tiếp
-                                            lên
-                                            tổng
-                                            số tiền đơn
-                                            hàng</p>
-                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng:
-                                            05.12.2024</p>
-                                        <p
-                                            style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">
-                                            Số lượng còn lại: x10</p>
-                                    </div>
-                                </div>
-                                <input class="form-check-input mx-2" type="radio" name="voucher" value=""
-                                    id="" required>
-                            </div>
-                            <div class="voucher border rounded d-flex justify-content-between align-items-center px-1 py-1 mb-3"
-                                style="width:30rem">
-                                <div class="w-100 d-flex">
-                                    <img src="{{ asset('public/frontend/client/img/voucher.png') }}" alt=""
-                                        style="height: 6rem; border-radius:5px">
-                                    <div class="px-3">
-                                        <h6>Voucher giảm giá 20%</h6>
-                                        <p class="discount" style="display:none">20</p>
-                                        <p style="font-size: 15px; margin-bottom: 0px; margin-top: 0px">Áp dụng trực tiếp
-                                            lên
-                                            tổng
-                                            số tiền đơn
-                                            hàng</p>
-                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng:
-                                            05.12.2024</p>
-                                        <p
-                                            style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">
-                                            Số lượng còn lại: x10</p>
-                                    </div>
-                                </div>
-                                <input class="form-check-input mx-2" type="radio" name="voucher" value=""
-                                    id="" required>
-                            </div>
+                            
                         </div>
+                        @endforeach
                     </div>
+                    
                     <button id="cancel" class="btn border-secondary rounded-pill px-4 py-3 text-primary"
                         style="display: none">Bỏ
                         chọn voucher</button>
@@ -228,7 +179,7 @@
                     if (discount.checked) {
                         cancelBtn.style.display = "block"
                         discountVal = discount.closest('.voucher').querySelector('.discount').innerText;
-                        subtotal = (subtotal * discountVal / 100);
+                        subtotal = (subtotal-subtotal * discountVal);
                     }
                 })
 
