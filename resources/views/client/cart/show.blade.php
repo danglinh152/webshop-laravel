@@ -89,7 +89,7 @@
                     <h4 class="mb-2">Mã giảm giá</h4>
                     <div class="overflow-auto w-75" style="height: 20rem;">
                         <div class="mt-2">
-                             <div class="voucher border rounded d-flex justify-content-between align-items-center px-1 py-1 mb-3"
+                            <div class="voucher border rounded d-flex justify-content-between align-items-center px-1 py-1 mb-3"
                                 style="width:30rem">
                                 <div class="w-100 d-flex">
                                     <img src="{{ asset('public/frontend/client/img/voucher.png') }}" alt=""
@@ -102,8 +102,11 @@
                                             tổng
                                             số tiền đơn
                                             hàng</p>
-                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng: 05.12.2024</p>
-                                        <p style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">Số lượng còn lại: x10</p>
+                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng:
+                                            05.12.2024</p>
+                                        <p
+                                            style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">
+                                            Số lượng còn lại: x10</p>
                                     </div>
                                 </div>
                                 <input class="form-check-input mx-2" type="radio" name="voucher" value=""
@@ -122,8 +125,11 @@
                                             tổng
                                             số tiền đơn
                                             hàng</p>
-                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng: 05.12.2024</p>
-                                        <p style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">Số lượng còn lại: x10</p>
+                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng:
+                                            05.12.2024</p>
+                                        <p
+                                            style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">
+                                            Số lượng còn lại: x10</p>
                                     </div>
                                 </div>
                                 <input class="form-check-input mx-2" type="radio" name="voucher" value=""
@@ -142,8 +148,11 @@
                                             tổng
                                             số tiền đơn
                                             hàng</p>
-                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng: 05.12.2024</p>
-                                        <p style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">Số lượng còn lại: x10</p>
+                                        <p style="margin-top: 0px; font-size: 15px; margin-bottom: 6px">Hạn sử dụng:
+                                            05.12.2024</p>
+                                        <p
+                                            style="margin-left:11rem; font-size: 13px; margin-bottom: 0px; font-weight:600; color:#0300a4 ">
+                                            Số lượng còn lại: x10</p>
                                     </div>
                                 </div>
                                 <input class="form-check-input mx-2" type="radio" name="voucher" value=""
@@ -202,17 +211,16 @@
             function updateTotals() {
                 let subtotal = 0;
                 let discountVal = 1;
-
                 checkboxes.forEach(checkbox => {
+                    const row = checkbox.closest('tr');
+                    const quantity = parseInt(row.querySelector('input[type="text"]').value,
+                        10); // Get the quantity
+                    const price = parseFloat(row.querySelector('p[id^="price"]').innerText.replace('đ',
+                        '').replace(/,/g, '')); // Get price without formatting
+                    const total = price * quantity; // Calculate total for this item
+                    row.querySelector('p[id^="total"]').innerText = new Intl.NumberFormat('vi-VN')
+                        .format(total) + 'đ'; // Update total in the row
                     if (checkbox.checked) {
-                        const row = checkbox.closest('tr');
-                        const quantity = parseInt(row.querySelector('input[type="text"]').value,
-                            10); // Get the quantity
-                        const price = parseFloat(row.querySelector('p[id^="price"]').innerText.replace('đ',
-                            '').replace(/,/g, '')); // Get price without formatting
-                        const total = price * quantity; // Calculate total for this item
-                        row.querySelector('p[id^="total"]').innerText = new Intl.NumberFormat('vi-VN')
-                            .format(total) + 'đ'; // Update total in the row
                         subtotal += total; // Add the row's total to the subtotal
                     }
                 });

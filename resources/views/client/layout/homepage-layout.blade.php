@@ -255,7 +255,7 @@ $avatar = session('image');
                 dialog.showModal();
             }
         };
-
+ 
         // Close the dialog when the button is clicked
         document.getElementById('close-dialog')?.addEventListener('click', function() {
             const dialog = document.getElementById('forget-password-dialog');
