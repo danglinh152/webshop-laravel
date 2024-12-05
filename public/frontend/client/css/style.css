@@ -23,6 +23,7 @@
     justify-content: center;
     transition: 0.5s;
     z-index: 99;
+    
 }
 
 /*** Spinner End ***/
@@ -564,4 +565,89 @@
 
 .voucher {
     border: #000 solid 1px;
+}
+
+.card-image {
+    height: 18rem;
+    object-fit: contain;
+    border-bottom: 1px solid rgb(8 85 196 / 25%);
+}
+
+.product-cart {
+    height: 30rem;
+}
+
+.item-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-wrap: nowrap;
+    margin-bottom: 0px;
+    color: #4e4e4e;
+}
+
+.item-desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.card {
+    border: 1px solid rgb(8 85 196 / 25%);
+}
+
+
+/* carousel */
+
+.vesitable .owl-nav .owl-prev {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: var(--bs-primary);
+    padding: 5px 25px;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    transition: 0.5s;
+
+}
+
+.vesitable .owl-nav .owl-prev:hover {
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgb(8 85 196 / 25%)
+}
+
+.vesitable .owl-nav .owl-next {
+    position: absolute;
+    top: -50px;
+    right: 88px;
+    color: var(--bs-primary);
+    padding: 5px 25px;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.vesitable .owl-nav .owl-next:hover {
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgb(8 85 196 / 25%)
+}
+
+
+/* Mobile card */
+.mobile-card {
+    height: 25rem;
+    border: 1px solid rgb(8 85 196 / 25%);
+}
+.mobile-image {
+    height: 15rem;
+    object-fit: contain;
+    border-bottom: 1px solid rgb(8 85 196 / 25%);
 }

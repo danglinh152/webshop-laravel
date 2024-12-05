@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\client;
 
+use App\Http\Controllers\client\OrderController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +42,15 @@ class OnlineCheckoutController extends Controller
 
 
         if ($paymentMethod == 'cod') {
-            echo 'COD';  // If COD is selected, display COD message
+            $orderController = new OrderController();
+            $orderRequest = new Request([
+            'total' => $request->input('total'),
+            'receiverPhone' => $request->input('receiverPhone'),
+            'receiverAddress' => $request->input('receiverAddress'),
+            'receiverNote' => $request->input('receiverNote'),
+            ]);
+            $orderController->save_order($orderRequest);
+            return view('client.cart.success');
         } elseif ($paymentMethod == "payUrl") {
             // MoMo Payment Information
             $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
@@ -102,17 +111,34 @@ class OnlineCheckoutController extends Controller
             }
         }
     }
-    public function handleIpn(Request $request)
-    {
-        // Retrieve the payment status from MoMo
-        $status = $request->input('status'); // Assuming the status is sent in the request
 
-        if ($status == 'success') {
-            // Redirect to success page
-            return redirect('/success');
+    // public function handleIpn(Request $request)
+    // {
+    //     $status = $request->input('status');
+
+    //     if ($status == 'success') {
+    //         return redirect('/success');
+    //     } else {
+    //         return redirect('/error');
+    //     }
+    // }
+
+    public function getSuccessPage(Request $request)
+    {
+        $message = $request->query('message');
+
+        if (strpos($message, 'rejected') !== false) {
+            return view('client.cart.error');
         } else {
-            // Redirect to error page
-            return redirect('/error');
+            $orderController = new OrderController();
+            $orderRequest = new Request([
+            'total' => $request->input('total'),
+            'receiverPhone' => $request->input('receiverPhone'),
+            'receiverAddress' => $request->input('receiverAddress'),
+            'receiverNote' => $request->input('receiverNote'),
+            ]);
+            $orderController->save_order($orderRequest);
+            return view('client.cart.success');
         }
     }
 }

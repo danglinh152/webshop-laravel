@@ -31,7 +31,8 @@ Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
 // Route::get('/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 
 // Route::get('/success?partnerCode=MOMOBKUN20180529&orderId=1732804656&requestId=1732804656&amount=10000&orderInfo=Thanh+to%C3%A1n+qua+MoMo&orderType=momo_wallet&transId=4248103194&resultCode=1002&message=Transaction+rejected+by+the+issuers+of+the+payment+accounts.&payType=napas&responseTime=1732804678758&extraData=&signature=e442b5c2e45717740f64b8ebc21a58eb101ae3cd62fb75571f0914071c37b6c9', 'App\Http\Controllers\client\CartController@getSuccessPage');
-Route::get('/success', 'App\Http\Controllers\client\CartController@getSuccessPage');
+// Route::get('/success', 'App\Http\Controllers\client\CartController@getSuccessPage');
+Route::get('/success', 'App\Http\Controllers\client\OnlineCheckoutController@getSuccessPage');
 Route::get('/error', 'App\Http\Controllers\client\CartController@getErrorPage');
 Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPage');
 
