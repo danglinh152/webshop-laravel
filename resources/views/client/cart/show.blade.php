@@ -188,22 +188,30 @@
                         discountVal = discount.closest('.voucher').querySelector('.discount').innerText;
                         subtotal = subtotal;
                         discountPrice = subtotal * discountVal;
-                        totalPrice =subtotal - discountPrice + 20000;
+                        totalPrice = subtotal - discountPrice + 20000;
 
                     }
                 })
-                localStorage.setItem('subtotal', subtotal);
-                localStorage.setItem('discountVal', discountVal);
-                localStorage.setItem('discountPrice', discountPrice);
-                localStorage.setItem('totalPrice', totalPrice);
-
+                
+                
                 // Update subtotal and total amount
                 subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) +
                     ' đ';
                 discountPriceElement.innerText = '-' + Intl.NumberFormat('vi-VN').format(discountPrice) + ' đ';
-
-                totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) +
-                    ' đ'; // Assuming no shipping costs
+                if(totalPrice){
+                    totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) +
+                    ' đ'; 
+                    localStorage.setItem('totalPrice', totalPrice);
+                }else{
+                    totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal + 20000) +
+                    ' đ'; 
+                    localStorage.setItem('totalPrice', subtotal + 20000);
+                }
+                // Assuming no shipping costs
+                localStorage.setItem('subtotal', subtotal);
+                localStorage.setItem('discountVal', discountVal);
+                localStorage.setItem('discountPrice', discountPrice);
+                
             }
 
             // Update totals when checkbox is toggled
