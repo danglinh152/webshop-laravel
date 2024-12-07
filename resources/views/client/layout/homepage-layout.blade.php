@@ -43,11 +43,11 @@
 
 
 <?php
-$message = Session::get('message');
-$message_review = Session::get('message_review');
-$user_name = session('user_name');
-$user_id = session('user_id');
-$avatar = session('image');
+    $message = Session::get('message');
+    $message_review = Session::get('message_review');
+    $user_name = session('user_name');
+    $user_id = session('user_id');
+    $avatar = session('image');
 ?>
 
 <body>
@@ -99,7 +99,7 @@ $avatar = session('image');
                             <span
                                 class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                                 style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
-                                <!-- {{ Session::get('quantity') }} -->1
+                                {{Session::get('cartCount') ?? 0}}
                             </span>
                         </a>
                         @if (Session::has('user_name'))

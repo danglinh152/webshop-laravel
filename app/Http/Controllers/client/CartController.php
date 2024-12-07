@@ -34,11 +34,9 @@ class CartController extends Controller
         $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->get();
         return view('client.cart.show')->with('cart', $cart_detail)->with('voucher', $voucher);
     }
-
     public function getCheckoutPage(Request $request)
     {
         $user_id = Session::get('user_id');
-
         // Retrieve selected product IDs and quantities from the request
         $selectedProductIds = $request->input('selected_products', []);
         $quantities = $request->input('quantities', []);
@@ -48,7 +46,6 @@ class CartController extends Controller
             // Handle error: Number of selected products must match the number of quantities
             return redirect()->route('cart')->with('error', 'Product count mismatch.');
         }
-
         // Get cart details for the selected products
         $cart_detail = DB::table('cart_detail')
             ->join('product', 'product.product_id', '=', 'cart_detail.product_id')
@@ -87,6 +84,8 @@ class CartController extends Controller
                     $data['product_id'] = $product_id;
                     $data['quantity'] = 1;
                     DB::table('cart_detail')->insert($data);
+                    $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->count();
+                    Session::put('cartCount', $cartCount);
                     return Redirect::to('/cart');
                 }
             } else {
@@ -97,11 +96,19 @@ class CartController extends Controller
                 $data['product_id'] = $product_id;
                 $data['quantity'] = 1;
                 DB::table('cart_detail')->insert($data);
+                Session::put('cartCount', 1);
                 return Redirect::to('/cart');
             }
         } else {
             Session::put('err_msg', 'Bạn cần đăng nhập để truy cập trang này!');
             return Redirect::to('/login');
         }
+    }
+    public function deleteCart($product_id){
+        DB::table('cart_detail')->where('product_id', $product_id)->delete();
+        $cartCount = Session::get('cartCount')-1;
+        Session::put('cartCount', $cartCount);
+        Session::put('message', 'Xóa sản phẩm khỏi giỏ hàng thành công');
+        return Redirect::to('/cart');
     }
 }

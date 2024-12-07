@@ -117,102 +117,25 @@
 
     <!-- Mobile carousel -->
     <div class="container-fluid vesitable">
+        
         <div class="container py-5">
             <h3 class="mb-3">Samsung</h3>
+            @foreach ($Samsung as $ss)
             <div class="mobile-carousel owl-carousel  justify-content-center">
                 <div class="" style="width: 16rem">
                     <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/galaxy-a35-5g-den.jpg') }}"
+                        <img src="{{  asset('public/backend/products-images/' . $ss->product_image) }}"
                             class="card-img-top mobile-image">
                         <div class="card-body text-center">
                             <a href="" class="item-name">
-                                Samsung Galaxy A35 5G</a>
+                                {{$ss->product_name}}</a>
                             <p class="item-desc">
-                                8GB | 128GB | Đen
+                                {{$ss->product_short_desc}}
                             </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/galaxy-a35-5g-xanh.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Samsung Galaxy A35 5G</a>
-                            <p class="item-desc">
-                                8GB | 128GB | Xanh
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/galaxy-a35-5g-den.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Samsung Galaxy A35 5G</a>
-                            <p class="item-desc">
-                                8GB | 128GB | Đen
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/galaxy-a35-5g-den.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Samsung Galaxy A35 5G</a>
-                            <p class="item-desc">
-                                8GB | 128GB | Đen
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/galaxy-a35-5g-den.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Samsung Galaxy A35 5G</a>
-                            <p class="item-desc">
-                                8GB | 128GB | Đen
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
+                            <p class="item-price"> {{ number_format($ss->product_price, 0, '.', '.') }} đ</p>
+                            <form action="{{ URL::to('/product/add-to-card/' . $pro->product_id) }}" method="post" class="">
+                            {{csrf_field()}}    
+                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
@@ -221,125 +144,29 @@
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
     <div class="container-fluid vesitable">
-        <div class="container">
+        
+        <div class="container py-5">
             <h3 class="mb-3">Iphone</h3>
+            @foreach ($Iphone as $ip)
             <div class="mobile-carousel owl-carousel  justify-content-center">
                 <div class="" style="width: 16rem">
                     <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/iphone-11-black.jpg') }}"
+                        <img src="{{  asset('public/backend/products-images/' . $ip->product_image) }}"
                             class="card-img-top mobile-image">
                         <div class="card-body text-center">
                             <a href="" class="item-name">
-                                IPhone 11 </a>
+                                {{$ip->product_name}}</a>
                             <p class="item-desc">
-                                256GB | Đen
+                                {{$ip->product_short_desc}}
                             </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/iphone-11-white.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                IPhone 11</a>
-                            <p class="item-desc">
-                                256GB | Trắng
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/iphone-11-black.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                IPhone 11 </a>
-                            <p class="item-desc">
-                                256GB | Đen
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/iphone-11-white.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                IPhone 11</a>
-                            <p class="item-desc">
-                                256GB | Trắng
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/iphone-11-black.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                IPhone 11 </a>
-                            <p class="item-desc">
-                                256GB | Đen
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{ asset('public/backend/products-images/iphone-11-white.jpg') }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                IPhone 11</a>
-                            <p class="item-desc">
-                                256GB | Trắng
-                            </p>
-                            <p class="item-price">6.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
+                            <p class="item-price"> {{ number_format($ip->product_price, 0, '.', '.') }} đ</p>
+                            <form action="{{ URL::to('/product/add-to-card/' . $pro->product_id) }}" method="post" class="">
+                            {{csrf_field()}}    
+                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
@@ -348,7 +175,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+             @endforeach
+        </div>  
     </div>
 
     <div class="container d-flex justify-content-center w-100">
@@ -358,20 +186,22 @@
     <div class="container-fluid vesitable">
         <div class="container py-5">
             <h3 class="mb-3">Laptop Asus</h3>
+            @foreach ($Asus as $as)
             <div class="owl-carousel vegetable-carousel justify-content-center">
                 <div class="" style="width: 19.5rem">
                     <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
+                        <img src="{{ asset('public/backend/products-images/' . $as->product_image)}}"
                             class="card-img-top card-image">
                         <div class="card-body text-center">
                             <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
+                                {{$as->product_name}}</a>
                             <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
+                                {{$as->product_short_desc}}
                             </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
+                            <p class="item-price">{{ number_format($as->product_price, 0, '.', '.') }} đ</p>
+                            <form action="{{ URL::to('/product/add-to-card/' . $as->product_id) }}" method="post" class="">
+                            {{csrf_field()}}    
+                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
@@ -379,91 +209,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-                {{-- Arrow --}}
-
             </div>
+            @endforeach
         </div>
     </div>
     <div class="container d-flex justify-content-between">
@@ -473,20 +220,22 @@
     <div class="container-fluid vesitable">
         <div class="container py-5">
             <h3 class="mb-3">Laptop Acer</h3>
+            @foreach ($Acer as $ac)
             <div class="owl-carousel vegetable-carousel justify-content-center">
                 <div class="" style="width: 19.5rem">
                     <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
+                        <img src="{{asset('public/backend/products-images/' . $ac->product_image) }}"
                             class="card-img-top card-image">
                         <div class="card-body text-center">
                             <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
+                                {{$ac->product_name}}</a>
                             <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
+                                {{$ac->product_short_desc}}
                             </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
+                            <p class="item-price">{{number_format($ac->product_price, 0, '.', '.') }} đ</p>
+                          <form action="{{ URL::to('/product/add-to-card/' . $ac->product_id) }}" method="post" class="">
+                            {{csrf_field()}}    
+                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
@@ -494,91 +243,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/47920_asus_tuf_gaming_a15_fa506nc_hn011w_anphatcomputer_1.jpg') }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                Laptop ASUS TUF Gaming A15</a>
-                            <p class="item-desc">
-                                Intel Core i5-12500H |RTX 3050 | 16GB | 512GB | 15.6 inch FHD | Win 11 | Đen
-                            </p>
-                            <p class="item-price">19.000.000 đ</p>
-                            <form action="" method="post" class="">
-                                <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-                {{-- Arrow --}}
-
             </div>
+            @endforeach
         </div>
     </div>
     <!-- Features Section  -->

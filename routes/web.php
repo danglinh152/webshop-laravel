@@ -71,7 +71,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/admin/user/update', 'App\Http\Controllers\admin\UserController@updateUserPage');
     Route::get('/admin/order', 'App\Http\Controllers\admin\OrderController@getOrderPage');
     Route::get('/admin/order/update', 'App\Http\Controllers\admin\OrderController@getUpdateOrderPage');
-    Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
+    Route::get('/admin/logout', 'App\Http\Controllers\admin\DashboardController@logout');
 });
 
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
@@ -102,6 +102,7 @@ Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\User
 
 //client add to cart
 Route::post('/product/add-to-card/{product_id}', 'App\Http\Controllers\client\CartController@addTocart');
+Route::post('/product/delete-product-from-cart/{product_id}', 'App\Http\Controllers\client\CartController@deleteCart');
 
 //voucher
 Route::post('/admin/voucher/save-voucher', 'App\Http\Controllers\admin\VoucherController@save_voucher');

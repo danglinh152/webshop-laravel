@@ -71,7 +71,7 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <form method="post" action="/delete-product-from-cart/{{ $cart_value->product_id }}">
+                                    <form method="post" action="{{ URL::to('/product/delete-product-from-cart/' . $cart_value->product_id) }} }}">
                                         @csrf
                                         <button class="btn btn-md rounded-circle bg-light border mt-4">
                                             <i class="fa fa-times text-danger"></i>
@@ -123,10 +123,14 @@
                                 <p class="mb-0 me-4">Tạm tính:</p>
                                 <p class="mb-0" id="subtotal" data-cart-total-price="0">0 đ</p> <!-- Added ID here -->
                             </div>
+                            <div class="d-flex justify-content-between mb-4 text-dark">
+                                <p class="mb-0 me-4">Voucher:</p>
+                                <p class="mb-0" id="discountPrice" data-cart-total-price="0">0 đ</p> <!-- Added ID here -->
+                            </div>
                             <div class="d-flex justify-content-between">
                                 <p class="mb-0 me-4 text-dark">Phí vận chuyển:</p>
                                 <div class="">
-                                    <p class="mb-0 text-dark">0 đ</p>
+                                    <p class="mb-0 text-dark">20.000 đ</p>
                                 </div>
                             </div>
                         </div>
@@ -153,6 +157,7 @@
             const btnMinus = document.querySelectorAll(".btn-minus"); // Quantity input fields (minus)
             const btnPlus = document.querySelectorAll(".btn-plus"); // Quantity input fields (plus)
             const subtotalElement = document.getElementById('subtotal');
+            const discountPriceElement = document.getElementById('discountPrice');
             const totalAmountElement = document.getElementById('totalAmount');
             const discounts = document.querySelectorAll('input[name="voucher"]');
             const cancelBtn = document.getElementById('cancel');
@@ -162,6 +167,8 @@
             function updateTotals() {
                 let subtotal = 0;
                 let discountVal = 1;
+                let discountPrice = 0;
+                let totalPrice = 0;
                 checkboxes.forEach(checkbox => {
                     const row = checkbox.closest('tr');
                     const quantity = parseInt(row.querySelector('input[type="text"]').value,
@@ -179,15 +186,24 @@
                     if (discount.checked) {
                         cancelBtn.style.display = "block"
                         discountVal = discount.closest('.voucher').querySelector('.discount').innerText;
-                        subtotal = (subtotal-subtotal * discountVal);
+                        subtotal = subtotal;
+                        discountPrice = subtotal * discountVal;
+                        totalPrice =subtotal - discountPrice + 20000;
+
                     }
                 })
+                localStorage.setItem('subtotal', subtotal);
+                localStorage.setItem('discountVal', discountVal);
+                localStorage.setItem('discountPrice', discountPrice);
+                localStorage.setItem('totalPrice', totalPrice);
 
                 // Update subtotal and total amount
                 subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) +
-                    'đ';
-                totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) +
-                    'đ'; // Assuming no shipping costs
+                    ' đ';
+                discountPriceElement.innerText = '-' + Intl.NumberFormat('vi-VN').format(discountPrice) + ' đ';
+
+                totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) +
+                    ' đ'; // Assuming no shipping costs
             }
 
             // Update totals when checkbox is toggled

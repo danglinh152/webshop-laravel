@@ -20,10 +20,22 @@ class ItemController extends Controller
     }
     public function getHomePage()
     {
-        $phone = DB::table('product')->where('status', 'show')->where('category_id', 3)->get();
+        $cartCount = 0;
+            $user_id = Session::get('user_id');
+            if ($user_id) {
+                $cart = DB::table('cart')->where('user_id', $user_id)->first();
+                if ($cart) {
+                    $cartCount = DB::table('cart_detail')->where('cart_id', $cart->cart_id)->count();
+                }
+            }
+        Session::put('cartCount', $cartCount);
+        $Samsung = DB::table('product')->where('status', operator: 'show')->where('category_id', 3)->where('product_fact', 'Samsung')->get();
+        $Iphone = DB::table('product')->where('status', operator: 'show')->where('category_id', 3)->where('product_fact', 'Iphone')->get();
+        $Acer = DB::table('product')->where('status', operator: 'show')->where('category_id', 2)->where('product_fact', 'Acer')->get();
+        $Asus = DB::table('product')->where('status', operator: 'show')->where('category_id', 2)->where('product_fact', 'Asus')->get();
         $all_product = DB::table('product')->where('status', 'show')->orderby('product_id', 'asc')->get();
-        $manager_product = view('client.homepage.home')->with('all_product', $all_product)->with('phone', $phone);
-        return view( 'client.layout.homepage-layout')->with('client.homepage.home', @$manager_product);
+        return view('client.homepage.home')->with('all_product', $all_product)->with('Samsung', $Samsung)->with('Iphone', $Iphone)->with('Acer', $Acer)->with('Asus', $Asus);
+        // return view( 'client.layout.homepage-layout', compact('cartCount'))->with('client.homepage.home', @$manager_product);
     }
     public function productShowPage(Request $request)
     {
@@ -31,7 +43,6 @@ class ItemController extends Controller
         $targets = $request->input('target', []);
         $prices = $request->input('price', []);
         $sort = $request->input('radio-sort', 'gia-nothing');
-
         $query = DB::table('product');
 
         // Áp dụng bộ lọc cho factories

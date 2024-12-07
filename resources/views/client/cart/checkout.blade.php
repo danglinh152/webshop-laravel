@@ -123,6 +123,10 @@ use Illuminate\Support\Facades\session;
                         <p class="mb-0 me-4">Tạm tính:</p>
                         <p class="mb-0" id="subtotal" data-cart-total-price="0">0 đ</p>
                     </div>
+                    <div class="d-flex justify-content-between mb-4 text-dark">
+                        <p class="mb-0 me-4">Voucher:</p>
+                        <p class="mb-0" id="discountPrice" data-cart-total-price="0">0 đ</p>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <p class="mb-0 me-4 text-dark">Phí vận chuyển:</p>
                         <div class="">
@@ -146,17 +150,17 @@ use Illuminate\Support\Facades\session;
         const subtotalElement = document.getElementById('subtotal');
         const totalAmountElement = document.getElementById('totalAmount');
         const totalInput = document.getElementById('total');
-
+        const discountPriceElement = document.getElementById('discountPrice');
         function calculateTotal() {
-            let total = 20000;
+            let subtotal = parseFloat(localStorage.getItem('subtotal'));
+            let discountVal = parseFloat(localStorage.getItem('discountVal'));
+            let discountPrice = parseFloat(localStorage.getItem('discountPrice'));
+            let totalPrice = parseFloat(localStorage.getItem('totalPrice'));
             const rows = document.querySelectorAll('tbody tr');
-            rows.forEach(row => {
-                const totalCell = row.querySelector('p[id^="total"]');
-                total += parseFloat(totalCell.getAttribute('data_cart_detail_total'));
-            });
-            subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(total) + 'đ';
-            totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(total) + 'đ'; // Assuming no shipping costs
-            totalInput.value = total;
+            subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) + ' đ';
+            discountPriceElement.innerText = '-' + new Intl.NumberFormat('vi-VN').format(discountPrice) + ' đ';
+            totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + ' đ'; // Assuming no shipping costs
+            totalInput.value = totalPrice;
         }
 
         // Initial calculation

@@ -56,7 +56,6 @@ class UserController extends Controller
                 Session::put('user_name', $result->user_first_name . ' ' . $result->user_last_name);
                 Session::put('user_id', $result->user_id);
                 Session::put('image',  $result->user_image);
-                Session::put('quantity',  $quantity);
                 return Redirect::to('/');
             }
         } else {
@@ -67,6 +66,7 @@ class UserController extends Controller
 
     public function logout()
     {
+        Session::put('user_id', null);
         Session::put('user_name', null);
         return Redirect::to('/login');
     }
