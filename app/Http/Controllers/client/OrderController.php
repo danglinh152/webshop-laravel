@@ -17,15 +17,13 @@ class OrderController extends Controller
         $data_order = array();
         $cart = session('cart');
         $data_order['user_id'] = Session::get('user_id');
-        $data_order['order_total'] = $request->total;
-        $data_order['receiverName'] = 'receiverName';
+        $data_order['payment_cost'] = $request->total;
+        $data_order['shipping_cost'] = 20000;
+        $data_order['receiverName'] = $_POST["receiverName"];
         $data_order['receiverPhone'] = $_POST["receiverPhone"];
         $data_order['receiverAddress'] = $_POST["receiverAddress"];
+        $data_order['status'] = "Pending";
         $data_order['receiverNote'] = $_POST["receiverNote"];
-
-        // $data_order['phone'] = $request->receiverPhone;
-        // $data_order['address'] = $request->receiverAddress;
-        // $data_order['note'] = $request->receiverNote;
 
         $orderID = DB::table('order')->insertGetId($data_order);
 
