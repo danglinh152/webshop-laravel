@@ -164,7 +164,7 @@
                                 {{$ip->product_short_desc}}
                             </p>
                             <p class="item-price"> {{ number_format($ip->product_price, 0, '.', '.') }} đ</p>
-                            <form action="{{ URL::to('/product/add-to-card/' . $pro->product_id) }}" method="post" class="">
+                            <form action="{{ URL::to('/product/add-to-card/' . $ip->product_id) }}" method="post" class="">
                             {{csrf_field()}}    
                             <button class="mx-auto btn border rounded-pill px-3 text-primary">
                                     <i class="fa fa-shopping-bag me-2"></i>
