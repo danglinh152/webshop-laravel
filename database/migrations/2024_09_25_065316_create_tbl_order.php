@@ -15,10 +15,12 @@ return new class extends Migration
             $table->increments('order_id');
             $table->integer("user_id");
             $table->integer("voucher_id")->nullable();
-            $table->double("order_total");
+            $table->double("payment_cost");
+            $table->double("shipping_cost");
             $table->string("receiverName");
             $table->string("receiverPhone");
             $table->string("receiverAddress");
+            $table->string("status");
             $table->string("receiverNote")->nullable();
             $table->timestamp('created_at')->useCurrent();
 

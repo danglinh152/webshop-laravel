@@ -31,6 +31,11 @@ class OrderController extends Controller
         $data['receiverName'] = $request->receiverName;
         $data['receiverPhone'] = $request->receiverPhone;
         $data['receiverAddress'] = $request->receiverAddress;
+        $data['receiverNote'] = $request->receiverNote;
+        $data['status'] = $request->status;
+        $data['payment_cost'] = $request->payment_cost;
+        $data['shipping_cost'] = $request->shipping_cost;
+
         DB::table('order')->where('order_id', $order_id)->update($data);
         Session::put('message', 'Cập nhật đơn hàng thành công.');
         return Redirect::to('admin/order');

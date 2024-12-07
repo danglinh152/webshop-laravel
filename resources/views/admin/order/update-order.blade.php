@@ -19,7 +19,7 @@
                     <div class="sm:col-span-3">
                         <label class="block text-base font-medium leading-6 text-gray-500">Payment cost</label>
                         <div class="mt-2">
-                            <input type="number" step="0.01" name="" value="{{ $get_order->order_total }}"
+                            <input type="number" step="0.01" name="payment_cost" value="{{ $get_order->payment_cost }}"
                                 class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                     <div class="sm:col-span-3 mt-4">
                         <label class="block text-base font-medium leading-6 text-gray-500">Shipping cost</label>
                         <div class="mt-2">
-                            <input name="" type="text" value="20000"
+                            <input name="shipping_cost" type="text" value="{{ $get_order->shipping_cost }}"
                                 class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                         </div>
                     </div>
@@ -55,12 +55,11 @@
                     <div class="sm:col-span-3 mt-4">
                         <label class="block text-base font-medium leading-6 text-gray-500">Status</label>
                         <div class="mt-2">
-                            <select id=""
+                            <select id="status" name="status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                <option selected>Choose a status</option>
-                                <option value="Bronze">Pending</option>
-                                <option value="Sliver">Shipping</option>
-                                <option value="Gold">Complete</option>
+                                <option value="Pending" {{ $get_order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="Shipping" {{ $get_order->status == 'Shipping' ? 'selected' : '' }}>Shipping</option>
+                                <option value="Complete" {{ $get_order->status == 'Complete' ? 'selected' : '' }}>Complete</option>
                             </select>
                         </div>
                     </div>
