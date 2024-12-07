@@ -70,7 +70,9 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/admin/user/create', 'App\Http\Controllers\admin\UserController@addUserPage');
     Route::get('/admin/user/update', 'App\Http\Controllers\admin\UserController@updateUserPage');
     Route::get('/admin/order', 'App\Http\Controllers\admin\OrderController@getOrderPage');
-    Route::get('/admin/order/update', 'App\Http\Controllers\admin\OrderController@getUpdateOrderPage');
+    Route::get('/admin/order/update/{order_id}', 'App\Http\Controllers\admin\OrderController@getUpdateOrderPage');
+    Route::post('/admin/order/update-order/{order_id}', 'App\Http\Controllers\admin\OrderController@update_order');
+    Route::get('/admin/order/delete/{order_id}', 'App\Http\Controllers\admin\OrderController@delete_order');
     Route::get('/logout', 'App\Http\Controllers\admin\DashboardController@logout');
 });
 

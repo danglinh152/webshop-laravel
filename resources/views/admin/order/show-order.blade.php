@@ -12,7 +12,7 @@
                                                                                                                 <span class="font-medium">' .
                     $message .
                     '</span>';
-            
+
                 Session::put('message', null);
             }
             ?>
@@ -32,25 +32,27 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y">
-                        <tr class="text-gray-700">
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">1</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">20.000.000 VNĐ</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">30.000 VNĐ</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Shipping</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">Lê Văn Đạt</td>
-                            <td class="px-4 py-3 text-sm font-medium text-gray-500">TPHCM</td>
-                            <td class="px-4 py-3 text-sm flex">
-                                <a href="{{ URL::to('admin/order/update') }}"
-                                    class="px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
-                                    <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
-                                </a>
-                                <a href="{{ URL::to('admin/order/delete') }}"
-                                    onclick="return confirm('Are you sure to delete this product?')"
-                                    class="mx-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
-                                    <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($all_orders as $key => $order)
+                            <tr class="text-gray-700">
+                                <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->order_id}}</td>
+                                <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->order_total}}</td>
+                                <td class="px-4 py-3 text-sm font-medium text-gray-500">35.000 VNĐ</td>
+                                <td class="px-4 py-3 text-sm font-medium text-gray-500">Shipping</td>
+                                <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->receiverName}}</td>
+                                <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->receiverAddress}}</td>
+                                <td class="px-4 py-3 text-sm flex">
+                                    <a href="{{ URL::to('admin/order/update/'.$order->order_id) }}"
+                                        class="px-4 py-2 text-sm font-medium leading-5 transition-colors duration-150 bg-yellow-300 border border-transparent rounded-lg active:bg-yellow-400 hover:bg-yellow-400 focus:outline-none focus:shadow-outline-purple">
+                                        <i class="fa-solid fa-pen-to-square mr-2" style="color: #000000;"></i>Update
+                                    </a>
+                                    <a href="{{ URL::to('admin/order/delete/'.$order->order_id)}}"
+                                        onclick="return confirm('Are you sure to delete this order?')"
+                                        class="mx-2 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple">
+                                        <i class="fa-solid fa-trash-can mr-2" style="color: #fff;"></i>Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
