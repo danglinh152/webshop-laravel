@@ -46,11 +46,14 @@
 $message = Session::get('message');
 $message_review = Session::get('message_review');
 $user_name = session('user_name');
+$ranking = Session::get('ranking');
+$spending_score = Session::get('spending_score');
 $user_id = session('user_id');
 $avatar = session('image');
 ?>
 
 <body>
+
     <?php if ($message): ?>
         <dialog id="forget-password-dialog">
             <h2>Welcome Back to 10pm Store!</h2>
@@ -109,7 +112,17 @@ $avatar = session('image');
                             <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
                                 data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <i class="fas fa-user fa-2x"></i>
+                                <!-- <i class="fas fa-user fa-2x"></i> -->
+                                @if ($avatar)
+                                <img class="" src="{{ $avatar }}" alt=""
+                                    aria-hidden="true"
+                                    style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
+                                @else
+                                <img class=""
+                                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                    alt="" aria-hidden="true"
+                                    style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
+                                @endif
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
                                 <li class="d-flex align-items-center flex-column" style="min-width: 250px;">
@@ -126,6 +139,11 @@ $avatar = session('image');
 
                                     <div class="text-dark fw-bold fs-5 my-3">
                                         {{ Session::get('user_name') }}
+                                    </div>
+                                    <div class="text-dark fw-bold fs-6 my-3">
+                                        Ranking: {{ $ranking }}
+                                        <br />
+                                        Spending Score: {{ $spending_score }}
                                     </div>
                                 </li>
 
@@ -253,6 +271,8 @@ $avatar = session('image');
     <script>
         // Check if the dialog exists and show it if there is a message
         window.onload = function() {
+
+
             const dialog = document.getElementById('forget-password-dialog');
             if (dialog) {
                 dialog.showModal();

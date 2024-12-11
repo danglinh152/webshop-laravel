@@ -15,7 +15,7 @@
 
 <body>
     <div class="wrapper">
-        <form action="{{URL::to('/admin/dashboard')}}" method="POST" class="form-login" id="form-login">
+        <form action="{{URL::to('/auth')}}" method="POST" class="form-login" id="form-login">
             {{csrf_field()}}
             <h1>Login</h1>
             <div class="input-box">
@@ -39,7 +39,7 @@
             </div>
             <?php
             $err_msg = Session::get('err_msg');
-            if ($err_msg) {
+            if ($err_msg !== null) {
                 echo '<p class="err-msg">' . ($err_msg) . '</p>';
                 Session::put('err_msg', null);
             }

@@ -96,7 +96,7 @@ Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');
 Route::post('/check-otp', 'App\Http\Controllers\admin\MailController@verify');
 //user
 Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
-Route::post('/login', 'App\Http\Controllers\client\UserController@login');
+Route::post('/auth', 'App\Http\Controllers\client\UserController@login');
 Route::get('/logout', 'App\Http\Controllers\client\UserController@logout');
 Route::post('/admin/user/save-user', 'App\Http\Controllers\admin\UserController@saveUser');
 Route::get('/admin/user/edit-user/{user_id}', 'App\Http\Controllers\admin\UserController@updateUserPage');
