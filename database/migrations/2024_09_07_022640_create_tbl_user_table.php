@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('user_phone')->nullable();
             $table->longText('user_image')->nullable();
             $table->enum('role', ['customer', 'admin'])->default('customer');
+            $table->integer('spending_score')->default(0);
             $table->timestamps();
         });
 

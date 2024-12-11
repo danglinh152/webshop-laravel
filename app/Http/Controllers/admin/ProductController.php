@@ -37,7 +37,7 @@ class ProductController extends Controller
         $data['product_name'] = $request->product_name;
         $data['product_short_desc'] = $request->product_short_desc;
         $data['product_long_desc'] = $request->product_long_desc;
-        $data['product_quantity'] = $request->product_quantity;
+        // $data['product_quantity'] = $request->product_quantity;
         $data['product_target'] = $request->product_target;
         $data['product_price'] = $request->product_price;
         if ($request->product_cate === 'laptop') {
@@ -132,4 +132,5 @@ class ProductController extends Controller
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
     }
+    
 }

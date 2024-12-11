@@ -31,7 +31,7 @@ class CartController extends Controller
     {
         $voucher = DB::table('voucher')->where('quantity', '>', 0)->get();
         $user_id = Session::get('user_id');
-        $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->get();
+        $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->where('quantity', '>', 0)->get();
         return view('client.cart.show')->with('cart', $cart_detail)->with('voucher', $voucher);
     }
     public function getCheckoutPage(Request $request)
@@ -76,7 +76,10 @@ class CartController extends Controller
             if ($user_cart) {
                 $product = DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->first();
                 if ($product) {
+
                     $quantity = $product->quantity + 1;
+
+
                     DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->update(['quantity' => $quantity]);
                     return Redirect::to('/cart');
                 } else {
@@ -104,11 +107,97 @@ class CartController extends Controller
             return Redirect::to('/login');
         }
     }
-    public function deleteCart($product_id){
+
+    public function addToCartInDetail(Request $request, $product_id, $quantityParam)
+    {
+        $user_id = Session::get('user_id');
+        if ($user_id) {
+            $user_cart = DB::table('cart')->where('user_id', $user_id)->first();
+            // $quantity = DB::table('cart_detail')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->count('product_id');
+            if ($user_cart) {
+                $product = DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->first();
+                if ($product) {
+                    $quantity = $product->quantity + $quantityParam;
+                    DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->update(['quantity' => $quantity]);
+                    return Redirect::to('/cart');
+                } else {
+                    $data['cart_id'] = $user_cart->cart_id;
+                    $data['product_id'] = $product_id;
+                    $data['quantity'] = 1;
+                    DB::table('cart_detail')->insert($data);
+                    $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->count();
+                    Session::put('cartCount', $cartCount);
+                    return Redirect::to('/cart');
+                }
+            } else {
+                $data1['user_id'] = $user_id;
+                DB::table('cart')->insert($data1);
+                $cart_id = DB::table('cart')->where('user_id', $user_id)->first();
+                $data['cart_id'] = $cart_id->cart_id;
+                $data['product_id'] = $product_id;
+                $data['quantity'] = 1;
+                DB::table('cart_detail')->insert($data);
+                Session::put('cartCount', 1);
+                return Redirect::to('/cart');
+            }
+        } else {
+            Session::put('err_msg', 'Bạn cần đăng nhập để truy cập trang này!');
+            return Redirect::to('/login');
+        }
+    }
+
+
+
+    public function deleteCart($product_id)
+    {
         DB::table('cart_detail')->where('product_id', $product_id)->delete();
-        $cartCount = Session::get('cartCount')-1;
+        $cartCount = Session::get('cartCount') - 1;
         Session::put('cartCount', $cartCount);
         Session::put('message', 'Xóa sản phẩm khỏi giỏ hàng thành công');
         return Redirect::to('/cart');
+    }
+
+    public function incrementQuantity(Request $request)
+    {
+        $cartId = $request->input('cart_id');
+        $productId = $request->input('product_id');
+
+        // Find the cart detail and increment quantity
+        $cartDetail = DB::table('cart_detail')->where('cart_id', $cartId)->where('product_id', $productId)->first();
+
+        if ($cartDetail) {
+            DB::table('cart_detail')->where('cart_id', $cartId)->where('product_id', $productId)->increment('quantity', 1);
+
+            // Return new quantity and price
+            return response()->json([
+                'new_quantity' => $cartDetail->quantity + 1,
+                'price' => $cartDetail->product_price,
+                'index' => $request->input('index') // Pass index for updating totals
+            ]);
+        }
+
+        return response()->json(['error' => 'Product not found'], 404);
+    }
+
+    public function decrementQuantity(Request $request)
+    {
+        $cartId = $request->input('cart_id');
+        $productId = $request->input('product_id');
+
+        // Find the cart detail
+        $cartDetail = DB::table('cart_detail')->where('cart_id', $cartId)->where('product_id', $productId)->first();
+
+        if ($cartDetail && $cartDetail->quantity > 1) {
+            DB::table('cart_detail')->where('cart_id', $cartId)->where('product_id', $productId)->decrement('quantity', 1);
+
+            // Return new quantity and price
+            return response()->json([
+                'new_quantity' => $cartDetail->quantity - 1,
+                'price' => $cartDetail->product_price,
+                'index' => $request->input('index') // Pass index for updating totals
+            ]);
+        }
+
+        return response()->json(['error' => 'Product not found or quantity is already 1'], 404);
     }
 }

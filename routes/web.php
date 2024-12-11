@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\client\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -104,6 +105,7 @@ Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\User
 
 //client add to cart
 Route::post('/product/add-to-card/{product_id}', 'App\Http\Controllers\client\CartController@addTocart');
+Route::post('/product/add-to-cart/{product_id}/{quantityParam}', 'App\Http\Controllers\client\CartController@addToCartInDetail');
 Route::post('/product/delete-product-from-cart/{product_id}', 'App\Http\Controllers\client\CartController@deleteCart');
 
 //voucher
@@ -116,3 +118,7 @@ Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\a
 Route::post('/client/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 Route::post('/client/online-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@online_checkout');
 Route::post('/client/confirm-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@confirm_checkout');
+
+
+Route::post('/cart/increment-quantity', 'App\Http\Controllers\client\CartController@incrementQuantity');
+Route::post('/cart/decrement-quantity', 'App\Http\Controllers\client\CartController@decrementQuantity');

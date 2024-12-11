@@ -26,7 +26,8 @@ use Illuminate\Support\Facades\session;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0; session(['cart' => $cart]); ?>
+                    <?php $i = 0;
+                    session(['cart' => $cart]); ?>
                     @foreach ($cart as $key => $cart_value)
                     <tr>
                         <th scope="row" class="d-flex align-items-center gap-3">
@@ -77,7 +78,7 @@ use Illuminate\Support\Facades\session;
             </table>
         </div>
 
-        <form class="row mt-5 g-4" action="{{ URL::to('/client/online-checkout') }}" method="post" id="checkoutForm">
+        <form class="row mt-5 g-4" action="{{ URL::to('/client/online-checkout') }}" method="POST" id="checkoutForm">
             @csrf
             <div class="col-md-7">
                 <h4 class="mt-2">Thông tin người nhận</h4>
@@ -136,7 +137,7 @@ use Illuminate\Support\Facades\session;
                     <div class="py-4 my-4 border-top border-bottom d-flex justify-content-between">
                         <p class="mb-0 ps-4 me-4 text-dark">Tổng số tiền:</p>
                         <p class="mb-0 pe-4 text-dark" id="totalAmount" data-cart-total-price="0">0 đ</p>
-                        <input type="hidden" name="total" id="total" value=""/>
+                        <input type="hidden" name="total" id="total" value="" />
                     </div>
                     <button type="submit" name="submit" class="btn border-secondary rounded-pill px-4 py-3 text-primary mb-4">Xác nhận đơn hàng</button>
                 </div>
@@ -151,6 +152,7 @@ use Illuminate\Support\Facades\session;
         const totalAmountElement = document.getElementById('totalAmount');
         const totalInput = document.getElementById('total');
         const discountPriceElement = document.getElementById('discountPrice');
+
         function calculateTotal() {
             let subtotal = parseFloat(localStorage.getItem('subtotal'));
             let discountVal = parseFloat(localStorage.getItem('discountVal'));

@@ -21,13 +21,13 @@ class ItemController extends Controller
     public function getHomePage()
     {
         $cartCount = 0;
-            $user_id = Session::get('user_id');
-            if ($user_id) {
-                $cart = DB::table('cart')->where('user_id', $user_id)->first();
-                if ($cart) {
-                    $cartCount = DB::table('cart_detail')->where('cart_id', $cart->cart_id)->count();
-                }
+        $user_id = Session::get('user_id');
+        if ($user_id) {
+            $cart = DB::table('cart')->where('user_id', $user_id)->first();
+            if ($cart) {
+                $cartCount = DB::table('cart_detail')->where('cart_id', $cart->cart_id)->count();
             }
+        }
         Session::put('cartCount', $cartCount);
         $Samsung = DB::table('product')->where('status', operator: 'show')->where('category_id', 3)->where('product_fact', 'Samsung')->get();
         $Iphone = DB::table('product')->where('status', operator: 'show')->where('category_id', 3)->where('product_fact', 'Iphone')->get();
