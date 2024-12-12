@@ -46,6 +46,32 @@ class OrderController extends Controller
             DB::table('cart_detail')->where('cart_id', $cart_value->cart_id)
                 ->where('product_id', $cart_value->product_id)
                 ->decrement('quantity', $cart_value->quantity); // Decrement quantity by 1
+
+            $user = DB::table('users')->where('user_id', Session::get('user_id'))->get()->first();
+
+            $data = array();
+
+            $data['user_first_name'] = $user->user_first_name;
+            $data['user_last_name'] = $user->user_last_name;
+            $data['user_email'] = $user->user_email;
+            $data['user_password'] = $user->user_password;
+            $data['user_phone'] = $user->user_phone;
+            $data['user_address'] = $user->user_address;
+            $data['role'] = $user->role;
+            $data['user_image'] = $user->user_image;
+
+            $data['spending_score'] = $user->spending_score + $request->total;
+            if ($user->spending_score + $request->total >= 15000000 && $user->spending_score + $request->total <= 30000000) {
+                $data['ranking'] = 'SILVER';
+            } else if ($user->spending_score + $request->total > 30000000 && $user->spending_score + $request->total <= 50000000) {
+                $data['ranking'] = 'GOLD';
+            } else if ($user->spending_score + $request->total > 50000000) {
+                $data['ranking'] = 'DIAMOND';
+            };
+
+            DB::table('users')->where('user_id', Session::get('user_id'))->update($data);
+            Session::put('ranking', $data['ranking']);
+            Session::put('spending_score', $data['spending_score']);
         }
 
         // Create an Order model instance and populate with order information

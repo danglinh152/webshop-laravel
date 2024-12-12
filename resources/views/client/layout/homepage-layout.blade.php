@@ -140,10 +140,10 @@ $avatar = session('image');
                                     <div class="text-dark fw-bold fs-5 my-3">
                                         {{ Session::get('user_name') }}
                                     </div>
-                                    <div class="text-dark fw-bold fs-6 my-3">
-                                        Ranking: {{ $ranking }}
+                                    <div class="text-dark text-center fw-bold fs-6 my-3">
+                                        <span class="text-danger">Ranking: </span>{{ $ranking }} <i class="fa-solid fa-medal"></i>
                                         <br />
-                                        Spending Score: {{ $spending_score }}
+                                        <span class="text-danger">Spending Score: </span>{{ $spending_score }}
                                     </div>
                                 </li>
 
