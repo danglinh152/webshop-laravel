@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -41,9 +42,10 @@ class GoogleAuthController extends Controller
                 // Đăng nhập người dùng đã tồn tại
                 Auth::login($user);
             }
+            $user = DB::table('users')->where('google_id', $google_user->getId())->get()->first();
 
             session(['user_name' => $google_user->getName()]);
-            session(['user_id' => $google_user->getId()]);
+            session(['user_id' => $user->user_id]);
             session(['image' => $google_user->getAvatar()]);
             return redirect()->to('/'); // Redirect to the home page
         } catch (Exception $e) {
