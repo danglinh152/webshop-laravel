@@ -67,7 +67,8 @@ class OrderController extends Controller
                 $data['ranking'] = 'GOLD';
             } else if ($user->spending_score + $request->total > 50000000) {
                 $data['ranking'] = 'DIAMOND';
-            };
+            } else
+                $data['ranking'] = 'COPPER';
 
             DB::table('users')->where('user_id', Session::get('user_id'))->update($data);
             Session::put('ranking', $data['ranking']);
