@@ -2,6 +2,14 @@
 @section('infor')
     <div class="container-fluid contact py-5">
         <div class="container py-5 ">
+            <div class="mb-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tài khoản của tôi</li>
+                    </ol>
+                </nav>
+            </div>
             <div class="row mt-4">
                 <div class="col-3">
                     <div class="row mt-4">

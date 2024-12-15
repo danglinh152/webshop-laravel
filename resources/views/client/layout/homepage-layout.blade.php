@@ -149,7 +149,7 @@ $avatar = session('image');
 
                                     <li><a class="dropdown-item" href="{{ URL::to('/information') }}">Quản lý tài
                                             khoản</a></li>
-                                    <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
+                                    <li><a class="dropdown-item" href="{{ URL::to('/order-history') }}">Lịch sử mua hàng</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -188,6 +188,7 @@ $avatar = session('image');
     @yield('success')
     @yield('contact')
     @yield('infor')
+    @yield('order-history')
 
     <!-- Footer  -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">

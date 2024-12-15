@@ -37,6 +37,7 @@ Route::get('/success', 'App\Http\Controllers\client\OnlineCheckoutController@get
 Route::get('/error', 'App\Http\Controllers\client\CartController@getErrorPage');
 Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPage');
 Route::get('/information', 'App\Http\Controllers\client\HomeController@getInforPage');
+Route::get('/order-history', 'App\Http\Controllers\client\HomeController@getOrderHistoryPage');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
 Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');

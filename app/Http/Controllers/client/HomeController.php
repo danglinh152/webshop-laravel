@@ -28,4 +28,8 @@ class HomeController extends Controller
     {
         return view('client.homepage.information');
     }
+    public function getOrderHistoryPage()
+    {
+        return view('client.homepage.order-history');
+    }
 }

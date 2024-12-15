@@ -677,7 +677,7 @@
     box-shadow: 0 0 0 .2rem rgba(26, 52, 220, 0.25);
 }
 
-.content{
+.content {
     width: 100%;
     height: 380px;
     border-left: #b4b2b2 2px solid;
@@ -689,4 +689,27 @@
 
 .info-content.active {
     display: block;
+}
+
+.card-history {
+    border-top: #b4b2b2 1px solid;
+}
+
+.btn-cancel {
+    color: red;
+    width: 1rem;
+}
+
+.btn-cancel:hover,
+.btn-cancel.active {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(220, 55, 26, 0.25);
+}
+
+.history-page {
+    background-color: rgb(246, 246, 246);
+}
+
+.history-item {
+    background-color: white;
 }
