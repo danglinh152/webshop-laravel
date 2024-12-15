@@ -211,7 +211,6 @@
                 localStorage.setItem('subtotal', subtotal);
                 localStorage.setItem('discountVal', discountVal);
                 localStorage.setItem('discountPrice', discountPrice);
-                
             }
 
             // Update totals when checkbox is toggled
