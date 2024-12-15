@@ -30,7 +30,7 @@
                     <div class="content px-4">
                         <div id="tab1" class="info-content active">
                             <div class="">
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex ms-5 mb-3 justify-content-center">
                                     <div class="">
                                         <img style="width:52px; height:52px"
                                             src="{{ asset('public/frontend/client/img/bronze-medal.png') }}" alt="">
@@ -51,13 +51,24 @@
 
                                 <form action="" class="px-2">
                                     <div class="row">
-                                        <div class="form-group col-6">
-                                            <label>Họ:</label>
-                                            <input class="form-control mt-1" type="text" name="" required />
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>Họ:</label>
+                                                <input class="form-control mt-1" type="text" name="" required />
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <label>Tên:</label>
+                                                <input class="form-control mt-1" type="text" name="" required />
+                                            </div>
                                         </div>
-                                        <div class="form-group col-6">
-                                            <label>Tên:</label>
-                                            <input class="form-control mt-1" type="text" name="" required />
+                                        <div class="ms-5 mb-3 col-4 text-center d-flex flex-column align-items-center">
+                                            <img id="avatar" src="{{ asset('public/backend/users-images/profile.png') }}"
+                                                alt="Avatar" class="avatar">
+                                            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                                            <button class="btn border rounded-pill px-4 py-2 text-dark mt-1"
+                                                onclick="document.getElementById('avatarUpload').click();">Tải hình
+                                                ảnh
+                                                lên</button>
                                         </div>
                                         <div class="form-group mt-3 col-6">
                                             <label>Email:</label>
@@ -121,6 +132,17 @@
             event.currentTarget.classList.add('active');
             document.getElementById(tabId).classList.add('active');
         }
+
+        document.getElementById('avatarUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatar').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
 
 @stop
