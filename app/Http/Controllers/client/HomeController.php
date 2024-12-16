@@ -24,4 +24,12 @@ class HomeController extends Controller
     public function getContactPage(){
         return view('client.homepage.contact');
     }
+    public function getInforPage()
+    {
+        return view('client.homepage.information');
+    }
+    public function getOrderHistoryPage()
+    {
+        return view('client.homepage.order-history');
+    }
 }
