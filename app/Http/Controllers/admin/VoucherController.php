@@ -35,6 +35,17 @@ class VoucherController extends Controller
         $data['discount_value'] = ($request->discount_value);
         $data['start_date'] = $request->start_date;
         $data['end_date'] = $request->end_date;
+        $data['quantity'] = $request->quantity;
+        $rank_number = 0;
+        $rank =  $request->input('rank');
+        if($rank == 'Silver'){
+            $rank_number = 1;
+        } elseif($rank == 'Gold'){
+            $rank_number = 2;
+        } elseif($rank == "Diamond"){
+            $rank_number = 3;
+        }
+        $data['rank'] = $rank_number;
         DB::table('voucher')->insert($data);
         Session::put('message', 'Thêm voucher thành công.');
         return Redirect::to('admin/voucher');
@@ -55,7 +66,17 @@ class VoucherController extends Controller
         $data['discount_value'] = $request->discount_value;
         $data['start_date'] = $request->start_date;
         $data['end_date'] = $request->end_date;
-
+        $data['quantity'] = $request->quantity;
+        $rank_number = 0;
+        $rank =  $request->input('rank');
+        if($rank == 'Silver'){
+            $rank_number = 1;
+        } elseif($rank == 'Gold'){
+            $rank_number = 2;
+        } elseif($rank == "Diamond"){
+            $rank_number = 3;
+        }
+        $data['rank'] = $rank_number;
         $check = DB::table('voucher')->where('voucher_id', $voucher_id)->update($data);
         if (isset($check)) {
             Session::put('message', 'Cập nhật Voucher thành công.');

@@ -29,8 +29,17 @@ class CartController extends Controller
 
     public function getCartPage()
     {
-        $voucher = DB::table('voucher')->where('quantity', '>', 0)->get();
         $user_id = Session::get('user_id');
+        $user = DB::table('users')->where('user_id', $user_id)->first();
+        $rank_number = 0;
+        if($user->ranking == 'SILVER'){
+            $rank_number = 1;
+        } elseif($user->ranking == 'GOLD'){
+            $rank_number = 2;
+        } elseif($user->ranking == "DIAMOND"){
+            $rank_number = 3;
+        }
+        $voucher = DB::table('voucher')->where('quantity', '>', 0)->where('rank', '<=' ,$rank_number)->get();
         $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->where('quantity', '>', 0)->get();
         return view('client.cart.show')->with('cart', $cart_detail)->with('voucher', $voucher);
     }
@@ -145,8 +154,6 @@ class CartController extends Controller
             return Redirect::to('/login');
         }
     }
-
-
 
     public function deleteCart($product_id)
     {

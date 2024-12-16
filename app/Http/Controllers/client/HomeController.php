@@ -4,6 +4,8 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,7 +28,9 @@ class HomeController extends Controller
     }
     public function getInforPage()
     {
-        return view('client.homepage.information');
+        $user_id = Session::get('user_id');
+        $user = DB::table('users')->where('user_id', $user_id)->first();
+        return view('client.homepage.information')->with('user', $user);
     }
     public function getOrderHistoryPage()
     {

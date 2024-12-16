@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +40,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 
@@ -46,10 +48,18 @@
 $message = Session::get('message');
 $message_review = Session::get('message_review');
 $user_name = session('user_name');
-$ranking = Session::get('ranking');
+$rank = Session::get('ranking');
 $spending_score = Session::get('spending_score');
 $user_id = session('user_id');
 $avatar = session('image');
+$ranking = '';
+if($rank == 'COPPER'){
+    $ranking = 'Hạng Đồng';
+}
+elseif($rank == 'SILVER') $ranking = 'Hạng bạc';
+elseif($rank == 'GOLD') $ranking = 'Hạng Vàng';
+else $ranking = 'Hạng Kim Cương';
+
 ?>
 
 <body>
@@ -105,7 +115,7 @@ $avatar = session('image');
                                 {!! Session::get('cartCount') !== null ? '<i class="fa-solid fa-exclamation"></i>' : 0 !!}
                             </span>
 
-
+  
                         </a>
                         @if (Session::has('user_name'))
                             <div class="dropdown my-auto">

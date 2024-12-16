@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\client\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Client\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,10 @@ Route::get('/success', 'App\Http\Controllers\client\OnlineCheckoutController@get
 Route::get('/error', 'App\Http\Controllers\client\CartController@getErrorPage');
 Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPage');
 Route::get('/information', 'App\Http\Controllers\client\HomeController@getInforPage');
+Route::post('/client/update-user', 'App\Http\Controllers\client\UserController@updateUser');
+Route::post('/client/update-password', 'App\Http\Controllers\client\UserController@updatePassword');
+Route::post('/client/update-password', [UserController::class, 'updatePassword']);
+
 Route::get('/order-history', 'App\Http\Controllers\client\HomeController@getOrderHistoryPage');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');

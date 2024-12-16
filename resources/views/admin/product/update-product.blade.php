@@ -54,15 +54,8 @@
                     <div class="mt-2">
                         <select onchange="updateFactoryOptions()" id="category" name="product_cate"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            @if ($edit_pro->product_fact =='phone')
-                            
-                            <option selected value="phone">Smart Phone</option>
-                            <option value="laptop">Laptop</option>
-                            @else($edit_pro->product_fact =='laptop')
-                           
-                            <option  value="phone">Smart Phone</option>
-                            <option selected value="laptop">Laptop</option>
-                            @endif
+                            <option value="phone" {{$edit_pro->product_fact == 'phone' ? 'selected' : ''}}>Smart Phone</option>
+                            <option value="laptop" {{$edit_pro->product_fact == 'laptop' ? 'selected' : ''}}>Laptop</option>
                         </select>
                     </div>
                 </div>
@@ -84,19 +77,9 @@
                     <div class="mt-2">
                         <select id="country" name="product_target"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            @if ($edit_pro->product_target=='Gaming')
-                            <option selected value="Gaming">Gaming</option>
-                            <option value="Văn phòng">Văn phòng</option>
-                            <option value="Đồ họa">Đồ họa</option>
-                            @elseif($edit_pro->product_target=='Văn phòng')
-                            <option value="Gaming">Gaming</option>
-                            <option selected value="Văn phòng">Văn phòng</option>
-                            <option value="Đồ họa">Đồ họa</option>
-                            @elseif($edit_pro->product_target=='Đồ họa')
-                            <option value="Gaming">Gaming</option>
-                            <option value="Văn phòng">Văn phòng</option>
-                            <option selected value="Đồ họa">Đồ họa</option>
-                            @endif
+                            <option value="Gaming" {{$edit_pro->product_target == 'Gaming' ? 'selected' : ''}}>Gaming</option>
+                            <option value="Văn phòng" {{$edit_pro->product_target == 'Văn Phòng' ? 'selected' : ''}}>Văn phòng</option>
+                            <option value="Đồ họa" {{$edit_pro->product_target == 'Đồ họa' ? 'selected' : ''}}>Đồ họa</option>
                         </select>
                     </div>
                 </div>

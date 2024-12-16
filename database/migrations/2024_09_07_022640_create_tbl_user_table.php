@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('user_address')->nullable();
             $table->string('user_phone')->nullable();
             $table->longText('user_image')->nullable();
-            $table->enum('role', ['customer', 'admin'])->default('customer');
+            $table->enum('role',    ['customer', 'admin'])->default('customer');
             $table->enum('ranking', ['COPPER', 'SILVER', 'GOLD', 'DIAMOND'])->default('COPPER');
             $table->integer('spending_score')->default(1);
             $table->timestamps();
