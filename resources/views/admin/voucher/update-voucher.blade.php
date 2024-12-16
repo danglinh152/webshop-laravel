@@ -28,19 +28,21 @@
                         <div class="sm:col-span-3 mt-4">
                             <label class="block text-base font-medium leading-6 text-gray-500">Quantity</label>
                             <div class="mt-2">
-                                <input type="text" name="voucher_name"
+                                <input type="text" name="quantity"value ="{{$vou->quantity}}"
                                     class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                             </div>
                         </div>
                         <div class="sm:col-span-3 mt-4">
                             <label class="block text-base font-medium leading-6 text-gray-500">Ranking</label>
                             <div class="mt-2">
-                                <select id="countries"
+                                <select id="countries" name = "rank"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                                    <option selected>Choose a rank</option>
-                                    <option value="Bronze">Bronze</option>
-                                    <option value="Sliver">Sliver</option>
-                                    <option value="Gold">Gold</option>
+                                    
+                                    <option value="Copper" {{ $vou->rank == 0 ? 'selected' : '' }}>Copper</option>
+                                    <option value="Silver" {{ $vou->rank == 1 ? 'selected' : '' }}>Silver</option>
+                                    <option value="Gold" {{ $vou->rank == 2 ? 'selected' : '' }}>Gold</option>
+                                    <option value="Diamond" {{ $vou->rank == 3 ? 'selected' : '' }}>Diamond</option>
+
                                 </select>
                             </div>
                         </div>

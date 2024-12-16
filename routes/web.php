@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\client\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Client\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,12 @@ Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
 Route::get('/success', 'App\Http\Controllers\client\OnlineCheckoutController@getSuccessPage');
 Route::get('/error', 'App\Http\Controllers\client\CartController@getErrorPage');
 Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPage');
+Route::get('/information', 'App\Http\Controllers\client\HomeController@getInforPage');
+Route::post('/client/update-user', 'App\Http\Controllers\client\UserController@updateUser');
+Route::post('/client/update-password', 'App\Http\Controllers\client\UserController@updatePassword');
+Route::post('/client/update-password', [UserController::class, 'updatePassword']);
+
+Route::get('/order-history', 'App\Http\Controllers\client\HomeController@getOrderHistoryPage');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
 Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');
@@ -95,7 +103,7 @@ Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');
 Route::post('/check-otp', 'App\Http\Controllers\admin\MailController@verify');
 //user
 Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
-Route::post('/login', 'App\Http\Controllers\client\UserController@login');
+Route::post('/auth', 'App\Http\Controllers\client\UserController@login');
 Route::get('/logout', 'App\Http\Controllers\client\UserController@logout');
 Route::post('/admin/user/save-user', 'App\Http\Controllers\admin\UserController@saveUser');
 Route::get('/admin/user/edit-user/{user_id}', 'App\Http\Controllers\admin\UserController@updateUserPage');
@@ -104,6 +112,7 @@ Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\User
 
 //client add to cart
 Route::post('/product/add-to-card/{product_id}', 'App\Http\Controllers\client\CartController@addTocart');
+Route::post('/product/add-to-cart/{product_id}/{quantityParam}', 'App\Http\Controllers\client\CartController@addToCartInDetail');
 Route::post('/product/delete-product-from-cart/{product_id}', 'App\Http\Controllers\client\CartController@deleteCart');
 
 //voucher
@@ -116,3 +125,7 @@ Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\a
 Route::post('/client/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');
 Route::post('/client/online-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@online_checkout');
 Route::post('/client/confirm-checkout', 'App\Http\Controllers\client\OnlineCheckoutController@confirm_checkout');
+
+
+Route::post('/cart/increment-quantity', 'App\Http\Controllers\client\CartController@incrementQuantity');
+Route::post('/cart/decrement-quantity', 'App\Http\Controllers\client\CartController@decrementQuantity');

@@ -114,142 +114,123 @@
         <img class="m-auto" src="{{ asset('public/frontend/client/img/xmas1.png') }}" alt="">
     </div>
 
-
     <!-- Mobile carousel -->
     <div class="container-fluid vesitable">
-        
-        <div class="container py-5">
+        <div class="container py-5" id="samsung-block">
             <h3 class="mb-3">Samsung</h3>
-            @foreach ($Samsung as $ss)
-            <div class="mobile-carousel owl-carousel  justify-content-center">
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{  asset('public/backend/products-images/' . $ss->product_image) }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                {{$ss->product_name}}</a>
-                            <p class="item-desc">
-                                {{$ss->product_short_desc}}
-                            </p>
-                            <p class="item-price"> {{ number_format($ss->product_price, 0, '.', '.') }} đ</p>
-                            <form action="{{ URL::to('/product/add-to-card/' . $pro->product_id) }}" method="post" class="">
-                            {{csrf_field()}}    
-                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
+            <div class="mobile-carousel owl-carousel justify-content-center">
+                @foreach ($Samsung as $ss)
+                    <div class="" style="width: 16rem">
+                        <div class="card mb-3 mobile-card">
+                            <img src="{{ asset('public/backend/products-images/' . $ss->product_image) }}"
+                                class="card-img-top mobile-image">
+                            <div class="card-body text-center">
+                                <a href="" class="item-name">{{ $ss->product_name }}</a>
+                                <p class="item-desc">{{ $ss->product_short_desc }}</p>
+                                <p class="item-price">{{ number_format($ss->product_price, 0, '.', '.') }} đ</p>
+                                <button type="button" class="mx-auto btn border rounded-pill px-3 text-primary"
+                                    onclick="addToCart('{{ $ss->product_id }}', event)">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
+
+    <!-- iPhone Section -->
     <div class="container-fluid vesitable">
-        
         <div class="container py-5">
             <h3 class="mb-3">Iphone</h3>
-            @foreach ($Iphone as $ip)
-            <div class="mobile-carousel owl-carousel  justify-content-center">
-                <div class="" style="width: 16rem">
-                    <div class="card mb-3 mobile-card">
-                        <img src="{{  asset('public/backend/products-images/' . $ip->product_image) }}"
-                            class="card-img-top mobile-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                {{$ip->product_name}}</a>
-                            <p class="item-desc">
-                                {{$ip->product_short_desc}}
-                            </p>
-                            <p class="item-price"> {{ number_format($ip->product_price, 0, '.', '.') }} đ</p>
-                            <form action="{{ URL::to('/product/add-to-card/' . $ip->product_id) }}" method="post" class="">
-                            {{csrf_field()}}    
-                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
+            <div class="mobile-carousel owl-carousel justify-content-center">
+                @foreach ($Iphone as $ip)
+                    <div class="" style="width: 16rem">
+                        <div class="card mb-3 mobile-card">
+                            <img src="{{ asset('public/backend/products-images/' . $ip->product_image) }}"
+                                class="card-img-top mobile-image">
+                            <div class="card-body text-center">
+                                <a href="" class="item-name">{{ $ip->product_name }}</a>
+                                <p class="item-desc">{{ $ip->product_short_desc }}</p>
+                                <p class="item-price">{{ number_format($ip->product_price, 0, '.', '.') }} đ</p>
+                                <button type="button" class="mx-auto btn border rounded-pill px-3 text-primary"
+                                    onclick="addToCart('{{ $ip->product_id }}', event)">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-             @endforeach
-        </div>  
+        </div>
     </div>
 
-    <div class="container d-flex justify-content-center w-100">
-        <img class="m-auto" src="{{ asset('public/frontend/client/img/xmas2.png') }}" alt="">
-    </div>
-    <!-- Laptop carousel -->
+    <!-- Asus Section -->
     <div class="container-fluid vesitable">
         <div class="container py-5">
             <h3 class="mb-3">Laptop Asus</h3>
-            @foreach ($Asus as $as)
-            <div class="owl-carousel vegetable-carousel justify-content-center">
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{ asset('public/backend/products-images/' . $as->product_image)}}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                {{$as->product_name}}</a>
-                            <p class="item-desc">
-                                {{$as->product_short_desc}}
-                            </p>
-                            <p class="item-price">{{ number_format($as->product_price, 0, '.', '.') }} đ</p>
-                            <form action="{{ URL::to('/product/add-to-card/' . $as->product_id) }}" method="post" class="">
-                            {{csrf_field()}}    
-                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
+
+            <div class="vegetable-carousel owl-carousel justify-content-center">
+                @foreach ($Asus as $as)
+                    <div class="" style="width: 19.5rem">
+                        <div class="card mb-3 product-cart">
+                            <img src="{{ asset('public/backend/products-images/' . $as->product_image) }}"
+                                class="card-img-top card-image">
+                            <div class="card-body text-center">
+                                <a href="" class="item-name">{{ $as->product_name }}</a>
+                                <p class="item-desc">{{ $as->product_short_desc }}</p>
+                                <p class="item-price">{{ number_format($as->product_price, 0, '.', '.') }} đ</p>
+                                <button type="button" class="mx-auto btn border rounded-pill px-3 text-primary"
+                                    onclick="addToCart('{{ $as->product_id }}', event)">
                                     <i class="fa fa-shopping-bag me-2"></i>
                                     Add to cart
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-            @endforeach
+
         </div>
     </div>
+
+    <!-- Acer Section -->
+    <div class="container-fluid vesitable">
+        <div class="container py-5">
+            <h3 class="mb-3">Laptop Acer</h3>
+            <div class="vegetable-carousel owl-carousel justify-content-center">
+                @foreach ($Acer as $ac)
+                    <div class="" style="width: 19.5rem">
+                        <div class="card mb-3 product-cart">
+                            <img src="{{ asset('public/backend/products-images/' . $ac->product_image) }}"
+                                class="card-img-top card-image">
+                            <div class="card-body text-center">
+                                <a href="" class="item-name">{{ $ac->product_name }}</a>
+                                <p class="item-desc">{{ $ac->product_short_desc }}</p>
+                                <p class="item-price">{{ number_format($ac->product_price, 0, '.', '.') }} đ</p>
+                                <button type="button" class="mx-auto btn border rounded-pill px-3 text-primary"
+                                    onclick="addToCart('{{ $ac->product_id }}', event)">
+                                    <i class="fa fa-shopping-bag me-2"></i>
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
     <div class="container d-flex justify-content-between">
         <img src="{{ asset('public/frontend/client/img/banner5.png') }}" alt="">
         <img src="{{ asset('public/frontend/client/img/banner1.jpg') }}" alt="">
     </div>
-    <div class="container-fluid vesitable">
-        <div class="container py-5">
-            <h3 class="mb-3">Laptop Acer</h3>
-            @foreach ($Acer as $ac)
-            <div class="owl-carousel vegetable-carousel justify-content-center">
-                <div class="" style="width: 19.5rem">
-                    <div class="card mb-3 product-cart">
-                        <img src="{{asset('public/backend/products-images/' . $ac->product_image) }}"
-                            class="card-img-top card-image">
-                        <div class="card-body text-center">
-                            <a href="" class="item-name">
-                                {{$ac->product_name}}</a>
-                            <p class="item-desc">
-                                {{$ac->product_short_desc}}
-                            </p>
-                            <p class="item-price">{{number_format($ac->product_price, 0, '.', '.') }} đ</p>
-                          <form action="{{ URL::to('/product/add-to-card/' . $ac->product_id) }}" method="post" class="">
-                            {{csrf_field()}}    
-                            <button class="mx-auto btn border rounded-pill px-3 text-primary">
-                                    <i class="fa fa-shopping-bag me-2"></i>
-                                    Add to cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
+
     <!-- Features Section  -->
     <div class="container-fluid features">
-
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
@@ -300,4 +281,54 @@
         </div>
     </div>
 
+    <script>
+        const addToCart = function(product_id, event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "{{ URL::to('/product/add-to-card/') }}/" + product_id, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Include CSRF token
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Handle success response
+                        showSuccessMessage('Added to cart successfully!');
+                    } else {
+                        console.error('Error updating quantity:', xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send(); // Sending the request without additional data
+        };
+
+        function showSuccessMessage(message) {
+            // Create a div for the success message
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.style.position = 'fixed';
+            messageDiv.style.top = '100px';
+            messageDiv.style.right = '20px';
+            messageDiv.style.backgroundColor = '#28a745'; // Green background
+            messageDiv.style.color = '#fff'; // White text
+            messageDiv.style.padding = '10px 20px';
+            messageDiv.style.borderRadius = '5px';
+            messageDiv.style.zIndex = '1000';
+            messageDiv.style.transition = 'opacity 0.5s ease-in-out';
+            messageDiv.style.opacity = '1';
+
+            // Append to body
+            document.body.appendChild(messageDiv);
+
+            // Fade out after 3 seconds
+            setTimeout(function() {
+                messageDiv.style.opacity = '0';
+                setTimeout(function() {
+                    document.body.removeChild(messageDiv);
+                }, 500); // Remove after fade out
+            }, 3000);
+        }
+    </script>
 @stop

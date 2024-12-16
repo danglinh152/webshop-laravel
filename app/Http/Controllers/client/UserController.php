@@ -5,7 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Requests;
 
 
@@ -42,20 +42,20 @@ class UserController extends Controller
     {
         $user_email = $request->email;
         $user_password = md5($request->password);
-        $result = DB::table('tbl_user')->where('user_email', $user_email)->where('user_password', $user_password)->first();
-        $quantity = DB::table('cart_detail')->join( 'cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $result->user_id)->count('product_id');
-
+        $result = DB::table('users')->where('user_email', $user_email)->where('user_password', $user_password)->first();
         if ($result) {
             if ($result->role == 'admin') {
                 Session::put('admin_name', $result->user_first_name . ' ' . $result->user_last_name);
                 Session::put('admin_id', $result->user_id);
-                Session::put('image', $result->user_image);
+                Session::put('image', asset('public/backend/users-images/' . $result->user_image)); // Use url() instead of asset()
                 return Redirect::to('/admin/dashboard');
             } else {
                 // client
                 Session::put('user_name', $result->user_first_name . ' ' . $result->user_last_name);
                 Session::put('user_id', $result->user_id);
-                Session::put('image',  $result->user_image);
+                Session::put('ranking', $result->ranking);
+                Session::put('spending_score', $result->spending_score);
+                Session::put('image', asset('public/backend/users-images/' . $result->user_image)); // Use url() instead of asset()
                 return Redirect::to('/');
             }
         } else {
@@ -64,11 +64,58 @@ class UserController extends Controller
         }
     }
 
+
     public function logout()
     {
         Session::put('user_id', null);
         Session::put('user_name', null);
         return Redirect::to('/login');
+    }
+    
+
+    public function updateUser(Request $request)
+    {
+        $user_id = Session::get('user_id');
+        $data = array();
+        $data['user_last_name'] = $request->last_name;
+        $data['user_first_name'] = $request->first_name;
+        $data['user_email'] = $request->email;
+        $data['user_phone'] = $request->phone;
+        $data['user_address'] = $request->address;
+        $get_image = $request->file('user_image');
+        if ($get_image) {
+            $new_image = $get_image->getClientOriginalName();
+            $get_image->move('public/backend/users-images', $new_image);
+            $data['user_image'] = $new_image;
+        }
+        $check = DB::table('users')->where('user_id', $user_id)->update($data);
+        if ($check) {
+            return response()->json(['success' => true, 'message' => 'Cập nhật thông tin thành công!']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Cập nhật thông tin thất bại!']);
+        }
+     
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // Xác thực dữ liệu
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6',
+        ]);
+        $user_id = Session::get('user_id');
+        $user = DB::table('users')->where('user_id', $user_id)->first();
+        $user_password = md5($request->current_password);
+        // Kiểm tra mật khẩu hiện tại
+        if ($user_password != $user->user_password) {
+            return response()->json(['success' => false, 'message' => 'Mật khẩu hiện tại không đúng!']);
+        }
+
+        // Cập nhật mật khẩu mới
+        DB::table('users')->where('user_id', $user_id)->update(['user_password' => md5($request->new_password)]);
+
+        return response()->json(['success' => true, 'message' => 'Cập nhật mật khẩu thành công!']);
     }
 
     // public function userDetailPage()

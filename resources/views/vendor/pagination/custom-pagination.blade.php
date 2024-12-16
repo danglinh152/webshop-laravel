@@ -1,9 +1,9 @@
 <ul class="pagination justify-content-center d-flex">
     <li class="page-item">
         @if ($paginator->onFirstPage())
-        <span class="disabled">« Previous</span>
+        <span class="disabled">«</span>
         @else
-        <a href="{{ $paginator->previousPageUrl() }}">« Previous</a>
+        <a href="{{ $paginator->previousPageUrl() }}">«</a>
         @endif
     </li>
 
@@ -43,9 +43,9 @@
 
     <li class="page-item">
         @if ($paginator->hasMorePages())
-        <a href="{{ $paginator->nextPageUrl() }}">Next »</a>
+        <a href="{{ $paginator->nextPageUrl() }}">»</a>
         @else
-        <span class="disabled">Next »</span>
+        <span class="disabled">»</span>
         @endif
     </li>
 </ul>
@@ -68,7 +68,7 @@
     }
 
     .pagination .current {
-        background-color: #007bff;
+        background-color: #1419be;
         color: white;
     }
 

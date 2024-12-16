@@ -132,4 +132,5 @@ class ProductController extends Controller
         Session::put('message', 'Đã ẩn sản phẩm');
         return Redirect::to('admin/product');
     }
+    
 }

@@ -29,27 +29,28 @@
                         <p class="mb-3">{{ $product->product_fact }}</p>
                         <h5 class="fw-bold mb-2">{{ number_format($product->product_price, 0, ',', '.') }} đ</h5>
                         <p class="mb-4">Short detail: {{ $product->product_short_desc }}</p>
-                        <div class="input-group quantity mb-5" style="width: 100px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                    <i class="fa fa-minus"></i>
-                                </button>
+
+                        <form action="{{ URL::to('/product/add-to-card/'.$product->product_id) }}" method="post">
+                            {{ csrf_field() }}
+                            <div class="input-group quantity mb-5" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" id="quantity" name="quantity" class="form-control form-control-sm text-center border-0" value="1">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <form action="{{URL::to('/product/add-to-card/'.$product->product_id)}}" method="post">
-                            {{csrf_field()}}
-                            <input type="hidden" name="quantity" id="quantity" value="1">
-                            <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+                            <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" onclick="addToCart('{{ $product->product_id }}', event)">
                                 <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                             </button>
                         </form>
                     </div>
+
 
                     <div class="col-lg-12">
                         <nav>
@@ -133,6 +134,57 @@
     const ratingInput = document.getElementById('rating-input');
     const submitBtn = document.getElementById('submit-btn');
     const commentTextarea = document.getElementById('comment');
+
+    const addToCart = function(product_id, event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var quantity = document.getElementById("quantity").value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "{{ URL::to('/product/add-to-cart/') }}/" + product_id + "/" + quantity, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Include CSRF token
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Handle success response
+                    showSuccessMessage('Added to cart successfully!');
+                } else {
+                    console.error('Error updating quantity:', xhr.statusText);
+                }
+            }
+        };
+
+        xhr.send(); // Sending the request without additional data
+    };
+
+    function showSuccessMessage(message) {
+        // Create a div for the success message
+        var messageDiv = document.createElement('div');
+        messageDiv.textContent = message;
+        messageDiv.style.position = 'fixed';
+        messageDiv.style.top = '100px';
+        messageDiv.style.right = '20px';
+        messageDiv.style.backgroundColor = '#28a745'; // Green background
+        messageDiv.style.color = '#fff'; // White text
+        messageDiv.style.padding = '10px 20px';
+        messageDiv.style.borderRadius = '5px';
+        messageDiv.style.zIndex = '1000';
+        messageDiv.style.transition = 'opacity 0.5s ease-in-out';
+        messageDiv.style.opacity = '1';
+
+        // Append to body
+        document.body.appendChild(messageDiv);
+
+        // Fade out after 3 seconds
+        setTimeout(function() {
+            messageDiv.style.opacity = '0';
+            setTimeout(function() {
+                document.body.removeChild(messageDiv);
+            }, 500); // Remove after fade out
+        }, 3000);
+    }
 
     let selectedRating = 0;
 

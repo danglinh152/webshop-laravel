@@ -123,22 +123,22 @@ class OnlineCheckoutController extends Controller
     //     }
     // }
 
-    public function getSuccessPage(Request $request)
-    {
-        $message = $request->query('message');
+    // public function getSuccessPage(Request $request)
+    // {
+    //     $message = $request->query('message');
 
-        if (strpos($message, 'rejected') !== false) {
-            return view('client.cart.error');
-        } else {
-            $orderController = new OrderController();
-            $orderRequest = new Request([
-            'total' => $request->input('total'),
-            'receiverPhone' => $request->input('receiverPhone'),
-            'receiverAddress' => $request->input('receiverAddress'),
-            'receiverNote' => $request->input('receiverNote'),
-            ]);
-            $orderController->save_order($orderRequest);
-            return view('client.cart.success');
-        }
-    }
+    //     if (strpos($message, 'rejected') !== false) {
+    //         return view('client.cart.error');
+    //     } else {
+    //         $orderController = new OrderController();
+    //         $orderRequest = new Request([
+    //         'total' => $request->input('total'),
+    //         'receiverPhone' => $request->input('receiverPhone'),
+    //         'receiverAddress' => $request->input('receiverAddress'),
+    //         'receiverNote' => $request->input('receiverNote'),
+    //         ]);
+    //         $orderController->save_order($orderRequest);
+    //         return view('client.cart.success');
+    //     }
+    // }
 }

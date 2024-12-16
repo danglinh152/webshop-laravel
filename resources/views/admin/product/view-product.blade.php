@@ -27,7 +27,6 @@
                     <p class="text-base font-medium text-gray-800">Price:
                         {{number_format($view_pro->product_price, 0, decimal_separator: '', thousands_separator: ',')}} đ
                     </p>
-                    <p class="text-base font-medium text-gray-800 mr-24">Quantity: {{$view_pro->product_quantity}}</p>
                 </div>
                 <div class="px-4 flex justify-end mt-7">
                     <a href="{{URL::to('/admin/product/edit-product/'.$view_pro->product_id)}}" type="submit" class="rounded-md bg-yellow-300 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
