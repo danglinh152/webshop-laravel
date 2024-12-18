@@ -98,7 +98,7 @@
                         @if (!$all_review->isEmpty())
                         @foreach ($all_review as $review)
                         <div class="container mt-3">
-                            <p class="m-0 fs-5" style="max-width: 840px;">{{ $review->comment }}</p>
+                            <p class="m-0 fs-5" style="max-width: 840px;">{{$review->user_first_name}} {{ $review->user_last_name }}</p>
                             <div class="rating-block d-flex">
                                 @for ($i = 1; $i <= 5; $i++)
                                     <div class="position-relative">
@@ -113,8 +113,8 @@
                             </div>
                             @endfor
                         </div>
-                        <p class="m-0 fw-bold" style="max-width: 840px; font-size: 11px;"> User Id: {{ $review->user_id }}</p>
-                        <span class="mt-1 text-muted small">{{ $review->updated_at }}</span>
+                        <span class="mt-1 text-muted" style="font-size:0.8em">{{ $review->updated_at }}</span>
+                        <p class="m-0 text-dark">{{ $review->comment }}</p>
                     </div>
                     @endforeach
                     @endif
@@ -218,14 +218,16 @@
                     if (data.success) {
                         // Update UI with the new comment
                         const newComment = `
-                    <div class="container mt-3">
-                        <p class="m-0 fs-5" style="max-width: 840px;">${data.comment}</p>
-                        <div class="m-0 rating-block d-flex">
-                            ${generateStars(data.rating)}
-                        </div>
-                        <p class="m-0 fw-bold" style="max-width: 840px; font-size: 11px;"> User Id: ${data.user_id}</p>
-                        <span class="mt-1 text-muted small">${data.updated_at}</span>
-                    </div>`;
+                            <div class="container mt-3">
+                                <p class="m-0 fs-5" style="max-width: 840px;">{{$review->user_first_name}} {{ $review->user_last_name }}</p>
+                                <div class="m-0 rating-block d-flex">
+                                    ${generateStars(data.rating)}
+                                </div>
+                                <p class="m-0 fw-bold" style="max-width: 840px; font-size: 11px;"> User Id: ${data.user_id}</p>
+                                <span class="mt-1 text-muted small">${data.updated_at}</span>
+                            </div>
+                            <span class="mt-1 text-muted" style="font-size:0.8em">{{ $review->updated_at }}</span>
+                            <p class="m-0 text-dark">{{ $review->comment }}</p>`;
                         document.querySelector('#comment-block').insertAdjacentHTML('beforeend', newComment);
                         commentTextarea.value = ""; // Clear the textarea
                         selectedRating = 0; // Reset rating

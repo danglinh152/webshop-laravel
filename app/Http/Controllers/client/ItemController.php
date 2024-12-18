@@ -13,10 +13,13 @@ class ItemController extends Controller
 {
     public function productDetailPage($product_id)
     {
-        $get_product = DB::table('product')->where('product_id', $product_id)->where('status', 'show')->get();
-        $all_review = DB::table('review')->where('product_id', $product_id)->get();
+        $reviewController = new ReviewController();
+        $all_review = $reviewController->view_review($product_id);
         Session::put('product_id', $product_id);
-        return view('client.product.detail')->with('get_product', $get_product)->with('all_review', $all_review);
+        $get_product = DB::table('product')->where('product_id', $product_id)->where('status', 'show')->get();
+        return view('client.product.detail')
+        ->with('get_product', $get_product)
+        ->with('all_review', $all_review);
     }
     public function getHomePage()
     {

@@ -42,7 +42,8 @@ Route::post('/client/update-user', 'App\Http\Controllers\client\UserController@u
 Route::post('/client/update-password', 'App\Http\Controllers\client\UserController@updatePassword');
 Route::post('/client/update-password', [UserController::class, 'updatePassword']);
 
-Route::get('/order-history', 'App\Http\Controllers\client\HomeController@getOrderHistoryPage');
+Route::get('/order-history', 'App\Http\Controllers\client\OrderController@getOrderHistoryPage');
+Route::post('/order/cancel/{order_id}', 'App\Http\Controllers\client\OrderController@CancelOrder');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
 Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');

@@ -58,7 +58,20 @@ class ReviewController extends Controller
 
     public function view_review($product_id)
     {
-        $all_review = DB::table(table: 'review')->join('users', 'users.user_id', '=', 'review.user_id')->where('product_id', $product_id)->get();
-        return view('client.product.detail')->with('all_review', $all_review);
+        $all_review = DB::table('review')
+        ->join('users', 'users.user_id', '=', 'review.user_id')
+        ->where('review.product_id', $product_id)
+        ->select(
+            'review.review_id',
+            'review.rating',
+            'review.comment',
+            'review.updated_at',
+            'users.user_id',
+            'users.user_first_name',
+            'users.user_last_name',
+            'users.user_image'
+        )
+        ->get();
+        return $all_review;
     }
 }
