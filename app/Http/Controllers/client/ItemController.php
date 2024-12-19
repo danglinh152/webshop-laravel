@@ -28,7 +28,7 @@ class ItemController extends Controller
         if ($user_id) {
             $cart = DB::table('cart')->where('user_id', $user_id)->first();
             if ($cart) {
-                $cartCount = DB::table('cart_detail')->where('cart_id', $cart->cart_id)->count();
+                $cartCount = DB::table('cart_detail')->where('cart_id', $cart->cart_id)->where('quantity', '>', 0)->count();
             }
         }
         Session::put('cartCount', $cartCount);

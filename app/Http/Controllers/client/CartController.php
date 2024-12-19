@@ -100,7 +100,7 @@ class CartController extends Controller
                     $data['product_id'] = $product_id;
                     $data['quantity'] = 1;
                     DB::table('cart_detail')->insert($data);
-                    $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->count();
+                    $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->where('quantity', '>', 0)->count();
                     Session::put('cartCount', $cartCount);
                     return Redirect::to('/cart');
                 }
@@ -149,7 +149,7 @@ class CartController extends Controller
                 }
 
                 // Update the cart count in the session
-                $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->count();
+                $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->where('quantity', '>', 0)->count();
                 Session::put('cartCount', $cartCount);
                 return Redirect::to('/cart');
             } else {

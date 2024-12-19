@@ -302,6 +302,8 @@
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Handle success response
+                    const cart = document.getElementById('cart');
+                    cart.innerHTML = `<i class="fa-solid fa-exclamation"></i>`;
                     showSuccessMessage('Added to cart successfully!');
                 } else {
                     console.error('Error updating quantity:', xhr.statusText);

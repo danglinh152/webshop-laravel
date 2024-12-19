@@ -118,7 +118,7 @@
                     </div>
                     @endforeach
                     @else
-                    <p>No reviews yet.</p>
+                    <p id="noreview">No reviews yet.</p>
                     @endif
                 </div>
 
@@ -152,6 +152,8 @@
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Handle success response
+                    const cart = document.getElementById('cart');
+                    cart.innerHTML = `<i class="fa-solid fa-exclamation"></i>`;
                     showSuccessMessage('Added to cart successfully!');
                 } else {
                     console.error('Error updating quantity:', xhr.statusText);
@@ -219,9 +221,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        console.log(data);
-
                         // Update UI with the new comment
+                        const noReview = document.getElementById('noreview');
+                        noReview.innerHTML = "";
                         const newComment = `
                             <div class="container mt-3">
                                 <p class="m-0 fs-5" style="max-width: 840px;">Bình luận nóng hổi 🔥🔥</p>
