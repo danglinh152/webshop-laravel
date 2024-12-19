@@ -31,17 +31,21 @@ class CartController extends Controller
     {
         $user_id = Session::get('user_id');
         $user = DB::table('users')->where('user_id', $user_id)->first();
-        $rank_number = 0;
-        if($user->ranking == 'SILVER'){
-            $rank_number = 1;
-        } elseif($user->ranking == 'GOLD'){
-            $rank_number = 2;
-        } elseif($user->ranking == "DIAMOND"){
-            $rank_number = 3;
+        if ($user) {
+            $rank_number = 0;
+            if ($user->ranking == 'SILVER') {
+                $rank_number = 1;
+            } elseif ($user->ranking == 'GOLD') {
+                $rank_number = 2;
+            } elseif ($user->ranking == "DIAMOND") {
+                $rank_number = 3;
+            }
+            $voucher = DB::table('voucher')->where('quantity', '>', 0)->where('rank', '<=', $rank_number)->get();
+            $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->where('quantity', '>', 0)->get();
+            return view('client.cart.show')->with('cart', $cart_detail)->with('voucher', $voucher);
+        } else {
+            return view('admin.auth.login');
         }
-        $voucher = DB::table('voucher')->where('quantity', '>', 0)->where('rank', '<=' ,$rank_number)->get();
-        $cart_detail = DB::table('cart_detail')->join('product', 'product.product_id', '=', 'cart_detail.product_id')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->where('quantity', '>', 0)->get();
-        return view('client.cart.show')->with('cart', $cart_detail)->with('voucher', $voucher);
     }
     public function getCheckoutPage(Request $request)
     {
@@ -120,33 +124,47 @@ class CartController extends Controller
     public function addToCartInDetail(Request $request, $product_id, $quantityParam)
     {
         $user_id = Session::get('user_id');
+
         if ($user_id) {
             $user_cart = DB::table('cart')->where('user_id', $user_id)->first();
-            // $quantity = DB::table('cart_detail')->join('cart', 'cart.cart_id', '=', 'cart_detail.cart_id')->where('user_id', $user_id)->count('product_id');
+
             if ($user_cart) {
-                $product = DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->first();
+                // Check if the product is already in the cart
+                $product = DB::table('cart_detail')->where('product_id', $product_id)
+                    ->where('cart_id', $user_cart->cart_id)
+                    ->first();
+
                 if ($product) {
+                    // Update quantity if the product is already in the cart
                     $quantity = $product->quantity + $quantityParam;
-                    DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->update(['quantity' => $quantity]);
-                    return Redirect::to('/cart');
+                    DB::table('cart_detail')->where('product_id', $product_id)
+                        ->where('cart_id', $user_cart->cart_id)
+                        ->update(['quantity' => $quantity]);
                 } else {
+                    // Insert the new product with the specified quantity
                     $data['cart_id'] = $user_cart->cart_id;
                     $data['product_id'] = $product_id;
-                    $data['quantity'] = 1;
+                    $data['quantity'] = $quantityParam; // Use the quantity from the request
                     DB::table('cart_detail')->insert($data);
-                    $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->count();
-                    Session::put('cartCount', $cartCount);
-                    return Redirect::to('/cart');
                 }
+
+                // Update the cart count in the session
+                $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->count();
+                Session::put('cartCount', $cartCount);
+                return Redirect::to('/cart');
             } else {
+                // Create a new cart if it doesn't exist
                 $data1['user_id'] = $user_id;
                 DB::table('cart')->insert($data1);
                 $cart_id = DB::table('cart')->where('user_id', $user_id)->first();
+
+                // Insert the product with the specified quantity
                 $data['cart_id'] = $cart_id->cart_id;
                 $data['product_id'] = $product_id;
-                $data['quantity'] = 1;
+                $data['quantity'] = $quantityParam; // Use the quantity from the request
                 DB::table('cart_detail')->insert($data);
-                Session::put('cartCount', 1);
+
+                Session::put('cartCount', 1); // Set initial cart count
                 return Redirect::to('/cart');
             }
         } else {
@@ -154,6 +172,7 @@ class CartController extends Controller
             return Redirect::to('/login');
         }
     }
+
 
     public function deleteCart($product_id)
     {

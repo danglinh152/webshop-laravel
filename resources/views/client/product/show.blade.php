@@ -101,7 +101,7 @@
                                                     class="card-img-top card-image">
                                                 <div class="card-body text-center ">
                                                     <a href="{{ URL::to('/product/' . $pro->product_id) }}"
-                                                        class="item-name">{{ $pro->product_name }}</a>
+                                                        class="item-name text-wrap">{{ $pro->product_name }}</a>
                                                     <p class="item-desc">{{ $pro->product_short_desc }}</p>
                                                     <p class="item-price">
                                                         {{ number_format($pro->product_price, 0, '.', '.') }}
