@@ -10,7 +10,7 @@
                 <h1 class="mb-5 display-3 text-primary">Hàng cao cấp giá tốt</h1>
             </div>
             <div class="col-md-12 col-lg-5 mt-5">
-                <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
+                <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel" data-bs-interval="1500">
                     <div class="carousel-inner mt-5" role="listbox">
                         <div class="carousel-item active rounded">
                             <img src="{{ asset('public/frontend/client/img/laptop1.jpg') }}" style="object-fit: cover;"
@@ -22,7 +22,7 @@
                         </div>
                         <div class="carousel-item rounded">
                             <img src="{{ asset('public/frontend/client/img/laptop3.jpg') }}"
-                                class="img-fluid w-100 h-100 rounded" alt="Second slide">
+                                class="img-fluid w-100 h-100 rounded" alt="Third slide">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
@@ -37,6 +37,7 @@
                     </button>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
