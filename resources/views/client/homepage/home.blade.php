@@ -7,7 +7,7 @@
         <div class="row g-5 align-items-center">
             <div class="col-md-12 col-lg-7 ">
                 <h4 class="mb-3 text-secondary mt-5">100% Sản Phẩm Chính Hãng</h4>
-                <h1 class="mb-5 display-3 text-primary">Hàng cao cấp giá tốt</h1>
+                <h1 class="mb-5 display-3 text-primary">Hàng Cao Cấp Giá Tốt</h1>
             </div>
             <div class="col-md-12 col-lg-5 mt-5">
                 <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel" data-bs-interval="1500">
