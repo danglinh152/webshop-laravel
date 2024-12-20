@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10PM Dashboard</title>
+    <link rel="icon" type="image/png" href="{{ asset('public/frontend/client/img/favicon.png') }}">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('public/frontend/admin/css/tailwind.output.css') }}" />
@@ -193,8 +195,8 @@
                         ?>
                         <div class="profile-block flex items-center gap-2">
                             <p class="text-black font-bold"> Welcome back, <?php if ($admin_name) {
-                                echo $admin_name;
-                            } ?> </p>
+                                                                                echo $admin_name;
+                                                                            } ?> </p>
                             <li class="relative">
                                 <button
                                     class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
@@ -203,12 +205,12 @@
 
 
                                     @if ($avatar)
-                                        <img class="object-cover w-8 h-8 rounded-full" src="{{ $avatar }}"
-                                            alt="" aria-hidden="true" />
+                                    <img class="object-cover w-8 h-8 rounded-full" src="{{ $avatar }}"
+                                        alt="" aria-hidden="true" />
                                     @else
-                                        <img class="object-cover w-8 h-8 rounded-full"
-                                            src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                                            alt="" aria-hidden="true" />
+                                    <img class="object-cover w-8 h-8 rounded-full"
+                                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                        alt="" aria-hidden="true" />
                                     @endif
 
 

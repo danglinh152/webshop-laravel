@@ -186,7 +186,7 @@
                             class="card-img-top card-image">
                     </a>
                     <div class="card-body text-center">
-                        <a href="{{ URL::to('/product/' . $as->product_id) }}" class="item-name">{{ $as->product_name }}</a>
+                        <a href="{{ URL::to('/product/' . $as->product_id) }}" class="item-name text-wrap">{{ $as->product_name }}</a>
                         <p class="item-desc">{{ $as->product_short_desc }}</p>
                         <p class="item-price">{{ number_format($as->product_price, 0, '.', '.') }} đ</p>
                         <button type="button" class="mx-auto btn border rounded-pill px-3 text-primary"
@@ -216,7 +216,7 @@
                             class="card-img-top card-image">
                     </a>
                     <div class="card-body text-center">
-                        <a href="{{ URL::to('/product/' . $ac->product_id) }}" class="item-name">{{ $ac->product_name }}</a>
+                        <a href="{{ URL::to('/product/' . $ac->product_id) }}" class="item-name text-wrap">{{ $ac->product_name }}</a>
                         <p class="item-desc">{{ $ac->product_short_desc }}</p>
                         <p class="item-price">{{ number_format($ac->product_price, 0, '.', '.') }} đ</p>
                         <button type="button" class="mx-auto btn border rounded-pill px-3 text-primary"

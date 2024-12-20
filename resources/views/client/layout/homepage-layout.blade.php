@@ -9,6 +9,9 @@
     <meta content="" name="description">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('public/frontend/client/img/favicon.png') }}">
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,14 +223,14 @@ else $ranking = 'Hạng Kim Cương';
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Shop Info</h4>
-                        <a class="text-dark" href="#">About Us</a>
+                        <a class="text-dark" href="{{ URL::to('/contact') }}">About Us</a>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Account</h4>
-                        <a class="text-dark" href="#">My Account</a>
+                        <a class="text-dark" href="{{ URL::to('/information') }}">My Account</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
