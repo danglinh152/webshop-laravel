@@ -89,7 +89,15 @@ class OrderController extends Controller
         // Store the order info in the session
         Session::put('order_info', $order_info);
         Session::put('message', 'Đặt đơn hàng thành công.');
-
+        $cartCount = 0;
+        $user_id = Session::get('user_id');
+        if ($user_id) {
+            $cart = DB::table('cart')->where('user_id', $user_id)->first();
+            if ($cart) {
+                $cartCount = DB::table('cart_detail')->where('cart_id', $cart->cart_id)->where('quantity', '>', 0)->count();
+            }
+        }
+        Session::put('cartCount', $cartCount);
         return null;
     }
 
@@ -134,17 +142,16 @@ class OrderController extends Controller
             ->where('order_id', $order_id)
             ->where('status', '!=', 'Cancelled')
             ->update(['status' => 'Cancelled']);
-            if ($result) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Đơn hàng đã được hủy thành công!',
-                ]);
-            }
-
+        if ($result) {
             return response()->json([
-                'success' => false,
-                'message' => 'Không thể hủy đơn hàng hoặc đơn hàng đã bị hủy trước đó.',
-            ], 400);
-    }
+                'success' => true,
+                'message' => 'Đơn hàng đã được hủy thành công!',
+            ]);
+        }
 
+        return response()->json([
+            'success' => false,
+            'message' => 'Không thể hủy đơn hàng hoặc đơn hàng đã bị hủy trước đó.',
+        ], 400);
+    }
 }
