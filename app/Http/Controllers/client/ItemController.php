@@ -18,8 +18,8 @@ class ItemController extends Controller
         Session::put('product_id', $product_id);
         $get_product = DB::table('product')->where('product_id', $product_id)->where('status', 'show')->get();
         return view('client.product.detail')
-        ->with('get_product', $get_product)
-        ->with('all_review', $all_review);
+            ->with('get_product', $get_product)
+            ->with('all_review', $all_review);
     }
     public function getHomePage()
     {
@@ -46,6 +46,9 @@ class ItemController extends Controller
         $targets = $request->input('target', []);
         $prices = $request->input('price', []);
         $sort = $request->input('radio-sort', 'gia-nothing');
+
+        $productName = $request->input('product-name');
+
         $query = DB::table('product');
 
         // Áp dụng bộ lọc cho factories
@@ -56,6 +59,10 @@ class ItemController extends Controller
         // Áp dụng bộ lọc cho targets
         if (!empty($targets)) {
             $query->whereIn('product_target', $targets);
+        }
+
+        if (!empty($productName)) {
+            $query->where('product_name', 'LIKE', '%' . $productName . '%');
         }
 
         // Áp dụng bộ lọc cho prices
