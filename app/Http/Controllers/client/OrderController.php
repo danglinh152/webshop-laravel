@@ -132,7 +132,7 @@ class OrderController extends Controller
             ->orderBy('order.order_id', 'asc')
             ->get();
         $groupedOrders = $orders->groupBy('order_id');
-        return view('client.homepage.order-history')->with('groupedOrders', $groupedOrders);
+        return view('client.order.order-history')->with('groupedOrders', $groupedOrders);
     }
 
     public function CancelOrder($order_id)
