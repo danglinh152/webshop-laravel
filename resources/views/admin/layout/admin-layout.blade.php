@@ -5,19 +5,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>10PM Dashboard</title>
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('public/frontend/client/img/favicon.png') }}">
-
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ asset('public/frontend/admin/css/tailwind.output.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/frontend/admin/css/tailwind.output.css') }}">
+     <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('public/frontend/admin/js/init-alpine.js') }}"></script>
+    <!-- Chart.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Custom Scripts -->
     <script src="{{ asset('public/frontend/admin/js/charts-lines.js') }}" defer></script>
     <script src="{{ asset('public/frontend/admin/js/add-products.js') }}" defer></script>
     <script src="{{ asset('public/frontend/admin/js/charts-pie.js') }}" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Bootstrap -->
+    <link href="{{ asset('public/frontend/client/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <!-- Custom Styles -->
+    <link href="{{ asset('public/frontend/client/css/style.css') }}" rel="stylesheet">
+
+
+    <style>
+        dialog {
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
@@ -205,7 +232,7 @@
 
 
                                     @if ($avatar)
-                                    <img class="object-cover w-8 h-8 rounded-full" src="{{ $avatar }}"
+                                    <img id="layout-avatar" class="object-cover w-8 h-8 rounded-full" id="homepage-avatar" src="{{ $avatar }}"
                                         alt="" aria-hidden="true" />
                                     @else
                                     <img class="object-cover w-8 h-8 rounded-full"
@@ -226,7 +253,7 @@
                                         aria-label="submenu">
                                         <li class="flex">
                                             <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                                href="#">
+                                                href="{{URL::to('/admin/information')}}">
                                                 <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none"
                                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -272,6 +299,7 @@
                 </div>
             </header>
             @yield('dashboard-main')
+            @yield('information')
             @yield('show-product')
             @yield('add-product')
             @yield('view-product')
@@ -370,6 +398,11 @@
                     childActive.classList.remove("hidden");
                 });
             });
+        });
+
+        window.addEventListener('avatar-updated', function (e) {
+            const newAvatar = e.detail;
+            document.getElementById("layout-avatar").src = newAvatar;
         });
     </script>
 </body>

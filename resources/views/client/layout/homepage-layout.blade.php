@@ -125,7 +125,7 @@ else $ranking = 'Hạng Kim Cương';
                                 aria-expanded="false">
                                 <!-- <i class="fas fa-user fa-2x"></i> -->
                                 @if ($avatar)
-                                <img class="" src="{{ $avatar }}" alt="" aria-hidden="true"
+                                <img id="homepage-avatar" src="{{ $avatar }}" alt="" aria-hidden="true"
                                     style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
                                 @else
                                 <img class=""
@@ -158,7 +158,7 @@ else $ranking = 'Hạng Kim Cương';
                                     </div>
                                 </li>
 
-                                <li><a class="dropdown-item" href="{{ URL::to('/information') }}">Quản lý tài
+                                <li><a class="dropdown-item" href="{{ URL::to('/client/information') }}">Quản lý tài
                                         khoản</a></li>
                                 <li><a class="dropdown-item" href="{{ URL::to('/order-history') }}">Lịch sử mua hàng</a></li>
                                 <li>
@@ -230,7 +230,7 @@ else $ranking = 'Hạng Kim Cương';
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Account</h4>
-                        <a class="text-dark" href="{{ URL::to('/information') }}">My Account</a>
+                        <a class="text-dark" href="{{ URL::to('/client/information') }}">My Account</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -299,6 +299,11 @@ else $ranking = 'Hạng Kim Cương';
             if (dialog) {
                 dialog.close();
             }
+        });
+
+        window.addEventListener('avatar-updated', function (e) {
+            const newAvatar = e.detail;
+            document.getElementById("homepage-avatar").src = newAvatar;
         });
     </script>
 

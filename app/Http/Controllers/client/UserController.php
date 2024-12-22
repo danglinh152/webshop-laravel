@@ -71,8 +71,6 @@ class UserController extends Controller
         Session::put('user_name', null);
         return Redirect::to('/login');
     }
-    
-
     public function updateUser(Request $request)
     {
         $user_id = Session::get('user_id');
@@ -90,11 +88,11 @@ class UserController extends Controller
         }
         $check = DB::table('users')->where('user_id', $user_id)->update($data);
         if ($check) {
+            Session::put('image', asset('public/backend/users-images/' . $data['user_image']));
             return response()->json(['success' => true, 'message' => 'Cập nhật thông tin thành công!']);
         } else {
             return response()->json(['success' => false, 'message' => 'Cập nhật thông tin thất bại!']);
         }
-     
     }
 
     public function updatePassword(Request $request)
