@@ -25,7 +25,7 @@
                 </div>
                 <div>
                     <p class="mb-2 text-sm font-medium text-gray-600">Total clients</p>
-                    <p class="text-lg font-semibold text-gray-700">6389</p>
+                    <p class="text-lg font-semibold text-gray-700">{{$user_count}}</p>
                 </div>
             </div>
 
@@ -37,8 +37,8 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="mb-2 text-sm font-medium text-gray-600">Account balance</p>
-                    <p class="text-lg font-semibold text-gray-700">$46,760.89</p>
+                    <p class="mb-2 text-sm font-medium text-gray-600">Revenue</p>
+                    <p class="text-lg font-semibold text-gray-700">{{ number_format($revenue, 0, decimal_separator: '', thousands_separator: ',') }} đ</p>
                 </div>
             </div>
 
@@ -50,8 +50,8 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="mb-2 text-sm font-medium text-gray-600">New sales</p>
-                    <p class="text-lg font-semibold text-gray-700">376</p>
+                    <p class="mb-2 text-sm font-medium text-gray-600">Orders Sold</p>
+                    <p class="text-lg font-semibold text-gray-700">{{$sale}}</p>
                 </div>
             </div>
 
@@ -63,8 +63,8 @@
                     </svg>
                 </div>
                 <div>
-                    <p class="mb-2 text-sm font-medium text-gray-600">Pending contacts</p>
-                    <p class="text-lg font-semibold text-gray-700">35</p>
+                    <p class="mb-2 text-sm font-medium text-gray-600">Completed Orders</p>
+                    <p class="text-lg font-semibold text-gray-700">{{$completed}}</p>
                 </div>
             </div>
         </div>

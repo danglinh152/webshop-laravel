@@ -45,7 +45,7 @@
                  <div class="sm:col-span-3 mt-4">
                         <label class="block text-base font-medium leading-6 text-gray-500">Quantity</label>
                         <div class="mt-2">
-                            <input type="number" name="product_quantity"
+                            <input type="number" name="product_quantity" value = "{{$edit_pro->product_quantity}}"
                                 class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
                         </div>
                     </div>
@@ -54,8 +54,8 @@
                     <div class="mt-2">
                         <select onchange="updateFactoryOptions()" id="category" name="product_cate"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option value="phone" {{$edit_pro->product_fact == 'phone' ? 'selected' : ''}}>Smart Phone</option>
-                            <option value="laptop" {{$edit_pro->product_fact == 'laptop' ? 'selected' : ''}}>Laptop</option>
+                            <option value="phone" {{$edit_pro->category_id == 3 ? 'selected' : ''}}>Smart Phone</option>
+                            <option value="laptop" {{$edit_pro->category_id == 2 ? 'selected' : ''}}>Laptop</option>
                         </select>
                     </div>
                 </div>
@@ -65,8 +65,15 @@
                     <div class="mt-2">
                         <select id="factory" name="product_fact"
                             class="font-medium mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option value="">{{$edit_pro-> product_fact}}</option>
-                            
+                            <option value="Dell" {{$edit_pro->product_fact =="Dell" ? 'selected' : ''}}>Dell</option>
+                            <option value="Acer" {{$edit_pro->product_fact =="Acer" ? 'selected' : ''}}>Acer</option>
+                            <option value="Macbook" {{$edit_pro->product_fact =="Macbook" ? 'selected' : ''}}>Macbook</option>
+                            <option value="Asus" {{$edit_pro->product_fact =="Asus" ? 'selected' : ''}}>Asus</option>
+                            <option value="Lenovo" {{$edit_pro->product_fact =="Lenovo" ? 'selected' : ''}}>Lenovo</option>
+                            <option value="Msi" {{$edit_pro->product_fact =="Msi" ? 'selected' : ''}}>Msi</option>
+                            <option value="HP" {{$edit_pro->product_fact =="HP" ? 'selected' : ''}}>HP</option>
+                            <option value="Gigabyte" {{$edit_pro->product_fact =="Gigabyte" ? 'selected' : ''}}>Gigabyte</option>
+                            <option value="LG" {{$edit_pro->product_fact =="LG" ? 'selected' : ''}}>LG</option>
                         </select>
                     </div>
                 </div>

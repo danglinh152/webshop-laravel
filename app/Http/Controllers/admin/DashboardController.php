@@ -22,8 +22,19 @@ class DashboardController extends Controller
 
     public function showDashboard()
     {
-        return view('admin.dashboard.dashboard');
+        $revenue = DB::table('order')->sum('payment_cost');
+        $user_count = DB::table('users')->count();
+        $sale = DB::table('order')->count();
+        $completed = DB::table('order')->where('status', 'Completed')->count();
+
+        return view('admin.dashboard.dashboard', [
+                        'revenue' => $revenue,
+                        'user_count' => $user_count,
+                        'sale' => $sale,
+                        'completed' => $completed,
+                    ]);
     }
+
 
     // public function dashboard(Request $request)
     // {
