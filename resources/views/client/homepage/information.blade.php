@@ -60,7 +60,7 @@
                                         <h6 style="font-weight:600">{{$user->spending_score}} điểm</h6>
                                     </div>
                                     @else
-                                    <div class="" style="display:none">
+                                    <div class="" >
                                         <img style="width:52px; height:52px"
                                             src="{{ asset('public/frontend/client/img/gold-medal.png') }}" alt="">
                                     </div>
