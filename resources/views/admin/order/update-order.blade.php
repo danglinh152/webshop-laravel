@@ -59,7 +59,8 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                 <option value="Pending" {{ $get_order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                 <option value="Shipping" {{ $get_order->status == 'Shipping' ? 'selected' : '' }}>Shipping</option>
-                                <option value="Complete" {{ $get_order->status == 'Complete' ? 'selected' : '' }}>Complete</option>
+                                <option value="Completed" {{ $get_order->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="Cancelled" {{ $get_order->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                             </select>
                         </div>
                     </div>

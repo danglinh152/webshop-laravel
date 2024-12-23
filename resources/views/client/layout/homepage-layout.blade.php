@@ -9,6 +9,9 @@
     <meta content="" name="description">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('public/frontend/client/img/favicon.png') }}">
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,11 +56,10 @@ $spending_score = Session::get('spending_score');
 $user_id = session('user_id');
 $avatar = session('image');
 $ranking = '';
-if($rank == 'COPPER'){
+if ($rank == 'COPPER') {
     $ranking = 'Hạng Đồng';
-}
-elseif($rank == 'SILVER') $ranking = 'Hạng bạc';
-elseif($rank == 'GOLD') $ranking = 'Hạng Vàng';
+} elseif ($rank == 'SILVER') $ranking = 'Hạng bạc';
+elseif ($rank == 'GOLD') $ranking = 'Hạng Vàng';
 else $ranking = 'Hạng Kim Cương';
 
 ?>
@@ -65,20 +67,20 @@ else $ranking = 'Hạng Kim Cương';
 <body>
 
     <?php if ($message): ?>
-    <dialog id="forget-password-dialog">
-        <h2>Welcome Back to 10pm Store!</h2>
-        <p><?php echo $message; ?></p>
-        <button id="close-dialog">Close</button>
-    </dialog>
-    <?php Session::put('message', null); ?>
+        <dialog id="forget-password-dialog">
+            <h2>Welcome Back to 10pm Store!</h2>
+            <p><?php echo $message; ?></p>
+            <button id="close-dialog">Close</button>
+        </dialog>
+        <?php Session::put('message', null); ?>
     <?php endif; ?>
 
     <?php if ($message_review): ?>
-    <dialog id="review-dialog">
-        <p><?php echo $message_review; ?></p>
-        <button id="close-dialog">Close</button>
-    </dialog>
-    <?php Session::put('message_review', null); ?>
+        <dialog id="review-dialog">
+            <p><?php echo $message_review; ?></p>
+            <button id="close-dialog">Close</button>
+        </dialog>
+        <?php Session::put('message_review', null); ?>
     <?php endif; ?>
 
     <!-- Spinner  -->
@@ -110,69 +112,68 @@ else $ranking = 'Hạng Kim Cương';
                         <a href="{{ URL::to('/cart') }}" class="position-relative me-4 my-auto">
                             <i class="fa fa-shopping-bag fa-2x"></i>
                             <span
-                                class="position-absolute bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
-                                {!! Session::get('cartCount') !== null ? '<i class="fa-solid fa-exclamation"></i>' : 0 !!}
+                                class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;"
+                                id="cart">
+                                {{Session::get('cartCount') ?? 0}}
                             </span>
-
-  
                         </a>
                         @if (Session::has('user_name'))
-                            <div class="dropdown my-auto">
-                                <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
-                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <!-- <i class="fas fa-user fa-2x"></i> -->
+                        <div class="dropdown my-auto">
+                            <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <!-- <i class="fas fa-user fa-2x"></i> -->
+                                @if ($avatar)
+                                <img id="homepage-avatar" src="{{ $avatar }}" alt="" aria-hidden="true"
+                                    style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
+                                @else
+                                <img class=""
+                                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                    alt="" aria-hidden="true"
+                                    style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
+                                @endif
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
+                                <li class="d-flex align-items-center flex-column" style="min-width: 250px;">
                                     @if ($avatar)
-                                        <img class="" src="{{ $avatar }}" alt="" aria-hidden="true"
-                                            style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
+                                    <img class="" src="{{ $avatar }}" alt=""
+                                        aria-hidden="true"
+                                        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
                                     @else
-                                        <img class=""
-                                            src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                                            alt="" aria-hidden="true"
-                                            style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%" />
+                                    <img class=""
+                                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                                        alt="" aria-hidden="true"
+                                        style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
                                     @endif
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end p-4" labelledby="dropdownMenuLink">
-                                    <li class="d-flex align-items-center flex-column" style="min-width: 250px;">
-                                        @if ($avatar)
-                                            <img class="" src="{{ $avatar }}" alt=""
-                                                aria-hidden="true"
-                                                style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
-                                        @else
-                                            <img class=""
-                                                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                                                alt="" aria-hidden="true"
-                                                style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%" />
-                                        @endif
 
-                                        <div class="text-dark fw-bold fs-5 my-3">
-                                            {{ Session::get('user_name') }}
-                                        </div>
-                                        <div class="text-dark text-center fw-bold fs-6 my-3">
-                                            <span class="text-danger">Ranking: </span>{{ $ranking }} <i
-                                                class="fa-solid fa-medal"></i>
-                                            <br />
-                                            <span class="text-danger">Spending Score: </span>{{ $spending_score }}
-                                        </div>
-                                    </li>
+                                    <div class="text-dark fw-bold fs-5 my-3">
+                                        {{ Session::get('user_name') }}
+                                    </div>
+                                    <div class="text-dark text-center fw-bold fs-6 my-3">
+                                        <span class="text-danger">Ranking: </span>{{ $ranking }} <i
+                                            class="fa-solid fa-medal"></i>
+                                        <br />
+                                        <span class="text-danger">Spending Score: </span>{{ $spending_score }}
+                                    </div>
+                                </li>
 
-                                    <li><a class="dropdown-item" href="{{ URL::to('/information') }}">Quản lý tài
-                                            khoản</a></li>
-                                    <li><a class="dropdown-item" href="{{ URL::to('/order-history') }}">Lịch sử mua hàng</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <!-- <form action="{{ URL::to('/logout') }}" method="post">
+                                <li><a class="dropdown-item" href="{{ URL::to('/client/information') }}">Quản lý tài
+                                        khoản</a></li>
+                                <li><a class="dropdown-item" href="{{ URL::to('/order-history') }}">Lịch sử mua hàng</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <!-- <form action="{{ URL::to('/logout') }}" method="post">
                                             <button class="dropdown-item" href="#">Đăng xuất</button>
                                         </form> -->
-                                        <a class="dropdown-item" href="{{ URL::to('/logout') }}">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </div>
+                                    <a class="dropdown-item" href="{{ URL::to('/logout') }}">Đăng xuất</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                @elseif(!Session::has('user_name'))
+                    @elseif(!Session::has('user_name'))
                     <div class="navbar-nav mx-auto me-5">
                         <a class="nav-item nav-link active" style="font-weight: 600; font-size: 16px;"
                             href="{{ URL::to('/login') }}">
@@ -222,14 +223,14 @@ else $ranking = 'Hạng Kim Cương';
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Shop Info</h4>
-                        <a class="text-dark" href="#">About Us</a>
+                        <a class="text-dark" href="{{ URL::to('/contact') }}">About Us</a>
 
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="d-flex flex-column text-start footer-item">
                         <h4 class="text-light mb-3">Account</h4>
-                        <a class="text-dark" href="#">My Account</a>
+                        <a class="text-dark" href="{{ URL::to('/client/information') }}">My Account</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -298,6 +299,11 @@ else $ranking = 'Hạng Kim Cương';
             if (dialog) {
                 dialog.close();
             }
+        });
+
+        window.addEventListener('avatar-updated', function (e) {
+            const newAvatar = e.detail;
+            document.getElementById("homepage-avatar").src = newAvatar;
         });
     </script>
 

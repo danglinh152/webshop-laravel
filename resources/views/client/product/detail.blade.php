@@ -1,4 +1,5 @@
 @extends('client.layout.homepage-layout')
+
 @section('productDetail')
 <!-- Single Product Start -->
 <div class="container-fluid py-5 mt-2">
@@ -51,7 +52,6 @@
                         </form>
                     </div>
 
-
                     <div class="col-lg-12">
                         <nav>
                             <div class="nav nav-tabs mb-3">
@@ -98,7 +98,7 @@
                         @if (!$all_review->isEmpty())
                         @foreach ($all_review as $review)
                         <div class="container mt-3">
-                            <p class="m-0 fs-5" style="max-width: 840px;">{{ $review->comment }}</p>
+                            <p class="m-0 fs-5" style="max-width: 840px;">{{ $review->user_first_name }} {{ $review->user_last_name }}</p>
                             <div class="rating-block d-flex">
                                 @for ($i = 1; $i <= 5; $i++)
                                     <div class="position-relative">
@@ -113,12 +113,15 @@
                             </div>
                             @endfor
                         </div>
-                        <p class="m-0 fw-bold" style="max-width: 840px; font-size: 11px;"> User Id: {{ $review->user_id }}</p>
-                        <span class="mt-1 text-muted small">{{ $review->updated_at }}</span>
+                        <span class="mt-1 text-muted" style="font-size:0.8em">{{ $review->updated_at }}</span>
+                        <p class="m-0 text-dark">{{ $review->comment }}</p>
                     </div>
                     @endforeach
+                    @else
+                    <p id="noreview">No reviews yet.</p>
                     @endif
                 </div>
+
                 @empty
                 <div class="col-lg-6">No products found.</div>
                 @endforelse
@@ -149,6 +152,8 @@
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     // Handle success response
+                    const cart = document.getElementById('cart');
+                    cart.innerHTML = `<i class="fa-solid fa-exclamation"></i>`;
                     showSuccessMessage('Added to cart successfully!');
                 } else {
                     console.error('Error updating quantity:', xhr.statusText);
@@ -217,15 +222,18 @@
                 .then(data => {
                     if (data.success) {
                         // Update UI with the new comment
+                        const noReview = document.getElementById('noreview');
+                        noReview.innerHTML = "";
                         const newComment = `
-                    <div class="container mt-3">
-                        <p class="m-0 fs-5" style="max-width: 840px;">${data.comment}</p>
-                        <div class="m-0 rating-block d-flex">
-                            ${generateStars(data.rating)}
-                        </div>
-                        <p class="m-0 fw-bold" style="max-width: 840px; font-size: 11px;"> User Id: ${data.user_id}</p>
-                        <span class="mt-1 text-muted small">${data.updated_at}</span>
-                    </div>`;
+                            <div class="container mt-3">
+                                <p class="m-0 fs-5" style="max-width: 840px;">Bình luận nóng hổi 🔥🔥</p>
+                                <div class="m-0 rating-block d-flex">
+                                    ${generateStars(data.rating)}
+                                </div>
+                                <p class="m-0 fw-bold" style="max-width: 840px; font-size: 11px;"> User Id: ${data.user_id}</p>
+                                <span class="mt-1 text-muted small">${data.updated_at}</span>
+                                <p class="m-0 text-dark">${data.comment}</p>
+                            </div>`;
                         document.querySelector('#comment-block').insertAdjacentHTML('beforeend', newComment);
                         commentTextarea.value = ""; // Clear the textarea
                         selectedRating = 0; // Reset rating
@@ -251,12 +259,9 @@
                 <div class="position-relative">
                     <div class="position-absolute top-0 start-0 h-100 overflow-hidden" style="width: 100%;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="${fillColor}"/>
+                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="${fillColor}" />
                         </svg>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                        <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" fill="#E4E4E4"/>
-                    </svg>
                 </div>`;
         }
         return starsHtml;

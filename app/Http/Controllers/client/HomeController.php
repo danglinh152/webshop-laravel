@@ -32,8 +32,4 @@ class HomeController extends Controller
         $user = DB::table('users')->where('user_id', $user_id)->first();
         return view('client.homepage.information')->with('user', $user);
     }
-    public function getOrderHistoryPage()
-    {
-        return view('client.homepage.order-history');
-    }
 }

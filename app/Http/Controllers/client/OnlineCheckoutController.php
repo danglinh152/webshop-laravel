@@ -44,10 +44,10 @@ class OnlineCheckoutController extends Controller
         if ($paymentMethod == 'cod') {
             $orderController = new OrderController();
             $orderRequest = new Request([
-            'total' => $request->input('total'),
-            'receiverPhone' => $request->input('receiverPhone'),
-            'receiverAddress' => $request->input('receiverAddress'),
-            'receiverNote' => $request->input('receiverNote'),
+                'total' => $request->input('total'),
+                'receiverPhone' => $request->input('receiverPhone'),
+                'receiverAddress' => $request->input('receiverAddress'),
+                'receiverNote' => $request->input('receiverNote'),
             ]);
             $orderController->save_order($orderRequest);
             return view('client.cart.success');
@@ -70,8 +70,9 @@ class OnlineCheckoutController extends Controller
 
             // Create request ID for MoMo payment
             $requestId = time() . "";
-            $requestType = "payWithATM";  // Payment type (can be ATM, credit card, etc.)
-            // $requestType = "captureWallet";  // Payment type (can be ATM, credit card, etc.)
+            // $requestType = "payWithATM";  // Payment type (can be ATM, credit card, etc.)
+
+            $requestType = "captureWallet";  // Payment type (can be ATM, credit card, etc.)
 
             // Create raw data for HMAC SHA256 signature
             $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
@@ -81,7 +82,7 @@ class OnlineCheckoutController extends Controller
             $data = array(
                 'partnerCode' => $partnerCode,
                 'partnerName' => "Test",
-                "storeId" => "MomoTestStore",
+                "storeId" => "Tenpmstore",
                 'requestId' => $requestId,
                 'amount' => $amount,
                 'orderId' => $orderId,
@@ -112,6 +113,20 @@ class OnlineCheckoutController extends Controller
         }
     }
 
+    public function handleIpn(Request $request)
+    {
+        // Retrieve the payment status from MoMo
+        $status = $request->input('status'); // Assuming the status is sent in the request
+
+        if ($status == 'success') {
+            // Redirect to success page
+            return redirect('/success');
+        } else {
+            // Redirect to error page
+            return redirect('/error');
+        }
+    }
+
     // public function handleIpn(Request $request)
     // {
     //     $status = $request->input('status');
@@ -123,22 +138,5 @@ class OnlineCheckoutController extends Controller
     //     }
     // }
 
-    // public function getSuccessPage(Request $request)
-    // {
-    //     $message = $request->query('message');
-
-    //     if (strpos($message, 'rejected') !== false) {
-    //         return view('client.cart.error');
-    //     } else {
-    //         $orderController = new OrderController();
-    //         $orderRequest = new Request([
-    //         'total' => $request->input('total'),
-    //         'receiverPhone' => $request->input('receiverPhone'),
-    //         'receiverAddress' => $request->input('receiverAddress'),
-    //         'receiverNote' => $request->input('receiverNote'),
-    //         ]);
-    //         $orderController->save_order($orderRequest);
-    //         return view('client.cart.success');
-    //     }
-    // }
+    
 }

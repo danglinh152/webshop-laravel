@@ -720,3 +720,10 @@
     border: 2px solid #fff;
     object-fit: cover;
 }
+
+#search-icon-1:hover,
+ #search-icon-1:focus{
+    cursor: pointer;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(26, 52, 220, 0.25);
+}

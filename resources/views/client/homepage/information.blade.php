@@ -15,7 +15,7 @@
                 <div class="col-3">
                     <div class="row mt-4">
                         <div class="col-1">
-                            <img class="" style="width: 30px; height:30px"
+                            <img class="class" id="user-avatar" style="width: 30px; height:30px"
                                 src="{{ isset($user) && $user->user_image ? asset('public/backend/users-images/' . $user->user_image) : asset('public/backend/users-images/profile.png') }}" alt="">
                         </div>
                         <div class="col">
@@ -68,9 +68,7 @@
                                         <h6 style="font-weight:600">Hạng Kim Cương</h6>
                                         <h6 style="font-weight:600">{{$user->spending_score}} điểm</h6>
                                     </div>
-                                    
                                     @endif
-                                
                                 </div>
 
                                 <form action="{{URL::to('/client/update-user')}}" method="post" enctype="multipart/form-data" class="px-2">
@@ -149,7 +147,6 @@
         </div>
     </div>
     <script>
-        
         function openTab(event, tabId) {
             let tabs = document.querySelectorAll('.tab');
             let contents = document.querySelectorAll('.info-content');
@@ -206,7 +203,7 @@
                             icon: 'success',
                             title: 'Thành công',
                             text: data.message,
-                            timer: 1500, 
+                            timer: 1500,
                             showConfirmButton: false,
                         });
                     } else {
@@ -214,7 +211,7 @@
                             icon: 'error',
                             title: 'Thất bại',
                             text: data.message,
-                            timer: 1500, 
+                            timer: 1500,
                             showConfirmButton: false,
                         });
                     }
@@ -225,7 +222,7 @@
                         icon: 'error',
                         title: 'Lỗi hệ thống',
                         text: 'Đã xảy ra lỗi, vui lòng thử lại!',
-                        timer: 1500, 
+                        timer: 1500,
                         showConfirmButton: false,
                     });
                 });
@@ -260,6 +257,26 @@
                             timer: 1500,
                             showConfirmButton: false,
                         });
+
+                        document.getElementById("last_name").value = formData.get('last_name');
+                        document.getElementById("first_name").value = formData.get('first_name');
+                        document.getElementById("email").value = formData.get('email');
+                        document.getElementById("phone").value = formData.get('phone');
+                        document.getElementById("address").value = formData.get('address');
+
+                        if (userImage) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const newAvatarUrl = e.target.result;
+                                document.getElementById("avatar").src = newAvatarUrl;
+                                document.getElementById("user-avatar").src = newAvatarUrl;
+
+
+                                const event = new CustomEvent('avatar-updated', { detail: newAvatarUrl });
+                                window.dispatchEvent(event);
+                            };
+                            reader.readAsDataURL(userImage);
+                        }
                     } else {
                         Swal.fire({
                             icon: 'error',

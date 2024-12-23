@@ -34,15 +34,16 @@ Route::get('/cart', 'App\Http\Controllers\client\CartController@getCartPage');
 
 // Route::get('/success?partnerCode=MOMOBKUN20180529&orderId=1732804656&requestId=1732804656&amount=10000&orderInfo=Thanh+to%C3%A1n+qua+MoMo&orderType=momo_wallet&transId=4248103194&resultCode=1002&message=Transaction+rejected+by+the+issuers+of+the+payment+accounts.&payType=napas&responseTime=1732804678758&extraData=&signature=e442b5c2e45717740f64b8ebc21a58eb101ae3cd62fb75571f0914071c37b6c9', 'App\Http\Controllers\client\CartController@getSuccessPage');
 // Route::get('/success', 'App\Http\Controllers\client\CartController@getSuccessPage');
-Route::get('/success', 'App\Http\Controllers\client\OnlineCheckoutController@getSuccessPage');
+Route::get('/success', 'App\Http\Controllers\client\CartController@getSuccessPage');
 Route::get('/error', 'App\Http\Controllers\client\CartController@getErrorPage');
 Route::get('/contact', 'App\Http\Controllers\client\HomeController@getContactPage');
-Route::get('/information', 'App\Http\Controllers\client\HomeController@getInforPage');
+Route::get('/client/information', 'App\Http\Controllers\client\HomeController@getInforPage');
 Route::post('/client/update-user', 'App\Http\Controllers\client\UserController@updateUser');
 Route::post('/client/update-password', 'App\Http\Controllers\client\UserController@updatePassword');
 Route::post('/client/update-password', [UserController::class, 'updatePassword']);
 
-Route::get('/order-history', 'App\Http\Controllers\client\HomeController@getOrderHistoryPage');
+Route::get('/order-history', 'App\Http\Controllers\client\OrderController@getOrderHistoryPage');
+Route::post('/order/cancel/{order_id}', 'App\Http\Controllers\client\OrderController@CancelOrder');
 
 Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirect');
 Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@callbackGoogle');
@@ -67,6 +68,8 @@ Route::get('/auth/facebook/callback', 'App\Http\Controllers\FacebookAuthControll
 Route::group(['middleware' => 'admin.auth'], function () {
     // Các route khác có thể thêm vào đây
     Route::get('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@showDashboard');
+    Route::post('/admin/update-info', 'App\Http\Controllers\admin\DashboardController@updateInfo');
+    Route::post('/admin/update-password', 'App\Http\Controllers\admin\DashboardController@updatePassword');
     Route::get('/admin/product', 'App\Http\Controllers\admin\ProductController@showProductPage');
     Route::get('/admin/product/create', 'App\Http\Controllers\admin\ProductController@addProductPage');
     Route::get('/admin/product/details', 'App\Http\Controllers\admin\ProductController@productDetailPage');
@@ -82,10 +85,10 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::post('/admin/order/update-order/{order_id}', 'App\Http\Controllers\admin\OrderController@update_order');
     Route::get('/admin/order/delete/{order_id}', 'App\Http\Controllers\admin\OrderController@delete_order');
     Route::get('/admin/logout', 'App\Http\Controllers\admin\DashboardController@logout');
+    Route::get('/admin/information', 'App\Http\Controllers\admin\DashboardController@getInfoPage');
 });
 
 Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
-
 
 //admin product
 Route::post('/admin/product/save-product', 'App\Http\Controllers\admin\ProductController@save_product');
