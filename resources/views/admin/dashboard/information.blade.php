@@ -5,8 +5,8 @@
         <div class="row mt-4">
             <div class="col-3">
                 <div class="row mt-4">
-                    <div class="col-1">
-                        <img id="user-avatar" style="width: 30px; height:30px"
+                    <div class="col-auto">
+                        <img id="user-avatar" style="width: 30px !important; height: 30px !important; object-fit: cover;"
                             src="{{ isset($user) && $user->user_image ? asset('public/backend/users-images/' . $user->user_image) : asset('public/backend/users-images/profile.png') }}" alt="">
                     </div>
                     <div class="col">
@@ -191,6 +191,8 @@
         const userImage = document.getElementById("avatarUpload").files[0];
         if (userImage) {
             formData.append('user_image', userImage);
+        } else {
+            formData.append('user_image_value', '{{ $user->user_image }}');
         }
 
         fetch("{{URL::to('/admin/update-info')}}", {
