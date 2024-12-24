@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -96,7 +97,7 @@ class CartController extends Controller
 
 
                     DB::table('cart_detail')->where('product_id', $product_id)->where('cart_id', $user_cart->cart_id)->update(['quantity' => $quantity]);
-                    return Redirect::to('/cart');
+                    return response()->json(['success' => true, 'message' => 'Thêm vào giỏ hàng thành công!'], 200);
                 } else {
                     $data['cart_id'] = $user_cart->cart_id;
                     $data['product_id'] = $product_id;
@@ -104,7 +105,7 @@ class CartController extends Controller
                     DB::table('cart_detail')->insert($data);
                     $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->where('quantity', '>', 0)->count();
                     Session::put('cartCount', $cartCount);
-                    return Redirect::to('/cart');
+                    return response()->json(['success' => true, 'message' => 'Thêm vào giỏ hàng thành công!'], 200);
                 }
             } else {
                 $data1['user_id'] = $user_id;
@@ -115,11 +116,10 @@ class CartController extends Controller
                 $data['quantity'] = 1;
                 DB::table('cart_detail')->insert($data);
                 Session::put('cartCount', 1);
-                return Redirect::to('/cart');
+                return response()->json(['success' => true, 'message' => 'Thêm vào giỏ hàng thành công!'], 200);
             }
         } else {
-            Session::put('err_msg', 'Bạn cần đăng nhập để truy cập trang này!');
-            return Redirect::to('/login');
+            return response()->json(['success' => false, 'message' => 'Bạn cần đăng nhập để truy cập trang này!'], 401);
         }
     }
 
@@ -153,7 +153,7 @@ class CartController extends Controller
                 // Update the cart count in the session
                 $cartCount = DB::table('cart_detail')->where('cart_id', $user_cart->cart_id)->where('quantity', '>', 0)->count();
                 Session::put('cartCount', $cartCount);
-                return Redirect::to('/cart');
+                return response()->json(['success' => true, 'message' => 'Thêm vào giỏ hàng thành công!'], 200);
             } else {
                 // Create a new cart if it doesn't exist
                 $data1['user_id'] = $user_id;
@@ -167,11 +167,11 @@ class CartController extends Controller
                 DB::table('cart_detail')->insert($data);
 
                 Session::put('cartCount', 1); // Set initial cart count
-                return Redirect::to('/cart');
+                return response()->json(['success' => true, 'message' => 'Thêm vào giỏ hàng thành công!'], 200);
             }
         } else {
             Session::put('err_msg', 'Bạn cần đăng nhập để truy cập trang này!');
-            return Redirect::to('/login');
+            return response()->json(['success' => false, 'message' => 'Bạn cần đăng nhập để truy cập trang này!'], 401);
         }
     }
 

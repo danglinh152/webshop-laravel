@@ -16,7 +16,6 @@ $username = Session::get('user_name');
         <h6 class="mt-2">Mã đơn hàng: {{ $order_info->order_id }}</h6>
         @endif
 
-        <h6>***************************************************</h6>
         <h6 class="mt-4">Thông tin giao hàng</h6>
 
         @if($username || ($order_info && ($order_info->receiverName || $order_info->receiverAddress || $order_info->receiverPhone || $order_info->receiverNote)))

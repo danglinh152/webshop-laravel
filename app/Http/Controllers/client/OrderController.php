@@ -88,7 +88,7 @@ class OrderController extends Controller
 
         // Store the order info in the session
         Session::put('order_info', $order_info);
-        Session::put('message', 'Đặt đơn hàng thành công.');
+        // Session::put('message', 'Đặt đơn hàng thành công.');
         $cartCount = 0;
         $user_id = Session::get('user_id');
         if ($user_id) {
@@ -98,7 +98,7 @@ class OrderController extends Controller
             }
         }
         Session::put('cartCount', $cartCount);
-        return null;
+        return view('client.cart.success')->with('order_info', $data_order)->with('cartCount', $cartCount);
     }
 
     // public function getOrderHistoryPage()
@@ -138,10 +138,45 @@ class OrderController extends Controller
     public function CancelOrder($order_id)
     {
         $user_id = Session::get('user_id');
+
+        $resultObj = DB::table('order')
+            ->where('order_id', $order_id)
+            ->where('status', '!=', 'Cancelled')->get()->first();
+
         $result = DB::table('order')
             ->where('order_id', $order_id)
             ->where('status', '!=', 'Cancelled')
             ->update(['status' => 'Cancelled']);
+
+        $user = DB::table('users')->where('user_id', Session::get('user_id'))->get()->first();
+
+        $data = array();
+
+        $data['user_first_name'] = $user->user_first_name;
+        $data['user_last_name'] = $user->user_last_name;
+        $data['user_email'] = $user->user_email;
+        $data['user_password'] = $user->user_password;
+        $data['user_phone'] = $user->user_phone;
+        $data['user_address'] = $user->user_address;
+        $data['role'] = $user->role;
+        $data['user_image'] = $user->user_image;
+        $data['spending_score'] = $user->spending_score - $resultObj->payment_cost;
+
+
+        if ($user->spending_score - $resultObj->payment_cost >= 15000000 && $user->spending_score - $resultObj->payment_cost <= 30000000) {
+            $data['ranking'] = 'SILVER';
+        } else if ($user->spending_score - $resultObj->payment_cost > 30000000 && $user->spending_score - $resultObj->payment_cost <= 50000000) {
+            $data['ranking'] = 'GOLD';
+        } else if ($user->spending_score - $resultObj->payment_cost > 50000000) {
+            $data['ranking'] = 'DIAMOND';
+        } else
+            $data['ranking'] = 'COPPER';
+
+        DB::table('users')->where('user_id', Session::get('user_id'))->update($data);
+        Session::put('ranking', $data['ranking']);
+        Session::put('spending_score', $data['spending_score']);
+
+
         if ($result) {
             return response()->json([
                 'success' => true,

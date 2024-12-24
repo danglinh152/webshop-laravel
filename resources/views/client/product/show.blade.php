@@ -103,17 +103,16 @@
                                 }
                                 ?>
                                 @foreach ($all_product as $key => $pro)
-                                <div class="" style="width: 19.5rem">
-                                    <div class="card mb-3 product-cart">
+                                <div class="" style="width: 19.5rem;">
+                                    <div class="card mb-3 product-cart" style="height: 28rem; display: flex; flex-direction: column;">
                                         <img src="{{ asset('public/backend/products-images/' . $pro->product_image) }}"
-                                            class="card-img-top card-image">
-                                        <div class="card-body text-center ">
+                                            class="card-img-top card-image" style="flex-shrink: 0; max-height: 200px; object-fit: contain;">
+                                        <div class="card-body text-center d-flex flex-grow-1 flex-column">
                                             <a href="{{ URL::to('/product/' . $pro->product_id) }}"
                                                 class="item-name text-wrap">{{ $pro->product_name }}</a>
-                                            <p class="item-desc">{{ $pro->product_short_desc }}</p>
+                                            <p class="item-desc" style="flex-grow: 1;">{{ $pro->product_short_desc }}</p>
                                             <p class="item-price">
-                                                {{ number_format($pro->product_price, 0, '.', '.') }}
-                                                đ
+                                                {{ number_format($pro->product_price, 0, '.', '.') }} đ
                                             </p>
                                             <button type="button"
                                                 class="mx-auto btn border rounded-pill px-3 text-primary"
@@ -124,6 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 @endforeach
                             </div>
                             <nav aria-label="Page navigation example mb-4">
@@ -147,22 +147,55 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}'); // Include CSRF token
 
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Handle success response
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Handle success response
+                const response = JSON.parse(xhr.responseText);
+                if (response.success) {
                     const cart = document.getElementById('cart');
                     cart.innerHTML = `<i class="fa-solid fa-exclamation"></i>`;
-                    showSuccessMessage('Added to cart successfully!');
+                    showSuccessMessage(response.message); // Display success message
                 } else {
-                    console.error('Error updating quantity:', xhr.statusText);
+                    // Handle error response
+                    showErrorMessage(response.message); // Display error message
                 }
+            } else {
+                showErrorMessage('Bạn cần đăng nhập để thêm vào giỏ hàng'); // Generic error message
             }
         };
 
         xhr.send(); // Sending the request without additional data
     };
 
+
+
+    // Function to show error message
+    function showErrorMessage(message) {
+        // Create a div for the success message
+        var messageDiv = document.createElement('div');
+        messageDiv.textContent = message;
+        messageDiv.style.position = 'fixed';
+        messageDiv.style.top = '100px';
+        messageDiv.style.right = '20px';
+        messageDiv.style.backgroundColor = 'red'; // Green background
+        messageDiv.style.color = '#fff'; // White text
+        messageDiv.style.padding = '10px 20px';
+        messageDiv.style.borderRadius = '5px';
+        messageDiv.style.zIndex = '1000';
+        messageDiv.style.transition = 'opacity 0.5s ease-in-out';
+        messageDiv.style.opacity = '1';
+
+        // Append to body
+        document.body.appendChild(messageDiv);
+
+        // Fade out after 3 seconds
+        setTimeout(function() {
+            messageDiv.style.opacity = '0';
+            setTimeout(function() {
+                document.body.removeChild(messageDiv);
+            }, 500); // Remove after fade out
+        }, 3000);
+    }
 
 
     function showSuccessMessage(message) {

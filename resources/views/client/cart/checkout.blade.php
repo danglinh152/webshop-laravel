@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\session;
                         <th scope="row" class="d-flex align-items-center gap-3">
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('public/backend/products-images/'.$cart_value->product_image) }}"
-                                    class="img-fluid me-5" style="width: 80px; height: 80px;" alt="">
+                                    class="me-5" style="width: 80px; height: 80px; object-fit: contain;" alt="">
                             </div>
                         </th>
                         <td>

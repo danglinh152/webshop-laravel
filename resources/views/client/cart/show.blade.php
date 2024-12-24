@@ -33,7 +33,7 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('public/backend/products-images/' . $cart_value->product_image) }}"
-                                    class="img-fluid me-5" style="width: 80px; height: 80px;" alt="">
+                                    class="me-5" style="width: 80px; height: 80px; object-fit: contain;" alt="">
                             </div>
                         </th>
                         <td>
@@ -194,28 +194,28 @@
                     discountPrice = subtotal * discountVal;
                     totalPrice = subtotal - discountPrice + 20000;
 
-                    }
-                })
-                
-                
-                // Update subtotal and total amount
-                subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) +
-                    ' đ';
-                discountPriceElement.innerText = '-' + Intl.NumberFormat('vi-VN').format(discountPrice) + ' đ';
-                if(totalPrice){
-                    totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) +
-                    ' đ'; 
-                    localStorage.setItem('totalPrice', totalPrice);
-                }else{
-                    totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal + 20000) +
-                    ' đ'; 
-                    localStorage.setItem('totalPrice', subtotal + 20000);
                 }
-                // Assuming no shipping costs
-                localStorage.setItem('subtotal', subtotal);
-                localStorage.setItem('discountVal', discountVal);
-                localStorage.setItem('discountPrice', discountPrice);
+            })
+
+
+            // Update subtotal and total amount
+            subtotalElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal) +
+                ' đ';
+            discountPriceElement.innerText = '-' + Intl.NumberFormat('vi-VN').format(discountPrice) + ' đ';
+            if (totalPrice) {
+                totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) +
+                    ' đ';
+                localStorage.setItem('totalPrice', totalPrice);
+            } else {
+                totalAmountElement.innerText = new Intl.NumberFormat('vi-VN').format(subtotal + 20000) +
+                    ' đ';
+                localStorage.setItem('totalPrice', subtotal + 20000);
             }
+            // Assuming no shipping costs
+            localStorage.setItem('subtotal', subtotal);
+            localStorage.setItem('discountVal', discountVal);
+            localStorage.setItem('discountPrice', discountPrice);
+        }
 
         // Update totals when checkbox is toggled
         checkboxes.forEach(checkbox => {

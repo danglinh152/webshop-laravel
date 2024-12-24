@@ -40,15 +40,15 @@ class OnlineCheckoutController extends Controller
             $orderinfo .= $cart_value->product_name . " x " . $cart_value->quantity . ", ";
         }
 
-
+        $orderController = new OrderController();
+        $orderRequest = new Request([
+            'total' => $request->input('total'),
+            'receiverPhone' => $request->input('receiverPhone'),
+            'receiverAddress' => $request->input('receiverAddress'),
+            'receiverNote' => $request->input('receiverNote'),
+        ]);
         if ($paymentMethod == 'cod') {
-            $orderController = new OrderController();
-            $orderRequest = new Request([
-                'total' => $request->input('total'),
-                'receiverPhone' => $request->input('receiverPhone'),
-                'receiverAddress' => $request->input('receiverAddress'),
-                'receiverNote' => $request->input('receiverNote'),
-            ]);
+
             $orderController->save_order($orderRequest);
             return view('client.cart.success');
         } elseif ($paymentMethod == "payUrl") {
@@ -104,6 +104,8 @@ class OnlineCheckoutController extends Controller
             // If the request is successful, MoMo will return a payUrl for redirection
             if ($jsonResult['resultCode'] == '0') {
                 // Redirect to MoMo's payment page
+
+                $orderController->save_order($orderRequest);
                 header('Location: ' . $jsonResult['payUrl']);
                 exit();  // Make sure to stop further execution after the redirect
             } else {
@@ -138,5 +140,5 @@ class OnlineCheckoutController extends Controller
     //     }
     // }
 
-    
+
 }
