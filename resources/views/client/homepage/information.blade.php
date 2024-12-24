@@ -238,6 +238,8 @@
             const userImage = document.getElementById("avatarUpload").files[0];
             if (userImage) {
                 formData.append('user_image', userImage);
+            } else {
+                formData.append('user_image_value', '{{ $user->user_image }}');
             }
 
             var xhr = new XMLHttpRequest();

@@ -80,11 +80,13 @@ class UserController extends Controller
         $data['user_email'] = $request->email;
         $data['user_phone'] = $request->phone;
         $data['user_address'] = $request->address;
-        $get_image = $request->file('user_image');
-        if ($get_image) {
-            $new_image = $get_image->getClientOriginalName();
-            $get_image->move('public/backend/users-images', $new_image);
-            $data['user_image'] = $new_image;
+        if ($request->hasFile('user_image')) {
+            $file = $request->file('user_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('backend/users-images'), $fileName);
+            $data['user_image'] = $fileName;
+        } else {
+            $data['user_image'] = $request->input('user_image_value');
         }
         $check = DB::table('users')->where('user_id', $user_id)->update($data);
         if ($check) {
