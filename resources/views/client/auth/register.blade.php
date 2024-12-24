@@ -85,7 +85,7 @@
         </form>
     </div>
 
-    <script src="{{('public/frontend/client/js/register-scripts.js')}}"></script>
+    <script src="{{('public\frontend\client\js\register-scripts.js')}}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             Validator({
@@ -98,6 +98,7 @@
                     Validator.isRequired("#l_name"),
                     Validator.isRequired("#f_name"),
                     Validator.minLength("#password", 6),
+                    Validator.minLength("#confirm-password", 6),
                     Validator.isRequired("#confirm-password"),
                     Validator.isConfirmed(
                         "#confirm-password",
@@ -110,7 +111,6 @@
                     ),
                 ],
                 onSubmit: function(data) {
-                    // Call API
                     const form = document.getElementById('form-login');
                     form.submit();
                     console.log(data);

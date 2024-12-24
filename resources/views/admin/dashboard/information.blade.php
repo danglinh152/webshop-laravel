@@ -231,6 +231,10 @@
                     };
                     reader.readAsDataURL(userImage);
                 }
+
+                const updatedFullName = `${formData.get('first_name')} ${formData.get('last_name')}`;
+                const event = new CustomEvent('name-updated', { detail: updatedFullName });
+                window.dispatchEvent(event);
             } else {
                 Swal.fire({
                     icon: 'error',

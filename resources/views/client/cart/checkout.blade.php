@@ -82,21 +82,25 @@ use Illuminate\Support\Facades\session;
             @csrf
             <div class="col-md-7">
                 <h4 class="mt-2">Thông tin người nhận</h4>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 input-box">
                     <label>Họ tên:</label>
-                    <input class="form-control mt-1" type="text" name="receiverName" required />
+                    <input id="receiverName" class="form-control mt-1" type="text" name="receiverName" />
+                    <span class="error-message" style="color: #f33a58;"></span>
                 </div>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 input-box">
                     <label>Địa chỉ:</label>
-                    <textarea class="form-control mt-1" name="receiverAddress" required></textarea>
+                    <textarea id="receiverAddress" class="form-control mt-1" name="receiverAddress"></textarea>
+                    <span class="error-message" style="color: #f33a58;"></span>
                 </div>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 input-box">
                     <label>Số điện thoại:</label>
-                    <input class="form-control mt-1" type="text" name="receiverPhone" required />
+                    <input id="receiverPhone" class="form-control mt-1" type="text" name="receiverPhone"/>
+                    <span class="error-message" style="color: #f33a58;"></span>
                 </div>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 input-box">
                     <label>Ghi chú:</label>
-                    <textarea class="form-control mt-1" name="receiverNote"></textarea>
+                    <textarea id="receiverNote" class="form-control mt-1" name="receiverNote"></textarea>
+                    <span class="error-message" style="color: #f33a58;"></span>
                 </div>
 
                 <h4 class="mt-4 mb-2">Hình thức thanh toán</h4>
@@ -145,7 +149,7 @@ use Illuminate\Support\Facades\session;
         </form>
     </div>
 </div>
-
+<script src="{{ asset('public/frontend/client/js/onlineCheckOut.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const subtotalElement = document.getElementById('subtotal');
@@ -167,6 +171,29 @@ use Illuminate\Support\Facades\session;
 
         // Initial calculation
         calculateTotal();
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("Validator initialized");
+        Validator({
+            form: "#checkoutForm",
+            formGroupSelector: ".input-box",
+            errorSelector: ".error-message",
+            rules: [
+                Validator.isRequired("#receiverName"),
+                Validator.isRequired("#receiverAddress"),
+                Validator.isRequired("#receiverPhone"),
+                Validator.isLength("#receiverPhone", 10),
+                Validator.isNumber("#receiverPhone"),
+
+            ],
+            onSubmit: function(data) {
+                const form = document.getElementById('checkoutForm');
+                form.submit();
+                console.log(data);
+            },
+        });
     });
 </script>
 @stop

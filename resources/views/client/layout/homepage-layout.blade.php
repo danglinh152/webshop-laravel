@@ -301,6 +301,14 @@ else $ranking = 'Hạng Kim Cương';
             }
         });
 
+        window.addEventListener('name-updated', function (e) {
+            const updatedFullName = e.detail;
+            const layoutNameElement = document.querySelector("#navbarCollapse > div.d-flex > div > ul > li.d-flex.align-items-center.flex-column > div.text-dark.fw-bold.fs-5.my-3");
+            if (layoutNameElement) {
+                layoutNameElement.innerText = updatedFullName;
+            }
+        });
+
         window.addEventListener('avatar-updated', function (e) {
             const newAvatar = e.detail;
             document.getElementById("homepage-avatar").src = newAvatar;

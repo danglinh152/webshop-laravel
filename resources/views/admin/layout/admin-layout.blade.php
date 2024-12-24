@@ -400,6 +400,14 @@
             });
         });
 
+        window.addEventListener('name-updated', function (e) {
+            const updatedFullName = e.detail;
+            const nameElement = document.querySelector(".profile-block p");
+            if (nameElement) {
+                nameElement.innerText = `Welcome back, ${updatedFullName}`;
+            }
+        });
+
         window.addEventListener('avatar-updated', function (e) {
             const newAvatar = e.detail;
             document.getElementById("layout-avatar").src = newAvatar;

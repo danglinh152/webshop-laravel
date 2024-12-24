@@ -77,7 +77,7 @@
         </form>
     </div>
 
-    <script src="{{('public/frontend/user/js/login-scripts.js')}}"></script>
+    <script src="{{('public\frontend\user\login-scripts.js')}}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             Validator({
@@ -86,7 +86,8 @@
                 errorSelector: ".error-message",
                 rules: [
                     Validator.isRequired("#email"),
-                    Validator.minLength("#password", 2),
+                    Validator.isEmail("#email"),
+                    Validator.minLength("#password", 6),
                 ],
                 onSubmit: function(data) {
                     const form = document.getElementById('form-login');
@@ -98,5 +99,4 @@
         });
     </script>
 </body>
-
 </html>
