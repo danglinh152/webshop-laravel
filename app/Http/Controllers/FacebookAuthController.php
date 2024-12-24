@@ -14,7 +14,7 @@ class FacebookAuthController extends Controller
     {
         return Socialite::driver('facebook')->redirect();
     }
-    public function callback()
+    public function callbackFacebook()
     {
         try {
             $facebook_user = Socialite::driver('facebook')->user();

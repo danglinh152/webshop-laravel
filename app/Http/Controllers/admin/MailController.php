@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -53,13 +54,25 @@ class MailController extends Controller
             $new_passwd = $randomString_passwd;
             $to_name = "10pm Store";
             $to_email = $request->email; //send to this email
+
+
             $data = array("name" => "10pm Store", "password" => $new_passwd); //body of mail.blade.php
 
             Mail::send('admin.mail-service.sendMailNewPasswd', $data, function ($message) use ($to_name, $to_email) {
                 $message->to($to_email)->subject('Your new password'); //send this mail with subject
                 $message->from($to_email, $to_name); //send from this mail
             });
+
+            $user = DB::table('users')->where('user_email', $to_email)->first();
+
+            if ($user) {
+                DB::table('users')
+                    ->where('user_email', $to_email)
+                    ->update(['user_password' => md5($new_passwd)]); // Sử dụng bcrypt để mã hóa mật khẩu
+            }
+
             Session::put('message', "Mật khẩu mới đã được gửi về mail của bạn!");
+
             return Redirect::to('/');
         } else {
             Session::put('err_msg', "Mật khẩu hoặc tài khoản sai! Vui lòng nhập lại!");
