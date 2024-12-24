@@ -19,7 +19,7 @@
                                 src="{{ isset($user) && $user->user_image ? asset('public/backend/users-images/' . $user->user_image) : asset('public/backend/users-images/profile.png') }}" alt="">
                         </div>
                         <div class="col">
-                            <h5 class="text-dark ms-2 mt-1" style="font-weight:600">{{$user->user_last_name}} {{$user->user_first_name}}</h5>
+                            <h5 id="user_name" class="text-dark ms-2 mt-1" style="font-weight:600">{{$user->user_last_name}} {{$user->user_first_name}}</h5>
                         </div>
                     </div>
                     <div class="sidebar">
@@ -261,6 +261,7 @@
                         });
 
                         document.getElementById("last_name").value = formData.get('last_name');
+                        document.getElementById("user_name").innerHTML = formData.get('first_name') + ' ' + formData.get('last_name');
                         document.getElementById("first_name").value = formData.get('first_name');
                         document.getElementById("email").value = formData.get('email');
                         document.getElementById("phone").value = formData.get('phone');
@@ -279,6 +280,11 @@
                             };
                             reader.readAsDataURL(userImage);
                         }
+
+                        const updatedFullName = `${formData.get('first_name')} ${formData.get('last_name')}`;
+                        const event = new CustomEvent('name-updated', { detail: updatedFullName });
+                        window.dispatchEvent(event);
+
                     } else {
                         Swal.fire({
                             icon: 'error',

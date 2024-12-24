@@ -90,6 +90,8 @@ class UserController extends Controller
         }
         $check = DB::table('users')->where('user_id', $user_id)->update($data);
         if ($check) {
+            $user_name = $data['user_first_name'] . ' ' . $data['user_last_name'];
+            Session::put('user_name', $user_name);
             Session::put('image', asset('public/backend/users-images/' . $data['user_image']));
             return response()->json(['success' => true, 'message' => 'Cập nhật thông tin thành công!']);
         } else {
