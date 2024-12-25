@@ -160,14 +160,14 @@ class OrderController extends Controller
         $data['user_address'] = $user->user_address;
         $data['role'] = $user->role;
         $data['user_image'] = $user->user_image;
-        $data['spending_score'] = $user->spending_score - $resultObj->payment_cost;
+        $data['spending_score'] = $user->spending_score - ($resultObj->payment_cost);
 
 
-        if ($user->spending_score - $resultObj->payment_cost >= 15000000 && $user->spending_score - $resultObj->payment_cost <= 30000000) {
+        if ($user->spending_score - ($resultObj->payment_cost) >= 15000000 && $user->spending_score - ($resultObj->payment_cost) <= 30000000) {
             $data['ranking'] = 'SILVER';
-        } else if ($user->spending_score - $resultObj->payment_cost > 30000000 && $user->spending_score - $resultObj->payment_cost <= 50000000) {
+        } else if ($user->spending_score - ($resultObj->payment_cost) > 30000000 && $user->spending_score - ($resultObj->payment_cost) <= 50000000) {
             $data['ranking'] = 'GOLD';
-        } else if ($user->spending_score - $resultObj->payment_cost > 50000000) {
+        } else if ($user->spending_score - ($resultObj->payment_cost) > 50000000) {
             $data['ranking'] = 'DIAMOND';
         } else
             $data['ranking'] = 'COPPER';

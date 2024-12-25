@@ -13,7 +13,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('public/frontend/admin/css/tailwind.output.css') }}">
-     <!-- Alpine.js -->
+    <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('public/frontend/admin/js/init-alpine.js') }}"></script>
     <!-- Chart.js -->
@@ -280,7 +280,7 @@
                                         </li>
                                         <li class="flex">
                                             <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                                href="{{ URL::to('/login') }}">
+                                                href="{{ URL::to('/admin/logout') }}">
                                                 <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none"
                                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -400,7 +400,7 @@
             });
         });
 
-        window.addEventListener('name-updated', function (e) {
+        window.addEventListener('name-updated', function(e) {
             const updatedFullName = e.detail;
             const nameElement = document.querySelector(".profile-block p");
             if (nameElement) {
@@ -408,7 +408,7 @@
             }
         });
 
-        window.addEventListener('avatar-updated', function (e) {
+        window.addEventListener('avatar-updated', function(e) {
             const newAvatar = e.detail;
             document.getElementById("layout-avatar").src = newAvatar;
         });

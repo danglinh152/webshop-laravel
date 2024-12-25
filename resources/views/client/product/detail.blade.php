@@ -118,7 +118,7 @@
                     </div>
                     @endforeach
                     @else
-                    <p id="noreview">No reviews yet.</p>
+                    <p id="noreview"></p>
                     @endif
                 </div>
 
@@ -252,10 +252,11 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+
                     if (data.success) {
                         // Update UI with the new comment
-                        const noReview = document.getElementById('noreview');
-                        noReview.innerHTML = "";
+                        // var noReview = document.getElementById('noreview');
+                        // noReview.innerHTML = "";
                         const newComment = `
                             <div class="container mt-3">
                                 <p class="m-0 fs-5" style="max-width: 840px;">Bình luận nóng hổi 🔥🔥</p>
@@ -271,7 +272,7 @@
                         selectedRating = 0; // Reset rating
                         updateStars(0); // Reset visual stars
                     } else {
-                        alert('Failed to post comment. Please try again.');
+                        showErrorMessage('Bạn cần đăng nhập để bình luận!');
                     }
                 })
                 .catch(error => {

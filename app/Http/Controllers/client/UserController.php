@@ -68,6 +68,7 @@ class UserController extends Controller
     public function logout()
     {
         Session::put('user_id', null);
+        Session::put('admin_id', null);
         Session::put('user_name', null);
         return Redirect::to('/login');
     }

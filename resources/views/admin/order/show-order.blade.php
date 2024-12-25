@@ -24,7 +24,7 @@
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
                             <th class="px-4 py-3 text-gray-700 text-base">Id</th>
                             <th class="px-4 py-3 text-gray-700 text-base">User id</th>
-                            <th class="px-4 py-3 text-gray-700 text-base">Voucher id</th>
+                            <!-- <th class="px-4 py-3 text-gray-700 text-base">Voucher id</th> -->
                             <th class="px-4 py-3 text-gray-700 text-base">Payment cost</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Shipping cost</th>
                             <th class="px-4 py-3 text-gray-700 text-base">Status</th>
@@ -40,7 +40,7 @@
                             <tr class="text-gray-700">
                                 <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->order_id}}</td>
                                 <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->user_id}}</td>
-                                <td class="px-4 py-3 text-sm font-medium text-gray-500">{{ $order->voucher_id ? $order->voucher_id : 'None' }}</td>
+                                <!-- <td class="px-4 py-3 text-sm font-medium text-gray-500">{{ $order->voucher_id ? $order->voucher_id : 'None' }}</td> -->
                                 <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->payment_cost}}</td>
                                 <td class="px-4 py-3 text-sm font-medium text-gray-500">{{$order->shipping_cost}}</td>
                                 @if ($order->status == 'Pending')

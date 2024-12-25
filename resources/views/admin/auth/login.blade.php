@@ -87,7 +87,6 @@
                 rules: [
                     Validator.isRequired("#email"),
                     Validator.isEmail("#email"),
-                    Validator.minLength("#password", 6),
                 ],
                 onSubmit: function(data) {
                     const form = document.getElementById('form-login');

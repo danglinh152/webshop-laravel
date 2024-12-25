@@ -22,17 +22,17 @@ class DashboardController extends Controller
 
     public function showDashboard()
     {
-        $revenue = DB::table('order')->sum('payment_cost');
+        $revenue = DB::table('order')->where('status', '!=', 'Cancelled')->sum('payment_cost');
         $user_count = DB::table('users')->count();
         $sale = DB::table('order')->count();
         $completed = DB::table('order')->where('status', 'Completed')->count();
 
         return view('admin.dashboard.dashboard', [
-                        'revenue' => $revenue,
-                        'user_count' => $user_count,
-                        'sale' => $sale,
-                        'completed' => $completed,
-                    ]);
+            'revenue' => $revenue,
+            'user_count' => $user_count,
+            'sale' => $sale,
+            'completed' => $completed,
+        ]);
     }
 
 
@@ -68,7 +68,7 @@ class DashboardController extends Controller
         return view('admin.dashboard.information')->with('user', $user);
     }
 
-        public function updateInfo(Request $request)
+    public function updateInfo(Request $request)
     {
         $admin_id = Session::get('admin_id');
         $data = array();
@@ -94,7 +94,6 @@ class DashboardController extends Controller
         } else {
             return response()->json(['success' => false, 'message' => 'Cập nhật thông tin thất bại!']);
         }
-
     }
 
     public function updatePassword(Request $request)
@@ -115,13 +114,14 @@ class DashboardController extends Controller
         // Cập nhật mật khẩu mới
         $result = DB::table('users')->where('user_id', $admin_id)->update(['user_password' => md5($request->new_password)]);
         if ($result)
-        return response()->json(['success' => true, 'message' => 'Cập nhật mật khẩu thành công!']);
+            return response()->json(['success' => true, 'message' => 'Cập nhật mật khẩu thành công!']);
         else return response()->json(['success' => false, 'message' => 'Cập nhật mật khẩu không thành công!']);
     }
 
     public function logout(Request $request)
     {
         Session::put('user_name', null);
+        Session::put('admin_id', null);
         Session::put('user_id', null);
         return Redirect::to('/login');
     }

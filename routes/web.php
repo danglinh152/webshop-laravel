@@ -86,18 +86,33 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/admin/order/delete/{order_id}', 'App\Http\Controllers\admin\OrderController@delete_order');
     Route::get('/admin/logout', 'App\Http\Controllers\admin\DashboardController@logout');
     Route::get('/admin/information', 'App\Http\Controllers\admin\DashboardController@getInfoPage');
+
+    Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
+
+    //admin product
+    Route::post('/admin/product/save-product', 'App\Http\Controllers\admin\ProductController@save_product');
+    Route::get('/admin/product/edit-product/{product_id}', 'App\Http\Controllers\admin\ProductController@edit_product');
+    Route::post('/admin/product/update-product/{product_id}', 'App\Http\Controllers\admin\ProductController@update_product');
+    Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\admin\ProductController@view_product');
+    Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
+    Route::get('/admin/product/active-product/{product_id}', 'App\Http\Controllers\admin\ProductController@active_product');
+    Route::get('/admin/product/unactive-product/{product_id}', 'App\Http\Controllers\admin\ProductController@unactive_product');
+    Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
+
+    Route::post('/admin/user/save-user', 'App\Http\Controllers\admin\UserController@saveUser');
+    Route::get('/admin/user/edit-user/{user_id}', 'App\Http\Controllers\admin\UserController@updateUserPage');
+    Route::post('/admin/user/update-user/{user_id}', 'App\Http\Controllers\admin\UserController@update_user');
+    Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\UserController@delete_user');
+
+
+    //voucher
+    Route::post('/admin/voucher/save-voucher', 'App\Http\Controllers\admin\VoucherController@save_voucher');
+    Route::get('/admin/voucher/edit-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@edit_voucher');
+    Route::post('/admin/voucher/update-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@update_voucher');
+    Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@delete_voucher');
 });
 
-Route::post('/admin/dashboard', 'App\Http\Controllers\admin\DashboardController@dashboard');
 
-//admin product
-Route::post('/admin/product/save-product', 'App\Http\Controllers\admin\ProductController@save_product');
-Route::get('/admin/product/edit-product/{product_id}', 'App\Http\Controllers\admin\ProductController@edit_product');
-Route::post('/admin/product/update-product/{product_id}', 'App\Http\Controllers\admin\ProductController@update_product');
-Route::get('/admin/product/view-details/{product_id}', 'App\Http\Controllers\admin\ProductController@view_product');
-Route::get('/admin/product/delete-product/{product_id}', 'App\Http\Controllers\admin\ProductController@delete_product');
-Route::get('/admin/product/active-product/{product_id}', 'App\Http\Controllers\admin\ProductController@active_product');
-Route::get('/admin/product/unactive-product/{product_id}', 'App\Http\Controllers\admin\ProductController@unactive_product');
 //client product
 Route::post('/client/review/addComment', 'App\Http\Controllers\client\ReviewController@post_review');
 
@@ -105,24 +120,15 @@ Route::post('/client/review/addComment', 'App\Http\Controllers\client\ReviewCont
 Route::post('/send-mail', 'App\Http\Controllers\admin\MailController@sendMail');
 Route::post('/check-otp', 'App\Http\Controllers\admin\MailController@verify');
 //user
-Route::post('/admin/user/add-user', 'App\Http\Controllers\client\UserController@add_user');
+
 Route::post('/auth', 'App\Http\Controllers\client\UserController@login');
 Route::get('/logout', 'App\Http\Controllers\client\UserController@logout');
-Route::post('/admin/user/save-user', 'App\Http\Controllers\admin\UserController@saveUser');
-Route::get('/admin/user/edit-user/{user_id}', 'App\Http\Controllers\admin\UserController@updateUserPage');
-Route::post('/admin/user/update-user/{user_id}', 'App\Http\Controllers\admin\UserController@update_user');
-Route::get('/admin/user/delete-user/{user_id}', 'App\Http\Controllers\admin\UserController@delete_user');
 
 //client add to cart
 Route::post('/product/add-to-card/{product_id}', 'App\Http\Controllers\client\CartController@addTocart');
 Route::post('/product/add-to-cart/{product_id}/{quantityParam}', 'App\Http\Controllers\client\CartController@addToCartInDetail');
 Route::post('/product/delete-product-from-cart/{product_id}', 'App\Http\Controllers\client\CartController@deleteCart');
 
-//voucher
-Route::post('/admin/voucher/save-voucher', 'App\Http\Controllers\admin\VoucherController@save_voucher');
-Route::get('/admin/voucher/edit-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@edit_voucher');
-Route::post('/admin/voucher/update-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@update_voucher');
-Route::get('/admin/voucher/delete-voucher/{voucher_id}', 'App\Http\Controllers\admin\VoucherController@delete_voucher');
 
 //checkout
 Route::post('/client/checkout', 'App\Http\Controllers\client\CartController@getCheckoutPage');

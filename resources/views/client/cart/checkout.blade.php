@@ -94,7 +94,7 @@ use Illuminate\Support\Facades\session;
                 </div>
                 <div class="form-group mt-3 input-box">
                     <label>Số điện thoại:</label>
-                    <input id="receiverPhone" class="form-control mt-1" type="text" name="receiverPhone"/>
+                    <input id="receiverPhone" class="form-control mt-1" type="tel" name="receiverPhone"/>
                     <span class="error-message" style="color: #f33a58;"></span>
                 </div>
                 <div class="form-group mt-3 input-box">
@@ -173,7 +173,7 @@ use Illuminate\Support\Facades\session;
         calculateTotal();
     });
 </script>
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         console.log("Validator initialized");
         Validator({
@@ -195,5 +195,5 @@ use Illuminate\Support\Facades\session;
             },
         });
     });
-</script>
+</script> -->
 @stop
