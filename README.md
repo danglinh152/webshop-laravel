@@ -10,3 +10,4 @@ This project is built using the Laravel framework, which follows the Model-View-
 -   **PHP**: Version 8.1.25
 -   **Database**: MySQL
 -   **Frontend**: Blade templating engine, HTML, CSS, JavaScript
+- **Done**
